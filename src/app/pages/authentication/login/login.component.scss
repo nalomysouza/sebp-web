@@ -1,3 +1,16 @@
+.login {
+  background: white;
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  margin: -160px 0 0 -160px;
+  width: 320px;
+  height: 380px;
+  padding: 36px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
 .login-form {
   max-width: 300px;
 }
