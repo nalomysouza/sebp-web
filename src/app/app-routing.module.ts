@@ -9,10 +9,11 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/welcome'},
+      { path: '', pathMatch: 'full', redirectTo: '/biblioteca' },
+      { path: 'biblioteca', canActivate: [AuthGuard], loadChildren: () => import('./pages/biblioteca/biblioteca.module').then(m => m.BibliotecaModule) },
       { path: 'welcome', canActivate: [AuthGuard], loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
     ]
-  }
+  },
 ];
 
 @NgModule({
