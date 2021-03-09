@@ -16,7 +16,7 @@ export class ResourceService<T extends Resource> {
     protected endpoint: string,
     protected serializer: Serializer) { }
 
-  public create(item: T): Observable<T> {
+  public save(item: T): Observable<T> {
     return this.httpClient
       .post<T>(`${this.url}/${this.endpoint}`, this.serializer.toJson(item)).pipe(
         map(data => this.serializer.fromJson(data) as T),
@@ -33,15 +33,15 @@ export class ResourceService<T extends Resource> {
         );
   }
 
-  public createOrUpdate(item: T): Observable<T> {
+  public saveOrUpdate(item: T): Observable<T> {
     if (!item.id) {
-      return this.create(item);
+      return this.save(item);
     } else {
       return this.update(item);
     }
   }
 
-  public read(id: number): Observable<T> {
+  public findOne(id: number): Observable<T> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}/${id}`).pipe(
         map(data => this.serializer.fromJson(data) as T),
@@ -49,7 +49,7 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public list(): Observable<T[]> {
+  public findAll(): Observable<T[]> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}/all`)
       .pipe(
@@ -57,7 +57,7 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public listPageable(queryOptions: QueryOptions): Observable<T[]> {
+  public findAllPageable(queryOptions: QueryOptions): Observable<T[]> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}?${queryOptions.toQueryString()}`)
       .pipe(
@@ -77,8 +77,8 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public convertData(data: any): T[] {
-    return data.map(item => this.serializer.fromJson(item));
+  protected convertData(data: any): T[] {
+    return data.map((item: any) => this.serializer.fromJson(item));
   }
 
   protected handleError(error: Response | any) {

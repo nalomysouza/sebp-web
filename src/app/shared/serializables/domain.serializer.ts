@@ -10,8 +10,8 @@ export class DomainSerializer<T extends Resource> implements Serializer {
   }
 
   public fromJson(json: any): T {
-    const domain = this.getDomain();
-    Object.keys(json).forEach(k => domain[k] = json[k]);
+    let domain: T = this.getDomain();
+    Object.keys(json).forEach((k: any) => domain[k] = json[k]);
     return domain;
   }
 
