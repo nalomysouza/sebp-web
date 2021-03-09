@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './core/_helpers/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -8,8 +9,8 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/welcome', /*canActivate: [AuthGuard]*/ },
-      { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
+      { path: '', pathMatch: 'full', redirectTo: '/welcome'},
+      { path: 'welcome', canActivate: [AuthGuard], loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
     ]
   }
 ];
