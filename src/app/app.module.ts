@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { IconsProviderModule } from './icons-provider.module';
 import { LayoutModule } from './layout/layout.module';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 registerLocaleData(pt);
 
@@ -36,7 +37,7 @@ registerLocaleData(pt);
     NzFormModule,
     NzLayoutModule,
     NzMenuModule,
-
+    NzMessageModule
   ],
   providers: [{ provide: NZ_I18N, useValue: pt_BR }],
   bootstrap: [AppComponent]

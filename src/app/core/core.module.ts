@@ -4,6 +4,7 @@ import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
 import { AuthGuard } from './_helpers/auth.guard';
 import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
+import { HttpErrorInterceptorProviders } from './_helpers/http-error.interceptor';
 
 @NgModule({
   imports: [
@@ -11,9 +12,11 @@ import { TokenStorageService } from './_services/token-storage.service';
   ],
   providers: [
     AuthGuard,
-    AuthInterceptorProviders,
     AuthService,
-    TokenStorageService
+    TokenStorageService,
+
+    AuthInterceptorProviders,
+    HttpErrorInterceptorProviders,
   ]
 })
 export class CoreModule {

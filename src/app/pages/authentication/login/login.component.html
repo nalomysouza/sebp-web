@@ -14,7 +14,11 @@
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    <button nz-button class="login-form-button login-form-margin"
+      [nzType]="'primary'"
+      [nzLoading]="isLoading">
+      Login
+    </button>
     <div nz-row class="login-form-margin">
       <div nz-col [nzSpan]="12">
         <a class="login-form-forgot">Register now</a>
