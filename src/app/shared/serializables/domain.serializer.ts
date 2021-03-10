@@ -1,5 +1,5 @@
 import { Serializer } from './serializer.model';
-import { Resource } from '../model/resource.model';
+import { Resource } from '../model/helpers/resource.model';
 
 export class DomainSerializer<T extends Resource> implements Serializer {
 

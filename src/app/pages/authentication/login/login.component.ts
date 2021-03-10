@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth.service';
-import { CurrentUser } from 'src/app/shared/model/current-user.model';
+import { CurrentUser } from 'src/app/shared/model/helpers/current-user.model';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({

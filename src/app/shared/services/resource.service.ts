@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, take } from 'rxjs/operators';
-import { QueryOptions } from '../model/query.options';
-import { Resource } from '../model/resource.model';
+import { catchError, map } from 'rxjs/operators';
+import { QueryOptions } from '../model/helpers/query.options';
+import { Resource } from '../model/helpers/resource.model';
 import { Serializer } from '../serializables/serializer.model';
 import { API } from './api';
 
