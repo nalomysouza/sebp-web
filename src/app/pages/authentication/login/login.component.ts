@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth.service';
 import { CurrentUser } from 'src/app/shared/model/helpers/current-user.model';
+import { AssetsService } from 'src/app/shared/services/assets.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private _authenticationService: AuthenticationService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _assets: AssetsService
   ) { }
 
   validateForm!: FormGroup;
@@ -53,5 +55,9 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
+  }
+
+  logo(): string {
+    return this._assets.pathImg('logo-name.png');
   }
 }
