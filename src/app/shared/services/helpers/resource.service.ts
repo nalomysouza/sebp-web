@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Pageable } from '../../model/helpers/pageable.model';
 import { QueryOptions } from '../../model/helpers/query.options';
 import { Resource } from '../../model/helpers/resource.model';
 import { Serializer } from '../../serializables/helpers/serializer.model';
@@ -9,7 +10,7 @@ import { API } from './api';
 
 export class ResourceService<T extends Resource> {
 
-  protected url: string = API;
+  protected url: string = API.concat("/v1");
 
   constructor(
     protected httpClient: HttpClient,
@@ -51,17 +52,17 @@ export class ResourceService<T extends Resource> {
 
   public readAll(): Observable<T[]> {
     return this.httpClient
-      .get(`${this.url}/${this.endpoint}`)
+      .get(`${this.url}/${this.endpoint}/all`)
       .pipe(
         map((data: any) => this.convertData(data)),
       );
   }
 
-  public findAllPageable(queryOptions: QueryOptions): Observable<T[]> {
+  public readAllPageable(pageIndex?: number, pageSize?: number): Observable<Pageable<T>> {
     return this.httpClient
-      .get(`${this.url}/${this.endpoint}?${queryOptions.toQueryString()}`)
+      .get(`${this.url}/${this.endpoint}?page=${pageIndex ? pageIndex : 0}&size=${pageSize ? pageSize : 12}`)
       .pipe(
-        map((data: any) => this.convertData(data.content)),
+        map((data: any) => data),
       );
   }
 

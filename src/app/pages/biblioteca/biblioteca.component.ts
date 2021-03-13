@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
+import { Pageable } from 'src/app/shared/model/helpers/pageable.model';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
-import { NzMarks } from 'ng-zorro-antd/slider';
-
 @Component({
   selector: 'app-biblioteca',
   templateUrl: './biblioteca.component.html',
@@ -10,15 +9,20 @@ import { NzMarks } from 'ng-zorro-antd/slider';
 })
 export class BibliotecaComponent implements OnInit {
   constructor(private _bibliotecaService: BibliotecaService) { }
-  bibliotecas: Array<Biblioteca> = [];
-  cols = 4;
-  gutterCols = new Array(this.cols);
+  bibPageable: Pageable<Biblioteca> = new Pageable<Biblioteca>();
 
   ngOnInit(): void {
-    this.readAll();
+    this.buscar();
   }
 
-  readAll() {
-    this._bibliotecaService.readAll().subscribe(b => this.bibliotecas = b);
+  onPageIndexChange(pageIndex: any) {
+    this.bibPageable.number = pageIndex;
+    this.buscar();
+  }
+
+  buscar() {
+    //this._bibliotecaService.readAll().subscribe(b => this.bibliotecas = b);
+    this._bibliotecaService.readAllPageable(this.bibPageable.number, this.bibPageable.size)
+      .subscribe(b => this.bibPageable = b);
   }
 }
