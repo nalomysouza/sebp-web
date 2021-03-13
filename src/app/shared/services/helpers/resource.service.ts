@@ -41,7 +41,7 @@ export class ResourceService<T extends Resource> {
     }
   }
 
-  public findOne(id: number): Observable<T> {
+  public read(id: number): Observable<T> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}/${id}`).pipe(
         map(data => this.serializer.fromJson(data) as T),
@@ -49,9 +49,9 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public findAll(): Observable<T[]> {
+  public readAll(): Observable<T[]> {
     return this.httpClient
-      .get(`${this.url}/${this.endpoint}/all`)
+      .get(`${this.url}/${this.endpoint}`)
       .pipe(
         map((data: any) => this.convertData(data)),
       );
@@ -67,6 +67,10 @@ export class ResourceService<T extends Resource> {
 
   public delete(item: T): Observable<T> {
     return this.httpClient.delete<T>(`${this.url}/${this.endpoint}/${item.id}`);
+  }
+
+  public deleteAll(): Observable<T> {
+    return this.httpClient.delete<T>(`${this.url}/${this.endpoint}`);
   }
 
   public search(queryOptions: QueryOptions): Observable<T[]> {

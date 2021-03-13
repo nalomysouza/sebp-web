@@ -7,6 +7,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 const MODULES = [
   NzFormModule,
@@ -15,6 +16,7 @@ const MODULES = [
   NzMessageModule,
   NzCardModule,
   NzAvatarModule,
+  NzGridModule,
   IconsProviderModule,
 ]
 

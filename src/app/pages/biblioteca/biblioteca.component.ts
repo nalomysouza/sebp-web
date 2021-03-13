@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
+import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
+import { NzMarks } from 'ng-zorro-antd/slider';
 
 @Component({
   selector: 'app-biblioteca',
@@ -7,27 +9,16 @@ import { ApiService } from 'src/app/shared/services/api.service';
   styleUrls: ['./biblioteca.component.scss']
 })
 export class BibliotecaComponent implements OnInit {
-
-  constructor(private api: ApiService) { }
+  constructor(private _bibliotecaService: BibliotecaService) { }
+  bibliotecas: Array<Biblioteca> = [];
+  cols = 4;
+  gutterCols = new Array(this.cols);
 
   ngOnInit(): void {
+    this.readAll();
   }
 
-  getMicrorregioes() {
-    this.api.getMicrorregioes().subscribe(
-      next => console.log(next)
-    )
-  }
-
-  getMesorregioes() {
-    this.api.getMesorregioes().subscribe(
-      next => console.log(next)
-    )
-  }
-
-  getMunicipios() {
-    this.api.getMunicipios().subscribe(
-      next => console.log(next)
-    )
+  readAll() {
+    this._bibliotecaService.readAll().subscribe(b => this.bibliotecas = b);
   }
 }
