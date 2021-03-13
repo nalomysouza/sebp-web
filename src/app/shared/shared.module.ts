@@ -1,18 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-import { IconsProviderModule } from './icons-provider.module';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzListModule } from 'ng-zorro-antd/list';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { IconsProviderModule } from './icons-provider.module';
 
 const MODULES = [
   NzFormModule,
+  NzIconModule,
+  NzSliderModule,
   NzLayoutModule,
   NzMenuModule,
   NzMessageModule,
@@ -20,8 +27,11 @@ const MODULES = [
   NzAvatarModule,
   NzGridModule,
   NzListModule,
+  NzTableModule,
   NzPaginationModule,
+  NzSwitchModule,
   IconsProviderModule,
+  FormsModule,
 ]
 
 @NgModule({

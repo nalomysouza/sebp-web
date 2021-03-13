@@ -5,10 +5,12 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
 import { HttpErrorInterceptorProviders } from './_helpers/http-error.interceptor';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
   imports: [
     CommonModule,
+    NzMessageModule
   ],
   providers: [
     AuthGuard,

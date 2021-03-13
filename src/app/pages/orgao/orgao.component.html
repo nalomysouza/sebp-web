@@ -1,0 +1,26 @@
+<nz-table #table [nzData]="orgaoPageable.content">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Endereco</th>
+      <th>Telefone</th>
+      <th>Celular</th>
+      <th>Fax</th>
+      <th>Enable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td>{{data?.nome}}</td>
+      <td>{{data?.email}}</td>
+      <td>{{data?.endereco?.logradouro}}</td>
+      <td>{{data?.telefone}}</td>
+      <td>{{data?.celular}}</td>
+      <td>{{data?.fax}}</td>
+      <td>
+        <nz-switch [(ngModel)]="data.enabled" (click)="onChangeEnabled(data)"></nz-switch>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

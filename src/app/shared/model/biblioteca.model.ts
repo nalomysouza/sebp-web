@@ -1,9 +1,9 @@
 import { Endereco } from "./endereco.model";
+import { Resource } from "./helpers/resource.model";
 import { Orgao } from "./orgao.model";
 import { TipoBiblioteca } from "./tipo-biblioteca.model";
 
-export class Biblioteca {
-  public id!: number;
+export class Biblioteca extends Resource {
   public nome?: string;
   public email?: string;
   public dataFundacao?: Date;
