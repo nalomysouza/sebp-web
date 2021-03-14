@@ -1,26 +1,57 @@
-<nz-table #table [nzData]="orgaoPageable.content">
+<nz-table #table
+  [nzData]="orgaos"
+
+  [nzLoading]="loading">
   <thead>
     <tr>
-      <th>Nome</th>
+      <th nzCustomFilter>Nome
+        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+          <i nz-icon nzType="search"></i>
+        </nz-filter-trigger>
+      </th>
       <th>Email</th>
       <th>Endereco</th>
       <th>Telefone</th>
       <th>Celular</th>
       <th>Fax</th>
-      <th>Enable</th>
+      <th>Habilitar</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of table.data">
       <td>{{data?.nome}}</td>
-      <td>{{data?.email}}</td>
+      <td>
+        <i *ngIf="data?.email" nz-icon nzType="mail" nzTheme="twotone" nzTooltipTitle={{data.email}}
+          nzTooltipPlacement="top" nz-tooltip>
+        </i>
+        <i *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
+          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></i>
+      </td>
       <td>{{data?.endereco?.logradouro}}</td>
       <td>{{data?.telefone}}</td>
       <td>{{data?.celular}}</td>
-      <td>{{data?.fax}}</td>
       <td>
-        <nz-switch [(ngModel)]="data.enabled" (click)="onChangeEnabled(data)"></nz-switch>
+        <i *ngIf="data?.fax" nz-icon nzType="container" nzTheme="twotone" nzTooltipTitle={{data.fax}}
+          nzTooltipPlacement="top" nz-tooltip>
+        </i>
+        <i *ngIf="!data?.fax" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
+          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></i>
+      </td>
+      <td>
+        <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)"></nz-switch>
       </td>
     </tr>
   </tbody>
 </nz-table>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+        Filtrar
+      </button>
+      <button nz-button nzSize="small" (click)="reset()">Limpar</button>
+    </div>
+  </div>
+</nz-dropdown-menu>

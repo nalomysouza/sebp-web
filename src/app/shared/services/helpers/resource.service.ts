@@ -34,6 +34,11 @@ export class ResourceService<T extends Resource> {
         );
   }
 
+  public updateEnabled(item: T): Observable<any> {
+    let body = { id: item.id, enabled: !item.enabled };
+    return this.httpClient.put(`${this.url}/${this.endpoint}/enabled`, body);
+  }
+
   public saveOrUpdate(item: T): Observable<T> {
     if (!item.id) {
       return this.save(item);

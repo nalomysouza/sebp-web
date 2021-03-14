@@ -15,6 +15,8 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { IconsProviderModule } from './icons-provider.module';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 const MODULES = [
   NzFormModule,
@@ -30,7 +32,9 @@ const MODULES = [
   NzTableModule,
   NzPaginationModule,
   NzSwitchModule,
+  NzToolTipModule,
   IconsProviderModule,
+  NzDropDownModule,
   FormsModule,
 ]
 
