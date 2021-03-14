@@ -17,6 +17,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 const MODULES = [
   NzFormModule,
@@ -35,6 +36,7 @@ const MODULES = [
   NzToolTipModule,
   IconsProviderModule,
   NzDropDownModule,
+  NzDrawerModule,
   FormsModule,
 ]
 
