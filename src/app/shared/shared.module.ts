@@ -18,6 +18,7 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { EnderecoPipe } from './pipes/endereco.pipe';
 
 const MODULES = [
   NzFormModule,
@@ -38,10 +39,11 @@ const MODULES = [
   NzDropDownModule,
   NzDrawerModule,
   FormsModule,
+  EnderecoPipe
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [EnderecoPipe],
   imports: [
     CommonModule,
   ],
