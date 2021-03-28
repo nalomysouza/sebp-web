@@ -6,13 +6,12 @@
     <tr>
       <th nzCustomFilter>Nome
         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-          <i nz-icon nzType="search"></i>
+          <span nz-icon nzType="search"></span>
         </nz-filter-trigger>
       </th>
       <th>Email</th>
       <th>Endereco</th>
       <th>Telefone</th>
-      <th>Celular</th>
       <th>Fax</th>
       <th>Habilitar</th>
     </tr>
@@ -21,21 +20,20 @@
     <tr *ngFor="let data of table.data">
       <td>{{data?.nome}}</td>
       <td>
-        <i *ngIf="data?.email" nz-icon nzType="mail" nzTheme="twotone" nzTooltipTitle={{data.email}}
+        <span *ngIf="data?.email" nz-icon nzType="mail" nzTheme="twotone" nzTooltipTitle={{data.email}}
           nzTooltipPlacement="top" nz-tooltip>
-        </i>
-        <i *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
-          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></i>
+        </span>
+        <span *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
+          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
       </td>
       <td>{{data?.endereco?.logradouro}}</td>
       <td>{{data?.telefone}}</td>
-      <td>{{data?.celular}}</td>
       <td>
-        <i *ngIf="data?.fax" nz-icon nzType="container" nzTheme="twotone" nzTooltipTitle={{data.fax}}
+        <span *ngIf="data?.fax" nz-icon nzType="container" nzTheme="twotone" nzTooltipTitle={{data.fax}}
           nzTooltipPlacement="top" nz-tooltip>
-        </i>
-        <i *ngIf="!data?.fax" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
-          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></i>
+        </span>
+        <span *ngIf="!data?.fax" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
+          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
       </td>
       <td>
         <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)"></nz-switch>

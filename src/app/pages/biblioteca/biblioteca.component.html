@@ -1,9 +1,96 @@
 <nz-list nzGrid>
-  <div nz-row [nzGutter]="8">
-    <div nz-col [nzSpan]="6" *ngFor="let b of bibPageable.content">
-      <nz-list-item>
+  <div nz-row [nzGutter]="[8,8]">
+    <div nz-col [nzSpan]="24" *ngFor="let b of bibPageable.content">
+
+      <div class="site-page-header-ghost-wrapper">
+        <nz-page-header [nzBackIcon]="iconTemplate" [nzGhost]="false" nzSize="small">
+          <nz-page-header-title>{{b.nome}}</nz-page-header-title>
+          <nz-page-header-subtitle>{{b.sigla}}</nz-page-header-subtitle>
+          <nz-page-header-extra>
+            <button nz-button>Operation</button>
+            <button nz-button nzType="primary">Primary</button>
+          </nz-page-header-extra>
+          <nz-page-header-content>
+            <nz-divider nzText="1.0 Identificação"></nz-divider>
+            <nz-descriptions nzSize="small" [nzColumn]="4">
+              <nz-descriptions-item nzTitle="Órgão" [nzSpan]="2">{{b.orgao?.nome}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Endereço" [nzSpan]="2">{{b.endereco | endereco}}</nz-descriptions-item>
+
+              <nz-descriptions-item nzTitle="Email" [nzSpan]="2">{{b.email}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Fundação" [nzSpan]="1">{{b.dataFundacao | date:"dd/MM/yyyy"}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Tipo" [nzSpan]="1">{{b.tipoBiblioteca?.descricao}}</nz-descriptions-item>
+
+              <nz-descriptions-item nzTitle="Telefone" [nzSpan]="1">{{b.telefone}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Fax" [nzSpan]="1">{{b.fax}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Ato de criação" [nzSpan]="1">{{b.atoCriacao}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Data da criação" [nzSpan]="1">{{b.dataCriacao | date:"dd/MM/yyyy"}}
+              </nz-descriptions-item>
+
+              <nz-descriptions-item nzTitle="É biblioteca polo?" [nzSpan]="1">{{b.bibliotecaPolo | booleanPtbr}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Implantada pelo PLA?" [nzSpan]="1">{{b.implantadaPeloPLA | booleanPtbr}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Cadastrada no SNBP?" [nzSpan]="1">{{b.cadastroSNBP | booleanPtbr}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Ano do cadastro SNBP" [nzSpan]="1">{{b.anoCadastroSNBP}}
+              </nz-descriptions-item>
+              <nz-divider></nz-divider>
+            </nz-descriptions>
+            <nz-divider nzText="1.1 Apoios recebidos"></nz-divider>
+
+            <nz-descriptions nzSize="small" [nzColumn]="4">
+              <nz-descriptions-item nzTitle="Órgão" [nzSpan]="2">{{b.orgao?.nome}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Endereço" [nzSpan]="2">{{b.endereco | endereco}}</nz-descriptions-item>
+
+              <nz-descriptions-item nzTitle="Email" [nzSpan]="2">{{b.email}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Fundação" [nzSpan]="1">{{b.dataFundacao | date:"dd/MM/yyyy"}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Tipo" [nzSpan]="1">{{b.tipoBiblioteca?.descricao}}</nz-descriptions-item>
+
+              <nz-descriptions-item nzTitle="Telefone" [nzSpan]="1">{{b.telefone}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Fax" [nzSpan]="1">{{b.fax}}</nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Ato de criação" [nzSpan]="1">{{b.atoCriacao}}</nz-descriptions-item>
+
+              <nz-descriptions-item nzTitle="É biblioteca polo?" [nzSpan]="1">{{b.bibliotecaPolo | booleanPtbr}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Implantada pelo PLA?" [nzSpan]="1">{{b.implantadaPeloPLA | booleanPtbr}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Cadastrada no SNBP?" [nzSpan]="1">{{b.cadastroSNBP | booleanPtbr}}
+              </nz-descriptions-item>
+              <nz-descriptions-item nzTitle="Ano do cadastro SNBP" [nzSpan]="1">{{b.anoCadastroSNBP}}
+              </nz-descriptions-item>
+              <nz-divider></nz-divider>
+            </nz-descriptions>
+
+          </nz-page-header-content>
+        </nz-page-header>
+        <br>
+        <nz-card [nzBordered]="false" nzTitle="Card title" [nzExtra]="extraTemplate">
+          <p>Card content</p>
+          <p>Card content</p>
+          <p>Card content</p>
+        </nz-card>
+
+        <ng-template #extraTemplate><a>More</a></ng-template>
+        <ng-template #iconTemplate>
+          <div class="icon-header"><i nz-icon nzType="borderless-table" nzTheme="outline"></i><span>{{b.id}}</span>
+          </div>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</nz-list>
+<br>
+<nz-pagination [nzPageIndex]="bibPageable.number" [nzPageSize]="bibPageable.size" [nzTotal]="bibPageable.totalElements"
+  [nzHideOnSinglePage]="true" (nzPageIndexChange)="onPageIndexChange($event)">
+</nz-pagination>
+
+<!--
+  <nz-list-item>
         <nz-card [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-          <nz-card-meta nzTitle="Card title" nzDescription="{{b?.endereco | endereco}}" [nzAvatar]="avatarTemplate">
+          <nz-card-meta nzTitle="{{b?.nome}}" nzDescription="{{b?.endereco | endereco}}" [nzAvatar]="avatarTemplate">
           </nz-card-meta>
         </nz-card>
         <ng-template #avatarTemplate>
@@ -19,10 +106,4 @@
           <i nz-icon nzType="ellipsis"></i>
         </ng-template>
       </nz-list-item>
-    </div>
-  </div>
-</nz-list>
-
-<nz-pagination [nzPageIndex]="bibPageable.number" [nzPageSize]="bibPageable.size" [nzTotal]="bibPageable.totalElements"
-  (nzPageIndexChange)="onPageIndexChange($event)" [nzHideOnSinglePage]="true">
-</nz-pagination>
+-->

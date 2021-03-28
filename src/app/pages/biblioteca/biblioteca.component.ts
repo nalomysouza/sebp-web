@@ -15,14 +15,11 @@ export class BibliotecaComponent implements OnInit {
     this.buscar();
   }
 
-  onPageIndexChange(pageIndex: any) {
-    this.bibPageable.number = pageIndex;
-    this.buscar();
+  onPageIndexChange(pageIndex: number) {
+    this.buscar(pageIndex);
   }
 
-  buscar() {
-    //this._bibliotecaService.readAll().subscribe(b => this.bibliotecas = b);
-    this._bibliotecaService.readAllPageable(this.bibPageable.number, this.bibPageable.size)
-      .subscribe(b => this.bibPageable = b);
+  buscar(pageIndex: number = 0, pageSize: number = 1) {
+    this._bibliotecaService.readAllPageable(pageIndex, pageSize).subscribe(b => this.bibPageable = b);
   }
 }

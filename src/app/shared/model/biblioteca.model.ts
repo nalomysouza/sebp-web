@@ -12,13 +12,12 @@ export class Biblioteca extends Resource {
   public sigla?: string;
   public endereco?: Endereco;
   public telefone?: string;
-  public celular?: string;
   public fax?: string;
   public orgao?: Orgao;
   public tipoBiblioteca?: TipoBiblioteca;
-  public bibliotecaPolo?: Boolean;
-  public implantadaPeloPLA?: Boolean;
-  public cadastroSNBP?: Boolean;
+  public bibliotecaPolo?: boolean;
+  public implantadaPeloPLA?: boolean;
+  public cadastroSNBP?: boolean;
   public anoCadastroSNBP?: number;
   public observacoes?: string;
 }
