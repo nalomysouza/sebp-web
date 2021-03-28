@@ -25,11 +25,16 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/sebponline-web'),
+      dir: require('path').join(__dirname, './coverage'),
       subdir: '.',
+      watermarks: {
+        statements: [ 50, 80 ],
+        functions: [ 50, 80 ],
+        branches: [ 50, 80 ],
+        lines: [ 50, 80 ]
+      },
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'lcovonly', subdir: 'report' }
       ]
     },
     reporters: ['progress', 'kjhtml'],
