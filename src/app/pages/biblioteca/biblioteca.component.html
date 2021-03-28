@@ -24,8 +24,6 @@
               <nz-descriptions-item nzTitle="Telefone" [nzSpan]="1">{{b.telefone}}</nz-descriptions-item>
               <nz-descriptions-item nzTitle="Fax" [nzSpan]="1">{{b.fax}}</nz-descriptions-item>
               <nz-descriptions-item nzTitle="Ato de criação" [nzSpan]="1">{{b.atoCriacao}}</nz-descriptions-item>
-              <nz-descriptions-item nzTitle="Data da criação" [nzSpan]="1">{{b.dataCriacao | date:"dd/MM/yyyy"}}
-              </nz-descriptions-item>
 
               <nz-descriptions-item nzTitle="É biblioteca polo?" [nzSpan]="1">{{b.bibliotecaPolo | booleanPtbr}}
               </nz-descriptions-item>
@@ -74,7 +72,7 @@
 
         <ng-template #extraTemplate><a>More</a></ng-template>
         <ng-template #iconTemplate>
-          <div class="icon-header"><i nz-icon nzType="borderless-table" nzTheme="outline"></i><span>{{b.id}}</span>
+          <div class="icon-header"><span nz-icon nzType="borderless-table" nzTheme="outline"></span><span>{{b.id}}</span>
           </div>
         </ng-template>
       </div>
@@ -86,24 +84,3 @@
 <nz-pagination [nzPageIndex]="bibPageable.number" [nzPageSize]="bibPageable.size" [nzTotal]="bibPageable.totalElements"
   [nzHideOnSinglePage]="true" (nzPageIndexChange)="onPageIndexChange($event)">
 </nz-pagination>
-
-<!--
-  <nz-list-item>
-        <nz-card [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-          <nz-card-meta nzTitle="{{b?.nome}}" nzDescription="{{b?.endereco | endereco}}" [nzAvatar]="avatarTemplate">
-          </nz-card-meta>
-        </nz-card>
-        <ng-template #avatarTemplate>
-          <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
-        </ng-template>
-        <ng-template #actionSetting>
-          <i nz-icon nzType="setting"></i>
-        </ng-template>
-        <ng-template #actionEdit>
-          <i nz-icon nzType="edit"></i>
-        </ng-template>
-        <ng-template #actionEllipsis>
-          <i nz-icon nzType="ellipsis"></i>
-        </ng-template>
-      </nz-list-item>
--->
