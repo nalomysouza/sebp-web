@@ -4,13 +4,15 @@ import { OrgaoService } from './orgao.service';
 
 describe('OrgaoService', () => {
   let service: OrgaoService;
+  let httpClientSpy: { get: jasmine.Spy };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(OrgaoService);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    service = new OrgaoService(httpClientSpy as any);
   });
 
-  it('should be created', () => {
+  it('created', () => {
     expect(service).toBeTruthy();
   });
+
 });

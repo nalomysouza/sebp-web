@@ -4,13 +4,15 @@ import { AuthenticationService } from './authentication.service';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
+  let httpClientSpy: { get: jasmine.Spy };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthenticationService);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    service = new AuthenticationService(httpClientSpy as any);
   });
 
-  it('should be created', () => {
+  it('created', () => {
     expect(service).toBeTruthy();
   });
+
 });

@@ -13,9 +13,7 @@ export class OrgaoComponent implements OnInit {
   loading: boolean = false;
 
   ngOnInit(): void {
-    this.loading = true;
     this.buscar();
-    this.loading = false;
   }
 
   onChangeEnabled(selected: Orgao) {
@@ -28,7 +26,9 @@ export class OrgaoComponent implements OnInit {
   }
 
   buscar() {
+    this.loading = true;
     this._orgaoService.readAll().subscribe(b => this.orgaos = b);
+    this.loading = false;
   }
 
   /** Search */
