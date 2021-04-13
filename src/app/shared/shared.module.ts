@@ -21,10 +21,13 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { IconsProviderModule } from './icons-provider.module';
 import { BooleanPtbrPipe } from './pipes/boolean-ptbr.pipe';
 import { EnderecoPipe } from './pipes/endereco.pipe';
-
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 const MODULES = [
   NzFormModule,
@@ -41,13 +44,17 @@ const MODULES = [
   NzPaginationModule,
   NzSwitchModule,
   NzToolTipModule,
-  IconsProviderModule,
   NzDropDownModule,
   NzDrawerModule,
   NzDescriptionsModule,
   NzDividerModule,
   NzPageHeaderModule,
   NzButtonModule,
+  NzBreadCrumbModule,
+  NzSelectModule,
+  NzDatePickerModule,
+  NzInputModule,
+  IconsProviderModule,
   FormsModule,
   EnderecoPipe,
   BooleanPtbrPipe

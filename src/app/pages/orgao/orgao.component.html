@@ -1,8 +1,13 @@
+<div style="text-align: right;">
+  <button nz-button nzType="primary" (click)="drawerOpen()">Registrar</button>
+</div>
+<br>
+
 <nz-table #table [nzData]="orgaos" [nzLoading]="loading">
   <thead>
     <tr>
       <th nzCustomFilter>Nome
-        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+        <nz-filter-trigger [(nzVisible)]="searchVisible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
           <span nz-icon nzType="search"></span>
         </nz-filter-trigger>
       </th>
@@ -50,3 +55,21 @@
     </div>
   </div>
 </nz-dropdown-menu>
+
+<nz-drawer
+  nzTitle="Registrar Orgão"
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="drawerVisible"
+  [nzFooter]="footerTpl"
+  [nzClosable]="false">
+  <app-orgao-form [visible]="drawerVisible" [orgao]="orgaoSelected" *nzDrawerContent></app-orgao-form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="drawerClose()">Fechar</button>
+      <button nz-button nzType="primary" (click)="drawerClose()">Salvar</button>
+    </div>
+  </ng-template>
+</nz-drawer>

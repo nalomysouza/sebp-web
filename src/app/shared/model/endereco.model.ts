@@ -4,8 +4,8 @@ export class Endereco {
   public id?: number;
   public logradouro!: string;
   public numero?: string;
-  public cep?: number;
   public complemento?: string;
   public bairro?: string;
+  public cep?: number;
   public municipio?: Municipio;
 }
