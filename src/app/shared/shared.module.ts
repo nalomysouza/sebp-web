@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -56,6 +56,7 @@ const MODULES = [
   NzInputModule,
   IconsProviderModule,
   FormsModule,
+  ReactiveFormsModule,
   EnderecoPipe,
   BooleanPtbrPipe
 ]
