@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { Orgao } from 'src/app/shared/model/orgao.model';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 @Component({
@@ -9,19 +11,13 @@ import { OrgaoService } from 'src/app/shared/services/orgao.service';
 export class OrgaoComponent implements OnInit {
   orgaos: Orgao[] = [];
   loading = false;
-
   /** Search */
   searchValue = '';
   searchVisible = false;
-
-  /** Drawer */
-  drawerVisible = false;
-  orgaoSelected: Orgao = {};
-
   /**Constants */
   readonly NOT_EXIST = 'NÃO INFORMADO';
 
-  constructor(private _orgaoService: OrgaoService) { }
+  constructor(private _router: Router, private _orgaoService: OrgaoService) { }
 
   ngOnInit(): void {
     this.buscar();
@@ -33,11 +29,13 @@ export class OrgaoComponent implements OnInit {
    */
   onChangeEnabled(selected: Orgao) {
     this.loading = true;
-    this._orgaoService.updateEnabled(selected).subscribe(() => {
-      this.orgaos = [];
-      this.buscar();
-    });
-    this.loading = false;
+    this._orgaoService.updateEnabled(selected)
+      .pipe(first())
+      .subscribe(() => {
+        this.orgaos = [];
+        this.buscar();
+      }).add(() => this.loading = false);
+
   }
 
   /**
@@ -45,8 +43,10 @@ export class OrgaoComponent implements OnInit {
    */
   buscar() {
     this.loading = true;
-    this._orgaoService.readAll().subscribe(b => this.orgaos = b);
-    this.loading = false;
+    this._orgaoService.readAll()
+      .pipe(first())
+      .subscribe(b => this.orgaos = b)
+      .add(() => this.loading = false);
   }
 
   /**
@@ -66,18 +66,5 @@ export class OrgaoComponent implements OnInit {
     this.orgaos = this.orgaos
       .filter((i: Orgao) => i?.nome?.toLocaleUpperCase()
         .indexOf(this.searchValue.toLocaleUpperCase()) !== -1);
-  }
-
-  drawerOpen(): void {
-    this.drawerVisible = true;
-    this.orgaoSelected = {};
-  }
-
-  /**
-   * Recebe o eventEmmiter do Form, realiza a ação de fechar o Drawer e limpar o objeto selecionado.
-   */
-  drawerClose(): void {
-    this.drawerVisible = false;
-    this.orgaoSelected = {};
   }
 }

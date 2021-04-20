@@ -1,9 +1,9 @@
 <div style="text-align: right;">
-  <button nz-button nzType="primary" (click)="drawerOpen()">Registrar</button>
+  <button nz-button nzType="primary" routerLink="add">Registrar</button>
 </div>
 <br>
 
-<nz-table #table [nzData]="orgaos" [nzLoading]="loading">
+<nz-table #table [nzData]="orgaos" nzSize="small" [nzLoading]="loading">
   <thead>
     <tr>
       <th nzCustomFilter>Nome
@@ -16,6 +16,7 @@
       <th id="telefone">Telefone</th>
       <th id="fax">Fax</th>
       <th id="habilitar">Habilitar</th>
+      <th id="opcoes"></th>
     </tr>
   </thead>
   <tbody>
@@ -40,6 +41,12 @@
       <td>
         <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)"></nz-switch>
       </td>
+      <td>
+        <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)"></nz-switch>
+        <button nz-button nzType="primary" routerLink="edit/{{data.id}}"></button>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="primary" nzDanger [nzLoading]="loading"></button>
+      </td>
     </tr>
   </tbody>
 </nz-table>
@@ -47,7 +54,7 @@
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div class="ant-table-filter-dropdown">
     <div class="search-box">
-      <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+      <input type="text" nz-input placeholder="Filtrar pelo nome" [(ngModel)]="searchValue" />
       <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
         Filtrar
       </button>
@@ -55,21 +62,3 @@
     </div>
   </div>
 </nz-dropdown-menu>
-
-<nz-drawer
-  nzTitle="Registrar Orgão"
-  [nzBodyStyle]="{ overflow: 'auto' }"
-  [nzMaskClosable]="false"
-  [nzWidth]="720"
-  [nzVisible]="drawerVisible"
-  [nzFooter]="footerTpl"
-  [nzClosable]="false">
-  <app-orgao-form [visible]="drawerVisible" [orgao]="orgaoSelected" *nzDrawerContent></app-orgao-form>
-
-  <ng-template #footerTpl>
-    <div style="float: right">
-      <button nz-button style="margin-right: 8px;" (click)="drawerClose()">Fechar</button>
-      <button nz-button nzType="primary" (click)="drawerClose()">Salvar</button>
-    </div>
-  </ng-template>
-</nz-drawer>

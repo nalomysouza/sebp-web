@@ -25,9 +25,9 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public update(item: T): Observable<T> {
+  public update(id: number, item: T): Observable<T> {
     return this.httpClient
-      .put<T>(`${this.url}/${this.endpoint}/${item.id}`,
+      .put<T>(`${this.url}/${this.endpoint}/${id}`,
         this.serializer.toJson(item)).pipe(
           map(data => this.serializer.fromJson(data) as T),
           catchError(this.handleError)
@@ -37,14 +37,6 @@ export class ResourceService<T extends Resource> {
   public updateEnabled(item: T): Observable<any> {
     let body = { id: item.id, enabled: !item.enabled };
     return this.httpClient.put(`${this.url}/${this.endpoint}/enabled`, body);
-  }
-
-  public saveOrUpdate(item: T): Observable<T> {
-    if (!item.id) {
-      return this.save(item);
-    } else {
-      return this.update(item);
-    }
   }
 
   public read(id: number): Observable<T> {
