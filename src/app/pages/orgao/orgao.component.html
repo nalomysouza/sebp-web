@@ -16,7 +16,7 @@
       <th id="telefone">Telefone</th>
       <th id="fax">Fax</th>
       <th id="habilitar">Habilitar</th>
-      <th id="opcoes"></th>
+      <th id="action"></th>
     </tr>
   </thead>
   <tbody>
@@ -30,22 +30,30 @@
           nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
       </td>
       <td>{{data?.endereco?.logradouro}}</td>
-      <td>{{data?.telefone}}</td>
       <td>
-        <span *ngIf="data?.fax" nz-icon nzType="container" nzTheme="twotone" nzTooltipTitle={{data.fax}}
-          nzTooltipPlacement="top" nz-tooltip>
+
+        <span nz-icon [nzType]="data.telefone ? 'container':'stop'" nzTheme="twotone"
+          [nzTooltipTitle]="data.telefone ? data.telefone : NOT_EXIST" nzTooltipPlacement="top" nz-tooltip
+          [nzTwotoneColor]=" data.telefone ? '':'#c22126'">
         </span>
-        <span *ngIf="!data?.fax" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
-          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
+      </td>
+      <td>
+        <span nz-icon [nzType]="data.fax ? 'container':'stop'" nzTheme="twotone"
+          [nzTooltipTitle]="data.fax ? data.fax : NOT_EXIST" nzTooltipPlacement="top" nz-tooltip
+          [nzTwotoneColor]=" data.fax ? '':'#c22126'">
+        </span>
       </td>
       <td>
         <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)"></nz-switch>
       </td>
       <td>
-        <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)"></nz-switch>
-        <button nz-button nzType="primary" routerLink="edit/{{data.id}}"></button>
+        <button nz-button routerLink="edit/{{data?.id}}" nzSize="small">
+          <i nz-icon nzType="edit"></i>
+        </button>
         <nz-divider nzType="vertical"></nz-divider>
-        <button nz-button nzType="primary" nzDanger [nzLoading]="loading"></button>
+        <button nz-button nzDanger (click)="showDeleteConfirm(data)" nzSize="small">
+          <i nz-icon nzType="delete"></i>
+        </button>
       </td>
     </tr>
   </tbody>

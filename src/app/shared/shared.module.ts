@@ -28,6 +28,7 @@ import { IconsProviderModule } from './icons-provider.module';
 import { BooleanPtbrPipe } from './pipes/boolean-ptbr.pipe';
 import { EnderecoPipe } from './pipes/endereco.pipe';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 const MODULES = [
   NzFormModule,
@@ -54,6 +55,7 @@ const MODULES = [
   NzSelectModule,
   NzDatePickerModule,
   NzInputModule,
+  NzModalModule,
   IconsProviderModule,
   FormsModule,
   ReactiveFormsModule,

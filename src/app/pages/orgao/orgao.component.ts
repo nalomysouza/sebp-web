@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { first } from 'rxjs/operators';
 import { Orgao } from 'src/app/shared/model/orgao.model';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
@@ -17,7 +19,11 @@ export class OrgaoComponent implements OnInit {
   /**Constants */
   readonly NOT_EXIST = 'NÃO INFORMADO';
 
-  constructor(private _router: Router, private _orgaoService: OrgaoService) { }
+  constructor(
+    private _router: Router,
+    private _orgaoService: OrgaoService,
+    private modal: NzModalService,
+    private message: NzMessageService) { }
 
   ngOnInit(): void {
     this.buscar();
@@ -47,6 +53,30 @@ export class OrgaoComponent implements OnInit {
       .pipe(first())
       .subscribe(b => this.orgaos = b)
       .add(() => this.loading = false);
+  }
+
+  showDeleteConfirm(selected: Orgao): void {
+    this.modal.confirm({
+      nzTitle: 'Você deseja deletar este órgão?',
+      nzContent: `<b style="color: red;">${selected.id} - ${selected.nome}</b>`,
+      nzOkText: 'Sim',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => this.deletar(selected),
+      nzCancelText: 'Não',
+      nzOnCancel: () => console.log('Cancel')
+    });
+  }
+
+  deletar(deleted: Orgao) {
+    this.loading = true;
+    this._orgaoService.delete(deleted)
+      .pipe(first())
+      .subscribe(() => {
+        this.message.success(`Exclusão realizada com sucesso. Órgão : ${deleted.id} - ${deleted.nome}`);
+        this.buscar()
+      })
+      .add(() => this.loading = false)
   }
 
   /**
