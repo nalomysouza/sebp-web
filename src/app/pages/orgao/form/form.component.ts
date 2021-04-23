@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { Municipio } from 'src/app/shared/model/municipio.model';
 import { Orgao } from 'src/app/shared/model/orgao.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
-
+import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 @Component({
   selector: 'app-orgao-form',
   templateUrl: './form.component.html',
@@ -34,24 +34,25 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.createForm();
     this.loadForm();
   }
+
   ngAfterViewInit(): void {
-    //throw new Error('Method not implemented.');
+    console.log('Municípios ->', this.municipios);
   }
 
   createForm() {
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(4)]],
-      email: ['', [Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      telefone: ['', [Validators.pattern('^[0-9]+$')]],
-      fax: ['', [Validators.pattern('^[0-9]+$')]],
+      email: ['', [Validators.email, Validators.pattern(ONLY_MAIL)]],
+      telefone: ['', [Validators.pattern(ONLY_NUMBER)]],
+      fax: ['', [Validators.pattern(ONLY_NUMBER)]],
       endereco: this.fb.group({
-        logradouro: ['', [Validators.minLength(2), Validators.pattern('^[a-zA-Z0-9]+$')]],
-        numero: [null, [Validators.pattern('^[0-9]+$')]],
-        complemento: ['', [Validators.pattern('^[a-zA-Z0-9]+$')]],
-        bairro: ['', [Validators.pattern('^[a-zA-Z0-9]+$')]],
-        cep: [null, [Validators.pattern('^[0-9]+$')]],
+        logradouro: ['', [Validators.minLength(2), Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+        numero: [null, [Validators.pattern(ONLY_NUMBER)]],
+        complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+        bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+        cep: [null, [Validators.pattern(ONLY_NUMBER)]],
         municipio: this.fb.group({
-          id: [null, [Validators.required, Validators.pattern('^[0-9]+$')]]
+          id: [null, Validators.required]
         })
       })
     });

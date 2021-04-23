@@ -1,6 +1,6 @@
 import { Microrregiao } from "./microrregiao.model";
 export class Municipio {
   public id!: number;
-  public descricao!: string;
+  public nome!: string;
   public microrregiao?: Microrregiao;
 }
