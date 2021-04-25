@@ -13,7 +13,7 @@
         <nz-form-item>
           <nz-form-label>E-mail</nz-form-label>
           <nz-form-control nzErrorTip="Exemplo: orgao@sebp.com.br">
-            <input nz-input formControlName="email" placeholder="E-m@il" />
+            <input nz-input formControlName="email" placeholder="E-mail" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -21,7 +21,7 @@
         <nz-form-item>
           <nz-form-label>Telefone</nz-form-label>
           <nz-form-control nzErrorTip="Campo aceita somente números">
-            <input name="telefone" nz-input placeholder="Informe um telefone" />
+            <input formControlName="telefone" nz-input placeholder="Informe um telefone" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -29,7 +29,7 @@
         <nz-form-item>
           <nz-form-label>Fax</nz-form-label>
           <nz-form-control nzErrorTip="Campo aceita somente números">
-            <input name="fax" nz-input placeholder="Informe um fax" />
+            <input formControlName="fax" nz-input placeholder="Informe um fax" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -77,8 +77,8 @@
 
         <div formGroupName="municipio" nz-col nzSpan="12">
           <nz-form-item>
-            <nz-form-label>Município</nz-form-label>
-            <nz-form-control>
+            <nz-form-label nzRequired>Município</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
               <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
                 <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
               </nz-select>

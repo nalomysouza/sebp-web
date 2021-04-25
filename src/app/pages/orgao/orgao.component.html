@@ -6,17 +6,17 @@
 <nz-table #table [nzData]="orgaos" nzSize="small" [nzLoading]="loading">
   <thead>
     <tr>
-      <th nzCustomFilter>Nome
+      <th nzCustomFilter style="width: 20%;">Nome
         <nz-filter-trigger [(nzVisible)]="searchVisible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
           <span nz-icon nzType="search"></span>
         </nz-filter-trigger>
       </th>
-      <th id="email">Email</th>
-      <th id="endereco">Endereco</th>
-      <th id="telefone">Telefone</th>
-      <th id="fax">Fax</th>
-      <th id="habilitar">Habilitar</th>
-      <th id="action"></th>
+      <th id="email" style="width: 5%;">Email</th>
+      <th id="endereco" style="width: 20%;">Endereco</th>
+      <th id="telefone" style="width: 5%;">Telefone</th>
+      <th id="fax" style="width: 5%;">Fax</th>
+      <th id="habilitar" style="width: 5%;">Habilitar</th>
+      <th id="action" style="width: 10%;"></th>
     </tr>
   </thead>
   <tbody>

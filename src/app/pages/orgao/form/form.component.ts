@@ -36,7 +36,6 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('Municípios ->', this.municipios);
   }
 
   createForm() {
