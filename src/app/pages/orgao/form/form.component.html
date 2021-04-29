@@ -20,16 +20,18 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>Telefone</nz-form-label>
-          <nz-form-control nzErrorTip="Campo aceita somente números">
-            <input formControlName="telefone" nz-input placeholder="Informe um telefone" />
+          <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
+            <input formControlName="telefone" nz-input [dropSpecialCharacters]="false"
+              mask="(00)00000-0000||(00)0000-0000" placeholder="Informe um telefone" />
           </nz-form-control>
         </nz-form-item>
       </div>
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>Fax</nz-form-label>
-          <nz-form-control nzErrorTip="Campo aceita somente números">
-            <input formControlName="fax" nz-input placeholder="Informe um fax" />
+          <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
+            <input formControlName="fax" nz-input [dropSpecialCharacters]="false" mask="(00)00000-0000||(00)0000-0000"
+              placeholder="Informe um fax" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -70,7 +72,8 @@
           <nz-form-item>
             <nz-form-label>Cep</nz-form-label>
             <nz-form-control nzErrorTip="Campo aceita somente números">
-              <input formControlName="cep" nz-input placeholder="Informe um cep" />
+              <input type="text" [dropSpecialCharacters]="false" mask="00.000-000" formControlName="cep" nz-input
+                placeholder="Informe um cep" />
             </nz-form-control>
           </nz-form-item>
         </div>

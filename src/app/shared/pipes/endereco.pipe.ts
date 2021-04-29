@@ -12,14 +12,20 @@ export class EnderecoPipe implements PipeTransform {
    */
   transform(value: Endereco | any): string {
     if (value) {
-      let { logradouro, numero, bairro, complemento, cep, municipio } = value;
-      return logradouro
-        .concat(numero ? + ', ' + numero : ', s/n')
-        .concat(bairro ? +', ' + bairro : '')
-        .concat(complemento ? +', ' + complemento : '')
-        .concat(cep ? + ', ' + cep : '')
-        .concat(municipio ? +', ' + municipio.nome : '');
+      let { logradouro, numero, bairro, complemento, cep }: Endereco = value;
+
+      if (this.isValid(logradouro)) {
+        let _numero = this.isValid(numero) ? ', ' + numero : ', s/n';
+        let _bairro = this.isValid(bairro) ? ', ' + bairro : '';
+        let _complemento = this.isValid(complemento) ? ', ' + complemento : '';
+        let _cep = this.isValid(cep) ? ', ' + cep : '';
+        return logradouro + _numero + _bairro + _complemento + _cep;
+      }
     }
-    return 'Não Informado';
+    return '';
+  }
+
+  isValid(texto: string | any) {
+    return !(texto === '' || texto === undefined || texto === null)
   }
 }
