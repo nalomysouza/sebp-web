@@ -34,12 +34,17 @@ export class ResourceService<T extends Resource> {
         );
   }
 
-  public updateEnabled(item: T): Observable<any> {
+  public enabled(item: T): Observable<any> {
     let body = { id: item.id, enabled: !item.enabled };
     return this.httpClient.put(`${this.url}/${this.endpoint}/enabled`, body);
   }
 
-  public read(id: number): Observable<T> {
+  public disabled(item: T): Observable<any> {
+    let body = { id: item.id, enabled: !item.enabled };
+    return this.httpClient.put(`${this.url}/${this.endpoint}/disabled`, body);
+  }
+
+  public findById(id: number): Observable<T> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}/${id}`).pipe(
         map(data => this.serializer.fromJson(data) as T),
@@ -47,7 +52,7 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public readAll(): Observable<T[]> {
+  public all(): Observable<T[]> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}/all`)
       .pipe(
@@ -55,7 +60,7 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public readAllPageable(pageIndex?: number, pageSize?: number): Observable<Pageable<T>> {
+  public allPageable(pageIndex?: number, pageSize?: number): Observable<Pageable<T>> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}?page=${pageIndex ? pageIndex : 0}&size=${pageSize ? pageSize : 12}`)
       .pipe(
@@ -65,10 +70,6 @@ export class ResourceService<T extends Resource> {
 
   public delete(item: T): Observable<T> {
     return this.httpClient.delete<T>(`${this.url}/${this.endpoint}/${item.id}`);
-  }
-
-  public deleteAll(): Observable<T> {
-    return this.httpClient.delete<T>(`${this.url}/${this.endpoint}`);
   }
 
   public search(queryOptions: QueryOptions): Observable<T[]> {

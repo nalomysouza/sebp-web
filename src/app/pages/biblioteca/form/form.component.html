@@ -78,12 +78,12 @@
           </nz-form-item>
         </div>
 
-        <div formGroupName="municipio" nz-col nzSpan="12">
+        <div formGroupName="orgao" nz-col nzSpan="12">
           <nz-form-item>
-            <nz-form-label nzRequired>Município</nz-form-label>
-            <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
-              <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
-                <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
+            <nz-form-label nzRequired>Órgão</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório, selecione um órgão">
+              <nz-select formControlName="id" nzPlaceHolder="Selecione um órgão" nzShowSearch nzAllowClear>
+                <nz-option *ngFor="let o of orgaos" nzValue="{{o.id}}" nzLabel="{{o?.nome}}"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>

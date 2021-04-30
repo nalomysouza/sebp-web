@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BibliotecaDetalharComponent } from './biblioteca-detalhar.component';
+import { FormComponent } from './form.component';
 
-describe('BibliotecaDetalharComponent', () => {
-  let component: BibliotecaDetalharComponent;
-  let fixture: ComponentFixture<BibliotecaDetalharComponent>;
+describe('FormComponent', () => {
+  let component: FormComponent;
+  let fixture: ComponentFixture<FormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BibliotecaDetalharComponent ]
+      declarations: [ FormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BibliotecaDetalharComponent);
+    fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

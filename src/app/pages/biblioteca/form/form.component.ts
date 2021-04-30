@@ -1,64 +1,83 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Municipio } from 'src/app/shared/model/municipio.model';
+import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
 import { Orgao } from 'src/app/shared/model/orgao.model';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
+import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
+
 @Component({
-  selector: 'app-orgao-form',
+  selector: 'app-form-biblioteca',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, AfterViewInit {
+export class FormComponent implements OnInit {
   title = '';
   loading = false;
   id!: string;
   isAddMode!: boolean;
-  municipios!: Municipio[];
   form!: FormGroup;
+  orgaos!: Orgao[];
+  tiposBibliotecas!: TipoBiblioteca[];
 
   constructor(
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _service: OrgaoService,
-    private _api: ApiService) { }
+    private _service: BibliotecaService,
+    private _orgaoService: OrgaoService) { }
 
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];
     this.isAddMode = !this.id;
-    this.loadMunicipios();
+    this.loadOrgaos();
+    this.loadTiposOrgaos();
     this.createForm();
     this.loadForm();
-  }
-
-  ngAfterViewInit(): void {
   }
 
   createForm() {
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.email, Validators.pattern(ONLY_MAIL)]],
+      dataFundacao: [''],
+      atoCriacao: [''],
       telefone: [''],
       fax: [''],
+      sigla: [''],
+      bibliotecaPolo: false,
+      implantadaPeloPLA: false,
+      cadastroSNBP: false,
+      anoCadastroSNBP: false,
+      orgao: this.fb.group({
+        id: [null, Validators.required]
+      }),
+      tipoBiblioteca: this.fb.group({
+        id: [null, Validators.required]
+      }),
       endereco: this.fb.group({
         logradouro: ['', [Validators.minLength(2), Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        numero: [null, [Validators.pattern(ONLY_NUMBER)]],
+        numero: ['', [Validators.pattern(ONLY_NUMBER)]],
         complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
         bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
         cep: [''],
         municipio: this.fb.group({
           id: [null, Validators.required]
         })
-      })
+      }),
+      observacoes: ['', Validators.required]
     });
   }
 
-  loadMunicipios() {
-    this._api.getMunicipios().pipe(first()).subscribe(x => this.municipios = x);
+  loadOrgaos() {
+    this._orgaoService.all().pipe(first()).subscribe(x => this.orgaos = x);
+  }
+
+  loadTiposOrgaos() {
+    this._orgaoService.all().pipe(first()).subscribe(x => this.orgaos = x);
   }
 
   loadForm() {
@@ -81,8 +100,8 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   create() {
-    let orgao = Object.assign(new Orgao(), this.form.value);
-    this._service.save(orgao).pipe(first()).subscribe(() => {
+    let biblioteca = Object.assign(new Biblioteca(), this.form.value);
+    this._service.save(biblioteca).pipe(first()).subscribe(() => {
       //this.alertService.success('User added', { keepAfterRouteChange: true });
       this.redirecToList();
     })
@@ -90,8 +109,8 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   update() {
-    let orgao = Object.assign(new Orgao(), this.form.value);
-    this._service.update(Number.parseInt(this.id), orgao).pipe(first()).subscribe(() => {
+    let biblioteca = Object.assign(new Biblioteca(), this.form.value);
+    this._service.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe(() => {
       //this.alertService.success('User updated', { keepAfterRouteChange: true });
       this.redirecToList();
     })
@@ -101,4 +120,5 @@ export class FormComponent implements OnInit, AfterViewInit {
   redirecToList() {
     this._router.navigate([`${this.isAddMode ? '../' : '../../'}`], { relativeTo: this._activatedRoute });
   }
+
 }

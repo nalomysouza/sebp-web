@@ -35,7 +35,7 @@ export class OrgaoComponent implements OnInit {
    */
   onChangeEnabled(selected: Orgao) {
     this.loading = true;
-    this._orgaoService.updateEnabled(selected)
+    this._orgaoService.enabled(selected)
       .pipe(first())
       .subscribe(() => {
         this.orgaos = [];
@@ -49,9 +49,7 @@ export class OrgaoComponent implements OnInit {
    */
   buscar() {
     this.loading = true;
-    this._orgaoService.readAll()
-      .pipe(first())
-      .subscribe(b => this.orgaos = b)
+    this._orgaoService.all().pipe(first()).subscribe(b => this.orgaos = b)
       .add(() => this.loading = false);
   }
 
