@@ -27,19 +27,19 @@ export class ApiService {
   }
 
   public getIntervalosLivro(): Observable<IntervaloLivro[]> {
-    return this._http.get(`${API}/v1/intervalos/livro`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/v1/intervalos/livros`, httpOptions).pipe(map((data: any) => data));
   }
 
-  public getMotivosFrequencia(): Observable<MotivoFrequencia[]> {
-    return this._http.get(`${API}/v1/motivos/frequencia`, httpOptions).pipe(map((data: any) => data));
+  public getMotivosFrequencias(): Observable<MotivoFrequencia[]> {
+    return this._http.get(`${API}/v1/motivos/frequencias`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getPeriodicos(): Observable<Periodico[]> {
     return this._http.get(`${API}/v1/periodicos`, httpOptions).pipe(map((data: any) => data));
   }
 
-  public getTiposBilioteca(): Observable<TipoBiblioteca[]> {
-    return this._http.get(`${API}/v1/tipos/bilioteca`, httpOptions).pipe(map((data: any) => data));
+  public getTiposBiliotecas(): Observable<TipoBiblioteca[]> {
+    return this._http.get(`${API}/v1/tipos/biliotecas`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getMunicipios(): Observable<Municipio[]> {

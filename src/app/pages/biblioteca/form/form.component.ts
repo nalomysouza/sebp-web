@@ -5,10 +5,10 @@ import { first } from 'rxjs/operators';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
 import { Orgao } from 'src/app/shared/model/orgao.model';
 import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
-
 @Component({
   selector: 'app-form-biblioteca',
   templateUrl: './form.component.html',
@@ -27,8 +27,9 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _service: BibliotecaService,
-    private _orgaoService: OrgaoService) { }
+    private _bibliotecaService: BibliotecaService,
+    private _orgaoService: OrgaoService,
+    private _apiService: ApiService) { }
 
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];
@@ -43,7 +44,7 @@ export class FormComponent implements OnInit {
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.email, Validators.pattern(ONLY_MAIL)]],
-      dataFundacao: [''],
+      dataFundacao: [null],
       atoCriacao: [''],
       telefone: [''],
       fax: [''],
@@ -77,13 +78,14 @@ export class FormComponent implements OnInit {
   }
 
   loadTiposOrgaos() {
-    this._orgaoService.all().pipe(first()).subscribe(x => this.orgaos = x);
+    this._apiService.getTiposBiliotecas().pipe(first()).subscribe(x => this.tiposBibliotecas = x);
   }
 
   loadForm() {
     this.title = `${this.isAddMode ? 'Registrando' : 'Atualizando'}`.concat(' Órgão');
     if (!this.isAddMode) {
-      this._service.findById(Number.parseInt(this.id)).pipe(first()).subscribe(x => this.form.patchValue(x));
+      this._bibliotecaService.findById(Number.parseInt(this.id))
+        .pipe(first()).subscribe(x => this.form.patchValue(x));
     }
   }
 
@@ -101,7 +103,7 @@ export class FormComponent implements OnInit {
 
   create() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._service.save(biblioteca).pipe(first()).subscribe(() => {
+    this._bibliotecaService.save(biblioteca).pipe(first()).subscribe(() => {
       //this.alertService.success('User added', { keepAfterRouteChange: true });
       this.redirecToList();
     })
@@ -110,7 +112,7 @@ export class FormComponent implements OnInit {
 
   update() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._service.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe(() => {
+    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe(() => {
       //this.alertService.success('User updated', { keepAfterRouteChange: true });
       this.redirecToList();
     })
