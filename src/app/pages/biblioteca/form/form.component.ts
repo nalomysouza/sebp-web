@@ -8,6 +8,7 @@ import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
+import { TitleService } from 'src/app/shared/services/title.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 @Component({
   selector: 'app-form-biblioteca',
@@ -15,7 +16,6 @@ import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/uti
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  title = '';
   loading = false;
   id!: string;
   isAddMode!: boolean;
@@ -27,6 +27,7 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
+    private _titleService: TitleService,
     private _bibliotecaService: BibliotecaService,
     private _orgaoService: OrgaoService,
     private _apiService: ApiService) { }
@@ -82,7 +83,6 @@ export class FormComponent implements OnInit {
   }
 
   loadForm() {
-    this.title = `${this.isAddMode ? 'Registrando' : 'Atualizando'}`.concat(' Órgão');
     if (!this.isAddMode) {
       this._bibliotecaService.findById(Number.parseInt(this.id))
         .pipe(first()).subscribe(x => this.form.patchValue(x));
@@ -121,6 +121,12 @@ export class FormComponent implements OnInit {
 
   redirecToList() {
     this._router.navigate([`${this.isAddMode ? '../' : '../../'}`], { relativeTo: this._activatedRoute });
+  }
+
+  titlePage() {
+    const title = `${this.isAddMode ? 'Registrando' : 'Atualizando'}`.concat(' Biblioteca');
+    this._titleService.setTitlePage(title);
+    return title;
   }
 
 }

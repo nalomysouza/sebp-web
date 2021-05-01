@@ -11,7 +11,6 @@ import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
 
 registerLocaleData(pt);
-
 @NgModule({
   declarations: [
     AppComponent

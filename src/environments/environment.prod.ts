@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  appName: 'SEBP',
+  api: 'http://localhost:8080/api',
 };
