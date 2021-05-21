@@ -11,7 +11,6 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: '/biblioteca' },
       { path: 'biblioteca', canActivate: [AuthGuard], loadChildren: () => import('./pages/biblioteca/biblioteca.module').then(m => m.BibliotecaModule) },
-      { path: 'welcome', canActivate: [AuthGuard], loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
       { path: 'orgao', canActivate: [AuthGuard], loadChildren: () => import('./pages/orgao/orgao.module').then(m => m.OrgaoModule) },
     ]
   },

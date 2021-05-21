@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
+import { Municipio } from 'src/app/shared/model/municipio.model';
 import { Orgao } from 'src/app/shared/model/orgao.model';
 import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -21,7 +22,9 @@ export class FormComponent implements OnInit {
   isAddMode!: boolean;
   form!: FormGroup;
   orgaos!: Orgao[];
+  municipios!: Municipio[];
   tiposBibliotecas!: TipoBiblioteca[];
+
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +40,7 @@ export class FormComponent implements OnInit {
     this.isAddMode = !this.id;
     this.loadOrgaos();
     this.loadTiposOrgaos();
+    this.loadMunicipios();
     this.createForm();
     this.loadForm();
   }
@@ -53,7 +57,7 @@ export class FormComponent implements OnInit {
       bibliotecaPolo: false,
       implantadaPeloPLA: false,
       cadastroSNBP: false,
-      anoCadastroSNBP: false,
+      anoCadastroSNBP: null,
       orgao: this.fb.group({
         id: [null, Validators.required]
       }),
@@ -80,6 +84,10 @@ export class FormComponent implements OnInit {
 
   loadTiposOrgaos() {
     this._apiService.getTiposBiliotecas().pipe(first()).subscribe(x => this.tiposBibliotecas = x);
+  }
+
+  loadMunicipios() {
+    this._apiService.getMunicipios().pipe(first()).subscribe(x => this.municipios = x);
   }
 
   loadForm() {

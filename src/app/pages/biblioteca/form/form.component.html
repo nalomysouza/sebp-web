@@ -12,7 +12,7 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>E-mail</nz-form-label>
-          <nz-form-control nzErrorTip="Exemplo: orgao@sebp.com.br">
+          <nz-form-control nzErrorTip="Exemplo: biblioteca@sebp.com.br">
             <input nz-input formControlName="email" placeholder="E-mail" />
           </nz-form-control>
         </nz-form-item>
@@ -109,9 +109,8 @@
         <nz-form-item>
           <nz-form-label>Ano do cadastro no SNBP</nz-form-label>
           <nz-form-control nzErrorTip="Exemplo: 2021">
-            <nz-date-picker nzMode="year" formControlName="anoCadastroSNBP" nzPlaceHolder="Selecione o ano" class="full-width">
-            </nz-date-picker>
-            <!--(ngModelChange)="onChange($event)"-->
+            <nz-input-number formControlName="anoCadastroSNBP" nzPlaceHolder="Selecione o ano" [nzMin]="1900"
+              class="full-width"></nz-input-number>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -144,7 +143,7 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="14">
+      <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>Complemento</nz-form-label>
           <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
@@ -152,7 +151,7 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="10">
+      <div nz-col nzSpan="6">
         <nz-form-item>
           <nz-form-label>Bairro</nz-form-label>
           <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
@@ -160,8 +159,26 @@
           </nz-form-control>
         </nz-form-item>
       </div>
+      <div formGroupName="municipio" nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Município</nz-form-label>
+          <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
+            <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
+              <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
     </div>
     <!--/.Endereco-->
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Observações</nz-form-label>
+        <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+          <textarea nz-input formControlName="observacoes" placeholder="Informe aqui observacões" nzAutosize></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
 
     <button nz-button nzType="primary" nzDanger (click)="redirecToList()" [nzLoading]="loading">
       Fechar

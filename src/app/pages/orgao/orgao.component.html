@@ -46,7 +46,7 @@
         </span>
       </td>
       <td class="text-center">
-        <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)" nzTooltipTitle="Ativar | Inativar"
+        <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)" nzTooltipTitle="Desabilitado | Habilitado"
           nzTooltipPlacement="top" nz-tooltip></nz-switch>
         <nz-divider nzType="vertical"></nz-divider>
         <button nz-button routerLink="edit/{{data?.id}}" nzSize="small" nzTooltipTitle="Atualizar"
