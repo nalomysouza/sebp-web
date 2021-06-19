@@ -23,35 +23,35 @@ export class ApiService {
   constructor(private _http: HttpClient) { }
 
   public getEscolaridades(): Observable<Escolaridade[]> {
-    return this._http.get(`${API}/v1/escolaridades`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/escolaridades`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getIntervalosLivro(): Observable<IntervaloLivro[]> {
-    return this._http.get(`${API}/v1/intervalos/livros`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/intervalos/livros`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getMotivosFrequencias(): Observable<MotivoFrequencia[]> {
-    return this._http.get(`${API}/v1/motivos/frequencias`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/motivos/frequencias`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getPeriodicos(): Observable<Periodico[]> {
-    return this._http.get(`${API}/v1/periodicos`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/periodicos`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getTiposBiliotecas(): Observable<TipoBiblioteca[]> {
-    return this._http.get(`${API}/v1/tipos/biliotecas`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/tipos/biliotecas`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getMunicipios(): Observable<Municipio[]> {
-    return this._http.get(`${API}/v1/municipios`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/municipios`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getMicrorregioes(): Observable<Microrregiao[]> {
-    return this._http.get(`${API}/v1/microrregioes`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/microrregioes`, httpOptions).pipe(map((data: any) => data));
   }
 
   public getMesorregioes(): Observable<Mesorregiao[]> {
-    return this._http.get(`${API}/v1/mesorregioes`, httpOptions).pipe(map((data: any) => data));
+    return this._http.get(`${API}/mesorregioes`, httpOptions).pipe(map((data: any) => data));
   }
 
 }

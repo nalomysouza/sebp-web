@@ -7,10 +7,9 @@ import { Resource } from '../../model/helpers/resource.model';
 import { Serializer } from '../../serializables/helpers/serializer.model';
 import { API } from './api';
 
-
 export class ResourceService<T extends Resource> {
 
-  protected url: string = API.concat("/v1");
+  protected url: string = API;
 
   constructor(
     protected httpClient: HttpClient,

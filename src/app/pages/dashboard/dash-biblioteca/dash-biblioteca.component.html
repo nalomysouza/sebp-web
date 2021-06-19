@@ -1,0 +1,15 @@
+<nz-card nzTitle="Card title">
+  <cdk-virtual-scroll-viewport itemSize="73" class="infinite-container">
+    <nz-list>
+      <nz-list-item *cdkVirtualFor="let item of dataSource">
+        <nz-skeleton *ngIf="!item" [nzAvatar]="true" [nzParagraph]="{ rows: 1 }"></nz-skeleton>
+        <nz-list-item-meta *ngIf="item" nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+          [nzDescription]="item.nome">
+          <nz-list-item-meta-title>
+            <a href="https://ng.ant.design">{{ item.nome }}</a>
+          </nz-list-item-meta-title>
+        </nz-list-item-meta>
+      </nz-list-item>
+    </nz-list>
+  </cdk-virtual-scroll-viewport>
+</nz-card>

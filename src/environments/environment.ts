@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   appName: 'SEBP',
-  api: 'http://localhost:8080/api',
+  api: 'http://localhost:8080/api/v1',
 };
 
 /*

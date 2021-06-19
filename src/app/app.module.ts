@@ -13,7 +13,7 @@ import { LayoutModule } from './layout/layout.module';
 registerLocaleData(pt);
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
