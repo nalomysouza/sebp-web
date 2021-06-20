@@ -14,6 +14,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NgxMaskModule.forRoot(),
     NzInputNumberModule,
     SharedModule,
-  ]
+  ],
+  exports: [BibliotecaComponent, FormComponent]
 })
 export class BibliotecaModule { }

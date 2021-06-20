@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.text-center {
+  text-align: center;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.full-width {
+  width: 100%;
+}
 
 .sm-column {
   width: 5%;
@@ -10,16 +21,4 @@
 
 .gd-column {
   width: 20%;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-upper {
-  text-transform: uppercase;
-}
-
-.full-width {
-  width: 100%;
 }

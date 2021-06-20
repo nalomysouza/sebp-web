@@ -11,24 +11,25 @@
           <span nz-icon nzType="search"></span>
         </nz-filter-trigger>
       </th>
-      <th id="endereco" class="gd-column">Endereco</th>
       <th id="municipio" class="md-column text-center">Município</th>
       <th id="email" class="sm-column text-center">Email</th>
       <th id="telefone" class="sm-column text-center">Telefone</th>
-      <th id="fax" class="sm-column text-center">Fax</th>
-      <th id="action" class="gd-column text-center">Opções</th>
+      <th id="action" class="md-column text-center">Opções</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of table.data">
-      <td class="text-upper">{{data?.nome}}</td>
       <td class="text-upper">
-        {{data?.endereco | endereco}}
+        <a href="#" routerLink="edit/{{data?.id}}" nzTooltipTitle="Clique para atualizar" nzTooltipPlacement="top"
+          nz-tooltip>{{data?.nome}}
+        </a>
       </td>
-      <td class="text-center text-upper">{{data?.endereco?.municipio?.nome}}</td>
+      <td class="text-center text-upper">
+        <a href="#" routerLink="edit/{{data?.id}}">{{data?.endereco?.municipio?.nome}}</a>
+      </td>
       <td class="text-center">
-        <span *ngIf="data?.email" nz-icon nzType="mail" nzTheme="twotone" nzTooltipTitle={{data.email}}
-          nzTooltipPlacement="top" nz-tooltip>
+        <span *ngIf="data?.email" routerLink="edit/{{data?.id}}" nz-icon nzType="mail" nzTheme="twotone"
+          nzTooltipTitle={{data.email}} nzTooltipPlacement="top" nz-tooltip>
         </span>
         <span *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
           nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
@@ -40,19 +41,9 @@
         </span>
       </td>
       <td class="text-center">
-        <span nz-icon [nzType]="data.fax ? 'container':'stop'" nzTheme="twotone"
-          [nzTooltipTitle]="data.fax ? data.fax : NOT_EXIST" nzTooltipPlacement="top" nz-tooltip
-          [nzTwotoneColor]=" data.fax ? '':'#c22126'">
-        </span>
-      </td>
-      <td class="text-center">
         <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)" nzTooltipTitle="Ativar | Inativar"
           nzTooltipPlacement="top" nz-tooltip></nz-switch>
         <nz-divider nzType="vertical"></nz-divider>
-        <button nz-button routerLink="edit/{{data?.id}}" nzSize="small" nzTooltipTitle="Atualizar"
-          nzTooltipPlacement="top" nz-tooltip>
-          <i nz-icon nzType="edit"></i>
-        </button>
         <nz-divider nzType="vertical"></nz-divider>
         <button nz-button nzDanger (click)="showDeleteConfirm(data)" nzSize="small" nzTooltipTitle="Deletar"
           nzTooltipPlacement="top" nz-tooltip>
