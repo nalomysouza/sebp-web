@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BibliotecaComponent } from './biblioteca.component';
-import { FormComponent } from './form/form.component';
+import { FormularioComponent } from './formulario/formulario.component';
+import { QuestionarioComponent } from './questionario/questionario.component';
 
 const routes: Routes = [
   { path: '', component: BibliotecaComponent },
-  { path: 'add', component: FormComponent },
-  { path: 'edit/:id', component: FormComponent }
+  { path: 'add', component: FormularioComponent },
+  { path: 'edit/:id', component: QuestionarioComponent }
 ];
 
 @NgModule({

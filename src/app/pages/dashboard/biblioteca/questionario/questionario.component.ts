@@ -12,11 +12,11 @@ import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { TitleService } from 'src/app/shared/services/title.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 @Component({
-  selector: 'app-form-biblioteca',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  selector: 'app-questionario-biblioteca',
+  templateUrl: './questionario.component.html',
+  styleUrls: ['./questionario.component.scss']
 })
-export class FormComponent implements OnInit {
+export class QuestionarioComponent implements OnInit {
   loading = false;
   id!: string;
   isAddMode!: boolean;

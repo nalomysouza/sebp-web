@@ -1,0 +1,194 @@
+<section id="questionario-form">
+  <nz-card [nzTitle]="titlePage()">
+    <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Nome</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório, no mínimo 3 caracteres">
+              <input nz-input formControlName="nome" placeholder="Nome" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label>E-mail</nz-form-label>
+            <nz-form-control nzErrorTip="Exemplo: biblioteca@sebp.com.br">
+              <input nz-input formControlName="email" placeholder="E-mail" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Sigla</nz-form-label>
+            <nz-form-control nzErrorTip="Exemplo: SEBP">
+              <input nz-input formControlName="sigla" placeholder="Sigla" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Data de Fundação</nz-form-label>
+            <nz-form-control nzErrorTip="Exemplo: 01/01/2021">
+              <nz-date-picker formControlName="dataFundacao" nzFormat="dd/MM/yyyy" class="full-width"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label>Ato de Criação</nz-form-label>
+            <nz-form-control nzErrorTip="Exemplo: Instrução normativa SEBP, 01 março de 2021">
+              <input nz-input formControlName="atoCriacao" placeholder="Ato de Criação" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div formGroupName="tipoBiblioteca" nz-col nzSpan="4">
+          <nz-form-item>
+            <nz-form-label nzRequired>Tipo de Biblioteca</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório">
+              <nz-select formControlName="id" nzPlaceHolder="Selecione..." nzShowSearch nzAllowClear>
+                <nz-option *ngFor="let o of tiposBibliotecas" nzValue="{{o.id}}" nzLabel="{{o?.descricao}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div formGroupName="orgao" nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Órgão Responsável</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório, selecione um órgão">
+              <nz-select formControlName="id" nzPlaceHolder="Selecione..." nzShowSearch nzAllowClear>
+                <nz-option *ngFor="let o of orgaos" nzValue="{{o.id}}" nzLabel="{{o?.nome}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item>
+            <nz-form-label>Telefone</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
+              <input formControlName="telefone" nz-input [dropSpecialCharacters]="false"
+                mask="(00)00000-0000||(00)0000-0000" placeholder="Informe um telefone" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item>
+            <nz-form-label>Fax</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
+              <input formControlName="fax" nz-input [dropSpecialCharacters]="false" mask="(00)00000-0000||(00)0000-0000"
+                placeholder="Informe um fax" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Biblioteca polo</nz-form-label>
+            <nz-form-control>
+              <nz-switch nzSize="small" formControlName="bibliotecaPolo"></nz-switch>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Foi implantada pelo PLA</nz-form-label>
+            <nz-form-control>
+              <nz-switch nzSize="small" formControlName="implantadaPeloPLA"></nz-switch>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Possui cadastro no SNBP</nz-form-label>
+            <nz-form-control>
+              <nz-switch nzSize="small" formControlName="cadastroSNBP"></nz-switch>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Ano do cadastro no SNBP</nz-form-label>
+            <nz-form-control nzErrorTip="Exemplo: 2021">
+              <nz-input-number formControlName="anoCadastroSNBP" nzPlaceHolder="Selecione o ano" [nzMin]="1900"
+                class="full-width"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+      </div>
+      <!--/.nzGutter-->
+      <div formGroupName="endereco" nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label>Logradouro</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+              <input formControlName="logradouro" nz-input placeholder="logradouro" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+          <nz-form-item>
+            <nz-form-label>Número:</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente números">
+              <input formControlName="numero" nz-input placeholder="número" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="8">
+          <nz-form-item>
+            <nz-form-label>Cep</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente números">
+              <input type="text" [dropSpecialCharacters]="false" mask="00.000-000" formControlName="cep" nz-input
+                placeholder="Informe um cep" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label>Complemento</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+              <input formControlName="complemento" nz-input placeholder="Informe um complemento" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Bairro</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+              <input formControlName="bairro" nz-input placeholder="Informe um bairro" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div formGroupName="municipio" nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label nzRequired>Município</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
+              <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
+                <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <!--/.Endereco-->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label>Observações</nz-form-label>
+          <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+            <textarea nz-input formControlName="observacoes" placeholder="Informe aqui observacões"
+              nzAutosize></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <button nz-button nzType="primary" nzDanger (click)="redirecToList()" [nzLoading]="loading">
+        Fechar
+      </button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzType="primary" [nzLoading]="loading" [disabled]="form.invalid">
+        Salvar
+      </button>
+    </form>
+  </nz-card>
+</section>

@@ -4,10 +4,11 @@ import { NgxMaskModule } from 'ngx-mask';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BibliotecaRoutingModule } from './biblioteca-routing.module';
 import { BibliotecaComponent } from './biblioteca.component';
-import { FormComponent } from './form/form.component';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { QuestionarioComponent } from './questionario/questionario.component';
+import { FormularioComponent } from './formulario/formulario.component';
 @NgModule({
-  declarations: [BibliotecaComponent, FormComponent],
+  declarations: [BibliotecaComponent, FormularioComponent, QuestionarioComponent],
   imports: [
     CommonModule,
     BibliotecaRoutingModule,
@@ -15,6 +16,6 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzInputNumberModule,
     SharedModule,
   ],
-  exports: [BibliotecaComponent, FormComponent]
+  exports: [BibliotecaComponent, FormularioComponent, QuestionarioComponent]
 })
 export class BibliotecaModule { }
