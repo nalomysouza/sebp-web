@@ -9,22 +9,21 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 import { NgxMaskModule } from 'ngx-mask';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { BibliotecaRoutingModule } from './biblioteca-routing.module';
 import { BibliotecaComponent } from './biblioteca.component';
-import { FormularioComponent } from './formulario/formulario.component';
-import { QuestionarioComponent } from './questionario/questionario.component';
-import { NzModalModule } from 'ng-zorro-antd/modal';
+import { StepFormModule } from './step-form/step-form.module';
 @NgModule({
-  declarations: [BibliotecaComponent, FormularioComponent, QuestionarioComponent],
+  declarations: [BibliotecaComponent],
   imports: [
     CommonModule,
     BibliotecaRoutingModule,
@@ -47,8 +46,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzIconModule,
     NzDividerModule,
     NzInputNumberModule,
-    NzModalModule
+    NzModalModule,
+    StepFormModule
   ],
-  exports: [BibliotecaComponent, FormularioComponent, QuestionarioComponent]
+  exports: [BibliotecaComponent]
 })
 export class BibliotecaModule { }

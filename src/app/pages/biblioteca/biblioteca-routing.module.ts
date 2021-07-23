@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/core/_helpers/auth.guard';
 import { BibliotecaComponent } from './biblioteca.component';
-import { FormularioComponent } from './formulario/formulario.component';
-import { QuestionarioComponent } from './questionario/questionario.component';
 
 const routes: Routes = [
   { path: '', component: BibliotecaComponent },
-  { path: 'add', component: FormularioComponent },
-  { path: 'edit/:id', component: QuestionarioComponent }
+  { path: 'form', canActivate: [AuthGuard], loadChildren: () => import('./step-form/step-form.module').then(m => m.StepFormModule) },
+  //{ path: 'add', component: FormularioComponent },
+  //{ path: 'edit/:id', component: QuestionarioComponent }
 ];
 
 @NgModule({
