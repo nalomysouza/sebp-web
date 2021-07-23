@@ -21,6 +21,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 @NgModule({
   declarations: [OrgaoComponent, FormComponent],
   imports: [
@@ -44,6 +45,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     NzCardModule,
     NzIconModule,
     NzDividerModule,
+    NzModalModule
   ]
 })
 export class OrgaoModule { }

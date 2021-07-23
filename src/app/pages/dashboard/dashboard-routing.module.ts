@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
-  { path: 'biblioteca', canActivate: [AuthGuard], loadChildren: () => import('./biblioteca/biblioteca.module').then(m => m.BibliotecaModule) },
+  // { path: 'biblioteca', canActivate: [AuthGuard], loadChildren: () => import('../biblioteca/biblioteca.module').then(m => m.BibliotecaModule) },
   //{ path: 'add', component: FormComponent },
   //{ path: 'edit/:id', component: FormComponent }
 ];
