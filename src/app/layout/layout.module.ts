@@ -1,14 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { IconsProviderModule } from './icons-provider.module';
 import { LayoutComponent } from './layout.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+
+    NzLayoutModule,
+    NzMenuModule,
+    IconsProviderModule,
   ],
   declarations: [LayoutComponent],
   exports: [LayoutComponent]
