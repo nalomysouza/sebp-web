@@ -191,12 +191,12 @@
         </nz-form-item>
       </div>
 
-      <button nz-button nzType="primary" nzDanger (click)="redirecToList()" [nzLoading]="loading">
-        Fechar
+      <button nz-button nzType="primary" nzDanger routerLink="/biblioteca" [nzLoading]="loading">
+        Voltar
       </button>
       <nz-divider nzType="vertical"></nz-divider>
       <button nz-button nzType="primary" [nzLoading]="loading" [disabled]="form.invalid">
-        Salvar
+        Próximo
       </button>
     </form>
   </nz-card>

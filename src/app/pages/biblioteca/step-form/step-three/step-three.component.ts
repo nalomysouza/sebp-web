@@ -9,7 +9,6 @@ import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
-import { TitleService } from 'src/app/shared/services/title.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 
 @Component({
@@ -31,7 +30,6 @@ export class StepThreeComponent implements OnInit {
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _titleService: TitleService,
     private _bibliotecaService: BibliotecaService,
     private _orgaoService: OrgaoService,
     private _apiService: ApiService) { }
@@ -39,9 +37,7 @@ export class StepThreeComponent implements OnInit {
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];
     this.isAddMode = !this.id;
-    this.loadOrgaos();
-    this.loadTiposOrgaos();
-    this.loadMunicipios();
+    this.loadDadosBase();
     this.createForm();
     this.loadForm();
   }
@@ -79,15 +75,9 @@ export class StepThreeComponent implements OnInit {
     });
   }
 
-  loadOrgaos() {
+  loadDadosBase() {
     this._orgaoService.all().pipe(first()).subscribe(x => this.orgaos = x);
-  }
-
-  loadTiposOrgaos() {
     this._apiService.getTiposBiliotecas().pipe(first()).subscribe(x => this.tiposBibliotecas = x);
-  }
-
-  loadMunicipios() {
     this._apiService.getMunicipios().pipe(first()).subscribe(x => this.municipios = x);
   }
 
@@ -112,23 +102,27 @@ export class StepThreeComponent implements OnInit {
 
   create() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.save(biblioteca).pipe(first()).subscribe(() => {
+    this._bibliotecaService.save(biblioteca).pipe(first()).subscribe((created) => {
       //this.alertService.success('User added', { keepAfterRouteChange: true });
-      this.redirecToList();
+      this.redirecNext(created.id);
     })
       .add(() => this.loading = false);
   }
 
   update() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe(() => {
+    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe((updated) => {
       //this.alertService.success('User updated', { keepAfterRouteChange: true });
-      this.redirecToList();
+      this.redirecNext(updated.id);
     })
       .add(() => this.loading = false);
   }
 
-  redirecToList() {
-    this._router.navigate([`${this.isAddMode ? '../' : '../../'}`], { relativeTo: this._activatedRoute });
+  redireOld() {
+    this._router.navigate([`/biblioteca/form/${this.id}/step-two`], { relativeTo: this._activatedRoute });
+  }
+
+  redirecNext(id: number | undefined) {
+    this._router.navigate([`/biblioteca/form/${id}/step-four`], { relativeTo: this._activatedRoute });
   }
 }

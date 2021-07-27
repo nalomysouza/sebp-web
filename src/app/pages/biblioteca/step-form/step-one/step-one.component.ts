@@ -101,24 +101,24 @@ export class StepOneComponent implements OnInit {
 
   create() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.save(biblioteca).pipe(first()).subscribe(() => {
+    this._bibliotecaService.save(biblioteca).pipe(first()).subscribe((created) => {
       //this.alertService.success('User added', { keepAfterRouteChange: true });
-      this.redirecToList();
+      this.redirecNext(created.id);
     })
       .add(() => this.loading = false);
   }
 
   update() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe(() => {
+    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe((updated) => {
       //this.alertService.success('User updated', { keepAfterRouteChange: true });
-      this.redirecToList();
+      this.redirecNext(updated.id);
     })
       .add(() => this.loading = false);
   }
 
-  redirecToList() {
-    this._router.navigate([`${this.isAddMode ? '../' : '../../'}`], { relativeTo: this._activatedRoute });
+  redirecNext(id: number | undefined) {
+    this._router.navigate([`/biblioteca/form/${id}/step-two`], { relativeTo: this._activatedRoute });
   }
 
 }
