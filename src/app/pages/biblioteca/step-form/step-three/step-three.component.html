@@ -1,12 +1,8 @@
-<section id="form-three-one">
+<section id="form-step-three">
   <nz-card [nzTitle]="stepTemplate">
 
     <ng-template #stepTemplate>
-      <nz-steps [nzCurrent]="2" [nzStatus]="form.invalid ? 'error' : 'process'">
-        <nz-step nzTitle="Sobre a biblioteca" nzDescription="This is a description."></nz-step>
-        <nz-step nzTitle="Questionário" nzDescription="This is a description."></nz-step>
-        <nz-step nzTitle="Responsáveis" nzDescription="This is a description."></nz-step>
-      </nz-steps>
+      <app-step-template [position]="2" [formStatus]="form.invalid"></app-step-template>
     </ng-template>
 
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">

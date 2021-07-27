@@ -22,9 +22,10 @@ import { StepFormRoutingModule } from './step-form-routing.module';
 import { StepOneComponent } from './step-one/step-one.component';
 import { StepThreeComponent } from './step-three/step-three.component';
 import { StepTwoComponent } from './step-two/step-two.component';
+import { StepTemplateComponent } from './component/step-template/step-template.component';
 
 @NgModule({
-  declarations: [StepOneComponent, StepTwoComponent, StepThreeComponent],
+  declarations: [StepOneComponent, StepTwoComponent, StepThreeComponent, StepTemplateComponent],
   imports: [
     CommonModule,
     StepFormRoutingModule,
