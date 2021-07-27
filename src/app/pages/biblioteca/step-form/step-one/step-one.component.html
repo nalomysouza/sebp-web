@@ -2,7 +2,7 @@
   <nz-card [nzTitle]="stepTemplate">
 
     <ng-template #stepTemplate>
-      <nz-steps [nzCurrent]="0" nzStatus="error">
+      <nz-steps [nzCurrent]="0" [nzStatus]="form.invalid ? 'error' : 'process'">
         <nz-step nzTitle="Sobre a biblioteca" nzDescription="This is a description."></nz-step>
         <nz-step nzTitle="Questionário" nzDescription="This is a description."></nz-step>
         <nz-step nzTitle="Responsáveis" nzDescription="This is a description."></nz-step>

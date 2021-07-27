@@ -20,15 +20,15 @@
   <tbody>
     <tr *ngFor="let data of table.data">
       <td class="text-upper">
-        <a href="#" routerLink="edit/{{data?.id}}" nzTooltipTitle="Clique para atualizar" nzTooltipPlacement="top"
+        <a href="#" routerLink="{{routerEdit(data?.id)}}" nzTooltipTitle="Clique para atualizar" nzTooltipPlacement="top"
           nz-tooltip>{{data?.nome}}
         </a>
       </td>
       <td class="text-center text-upper">
-        <a href="#" routerLink="edit/{{data?.id}}">{{data?.endereco?.municipio?.nome}}</a>
+        <a href="#" routerLink="{{routerEdit(data?.id)}}">{{data?.endereco?.municipio?.nome}}</a>
       </td>
       <td class="text-center">
-        <span *ngIf="data?.email" routerLink="edit/{{data?.id}}" nz-icon nzType="mail" nzTheme="twotone"
+        <span *ngIf="data?.email" routerLink="{{routerEdit(data?.id)}}" nz-icon nzType="mail" nzTheme="twotone"
           nzTooltipTitle={{data.email}} nzTooltipPlacement="top" nz-tooltip>
         </span>
         <span *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}

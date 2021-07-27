@@ -9,7 +9,6 @@ import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
-import { TitleService } from 'src/app/shared/services/title.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 
 @Component({
@@ -30,7 +29,6 @@ export class StepOneComponent implements OnInit {
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _titleService: TitleService,
     private _bibliotecaService: BibliotecaService,
     private _orgaoService: OrgaoService,
     private _apiService: ApiService) { }
@@ -38,9 +36,7 @@ export class StepOneComponent implements OnInit {
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];
     this.isAddMode = !this.id;
-    this.loadOrgaos();
-    this.loadTiposOrgaos();
-    this.loadMunicipios();
+    this.loadDadosBase();
     this.createForm();
     this.loadForm();
   }
@@ -78,15 +74,9 @@ export class StepOneComponent implements OnInit {
     });
   }
 
-  loadOrgaos() {
+  loadDadosBase() {
     this._orgaoService.all().pipe(first()).subscribe(x => this.orgaos = x);
-  }
-
-  loadTiposOrgaos() {
     this._apiService.getTiposBiliotecas().pipe(first()).subscribe(x => this.tiposBibliotecas = x);
-  }
-
-  loadMunicipios() {
     this._apiService.getMunicipios().pipe(first()).subscribe(x => this.municipios = x);
   }
 
