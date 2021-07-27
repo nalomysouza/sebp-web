@@ -31,6 +31,8 @@ import { StepFormModule } from './step-form/step-form.module';
     PipesModule,
     FormsModule,
     ReactiveFormsModule,
+    StepFormModule,
+
     NzFormModule,
     NzButtonModule,
     NzSelectModule,
@@ -47,7 +49,6 @@ import { StepFormModule } from './step-form/step-form.module';
     NzDividerModule,
     NzInputNumberModule,
     NzModalModule,
-    StepFormModule
   ],
   exports: [BibliotecaComponent]
 })

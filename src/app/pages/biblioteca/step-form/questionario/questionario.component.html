@@ -1,5 +1,16 @@
 <section id="questionario-form">
-  <nz-card [nzTitle]="titlePage()">
+  <nz-card [nzTitle]="stepTemplate">
+
+    <ng-template #stepTemplate>
+      <div nz-row>
+        <nz-steps [nzCurrent]="1" nzStatus="error">
+          <nz-step nzTitle="Sobre a biblioteca" nzDescription="This is a description."></nz-step>
+          <nz-step nzTitle="Questionário" nzDescription="This is a description."></nz-step>
+          <nz-step nzTitle="Responsáveis" nzDescription="This is a description."></nz-step>
+        </nz-steps>
+      </div>
+    </ng-template>
+
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div nz-row [nzGutter]="8">
         <div nz-col nzSpan="12">
