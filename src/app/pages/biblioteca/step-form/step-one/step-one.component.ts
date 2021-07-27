@@ -70,7 +70,7 @@ export class StepOneComponent implements OnInit {
           id: [null, Validators.required]
         })
       }),
-      observacoes: ['', Validators.required]
+      observacoes: ['', [Validators.required]]
     });
   }
 
@@ -103,7 +103,7 @@ export class StepOneComponent implements OnInit {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
     this._bibliotecaService.save(biblioteca).pipe(first()).subscribe((created) => {
       //this.alertService.success('User added', { keepAfterRouteChange: true });
-      this.redirecNext(created.id);
+      this.nextUrl(created.id);
     })
       .add(() => this.loading = false);
   }
@@ -112,12 +112,12 @@ export class StepOneComponent implements OnInit {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
     this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe((updated) => {
       //this.alertService.success('User updated', { keepAfterRouteChange: true });
-      this.redirecNext(updated.id);
+      this.nextUrl(updated.id);
     })
       .add(() => this.loading = false);
   }
 
-  redirecNext(id: number | undefined) {
+  nextUrl(id: number | undefined) {
     this._router.navigate([`/biblioteca/form/${id}/step-two`], { relativeTo: this._activatedRoute });
   }
 

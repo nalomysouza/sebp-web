@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Biblioteca } from '../model/biblioteca.model';
-import { BibliotecaSerializer } from '../serializables/biblioteca-serializer';
+import { BibliotecaSerializer } from '../serializables/biblioteca.serializer';
 import { ResourceService } from './helpers/resource.service';
 
 @Injectable({
