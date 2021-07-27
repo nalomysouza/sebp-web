@@ -11,12 +11,14 @@ import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { TitleService } from 'src/app/shared/services/title.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
+
 @Component({
-  selector: 'app-formulario-biblioteca',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.scss']
+  selector: 'app-step-two',
+  templateUrl: './step-two.component.html',
+  styleUrls: ['./step-two.component.scss']
 })
-export class FormularioComponent implements OnInit {
+export class StepTwoComponent implements OnInit {
+
   loading = false;
   id!: string;
   isAddMode!: boolean;
@@ -128,12 +130,6 @@ export class FormularioComponent implements OnInit {
 
   redirecToList() {
     this._router.navigate([`${this.isAddMode ? '../' : '../../'}`], { relativeTo: this._activatedRoute });
-  }
-
-  titlePage() {
-    const title = `${this.isAddMode ? 'Registrando' : 'Atualizando'}`.concat(' Biblioteca');
-    this._titleService.setTitlePage(title);
-    return title;
   }
 
 }

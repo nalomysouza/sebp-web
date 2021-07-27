@@ -11,12 +11,14 @@ import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { TitleService } from 'src/app/shared/services/title.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
+
 @Component({
-  selector: 'app-questionario-biblioteca',
-  templateUrl: './questionario.component.html',
-  styleUrls: ['./questionario.component.scss']
+  selector: 'app-step-three',
+  templateUrl: './step-three.component.html',
+  styleUrls: ['./step-three.component.scss']
 })
-export class QuestionarioComponent implements OnInit {
+export class StepThreeComponent implements OnInit {
+
   loading = false;
   id!: string;
   isAddMode!: boolean;
@@ -24,7 +26,6 @@ export class QuestionarioComponent implements OnInit {
   orgaos!: Orgao[];
   municipios!: Municipio[];
   tiposBibliotecas!: TipoBiblioteca[];
-
 
   constructor(
     private fb: FormBuilder,
@@ -130,11 +131,4 @@ export class QuestionarioComponent implements OnInit {
   redirecToList() {
     this._router.navigate([`${this.isAddMode ? '../' : '../../'}`], { relativeTo: this._activatedRoute });
   }
-
-  titlePage() {
-    const title = `${this.isAddMode ? 'Registrando' : 'Atualizando'}`.concat(' Biblioteca');
-    this._titleService.setTitlePage(title);
-    return title;
-  }
-
 }

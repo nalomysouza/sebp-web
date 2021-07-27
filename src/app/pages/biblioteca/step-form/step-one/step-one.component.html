@@ -1,14 +1,12 @@
-<section id="questionario-form">
+<section id="form-step-one">
   <nz-card [nzTitle]="stepTemplate">
 
     <ng-template #stepTemplate>
-      <div nz-row>
-        <nz-steps [nzCurrent]="1" nzStatus="error">
-          <nz-step nzTitle="Sobre a biblioteca" nzDescription="This is a description."></nz-step>
-          <nz-step nzTitle="Questionário" nzDescription="This is a description."></nz-step>
-          <nz-step nzTitle="Responsáveis" nzDescription="This is a description."></nz-step>
-        </nz-steps>
-      </div>
+      <nz-steps [nzCurrent]="0" nzStatus="error">
+        <nz-step nzTitle="Sobre a biblioteca" nzDescription="This is a description."></nz-step>
+        <nz-step nzTitle="Questionário" nzDescription="This is a description."></nz-step>
+        <nz-step nzTitle="Responsáveis" nzDescription="This is a description."></nz-step>
+      </nz-steps>
     </ng-template>
 
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">

@@ -18,12 +18,13 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NgxMaskModule } from 'ngx-mask';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { FormularioComponent } from './formulario/formulario.component';
-import { QuestionarioComponent } from './questionario/questionario.component';
 import { StepFormRoutingModule } from './step-form-routing.module';
+import { StepOneComponent } from './step-one/step-one.component';
+import { StepThreeComponent } from './step-three/step-three.component';
+import { StepTwoComponent } from './step-two/step-two.component';
 
 @NgModule({
-  declarations: [FormularioComponent, QuestionarioComponent],
+  declarations: [StepOneComponent, StepTwoComponent, StepThreeComponent],
   imports: [
     CommonModule,
     StepFormRoutingModule,
@@ -47,6 +48,6 @@ import { StepFormRoutingModule } from './step-form-routing.module';
     NzModalModule,
     NzStepsModule
   ],
-  exports: [FormularioComponent, QuestionarioComponent]
+  exports: [StepOneComponent, StepTwoComponent, StepThreeComponent]
 })
 export class StepFormModule { }
