@@ -3,14 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
-import { Municipio } from 'src/app/shared/model/municipio.model';
-import { Orgao } from 'src/app/shared/model/orgao.model';
-import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
-import { ApiService } from 'src/app/shared/services/api.service';
 import { ApoioRecebidoService } from 'src/app/shared/services/apoio-recebido.service';
-import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
-import { OrgaoService } from 'src/app/shared/services/orgao.service';
-import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 
 @Component({
   selector: 'app-step-two',
@@ -19,7 +12,7 @@ import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/uti
 })
 export class StepTwoComponent implements OnInit {
 
-  id!: string;
+  bibliotecaId!: string;
   isAddMode!: boolean;
   loading = false;
   form!: FormGroup;
@@ -28,12 +21,11 @@ export class StepTwoComponent implements OnInit {
     private fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _apoioRecebidoService: ApoioRecebidoService,
+    private _service: ApoioRecebidoService,
   ) { }
 
   ngOnInit(): void {
-    this.id = this._activatedRoute.snapshot.params['id'];
-    this.isAddMode = !this.id;
+    this.bibliotecaId = this._activatedRoute.snapshot.params['id'];
     this.createForm();
     this.loadForm();
   }
@@ -47,15 +39,20 @@ export class StepTwoComponent implements OnInit {
       minc: [false, Validators.required],
       mincDescricao: [''],
       biblioteca: this.fb.group({
-        id: [this.id, Validators.required]
+        id: [this.bibliotecaId, Validators.required]
       })
     });
   }
 
   loadForm() {
     if (!this.isAddMode) {
-      this._apoioRecebidoService.findById(Number.parseInt(this.id))
-        .pipe(first()).subscribe(x => this.form.patchValue(x));
+      this._service
+        .findByBibliotecaId(Number.parseInt(this.bibliotecaId))
+        .pipe(first())
+        .subscribe(x => {
+          this.isAddMode = !x.id;
+          this.form.patchValue(x);
+        });
     }
   }
 
@@ -64,16 +61,17 @@ export class StepTwoComponent implements OnInit {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();
     }
-
+    console.log('form =>', this.form.value);
+    console.log('isAddMode =>', this.isAddMode);
     if (this.form.valid) {
-      this.loading = true;
-      this.isAddMode ? this.create() : this.update();
+      // this.loading = true;
+      // this.isAddMode ? this.create() : this.update();
     }
   }
 
   create() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._apoioRecebidoService.save(biblioteca).pipe(first()).subscribe((created) => {
+    this._service.save(biblioteca).pipe(first()).subscribe((created) => {
       //this.alertService.success('User added', { keepAfterRouteChange: true });
       this.nextUrl();
     })
@@ -82,7 +80,7 @@ export class StepTwoComponent implements OnInit {
 
   update() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._apoioRecebidoService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe((updated) => {
+    this._service.update(Number.parseInt(this.bibliotecaId), biblioteca).pipe(first()).subscribe((updated) => {
       //this.alertService.success('User updated', { keepAfterRouteChange: true });
       this.nextUrl();
     })
@@ -90,10 +88,10 @@ export class StepTwoComponent implements OnInit {
   }
 
   oldUrl() {
-    this._router.navigate([`/biblioteca/form/${this.id}/step-one`], { relativeTo: this._activatedRoute });
+    this._router.navigate([`/biblioteca/form/${this.bibliotecaId}/step-one`], { relativeTo: this._activatedRoute });
   }
 
   nextUrl() {
-    this._router.navigate([`/biblioteca/form/${this.id}/step-three`], { relativeTo: this._activatedRoute });
+    this._router.navigate([`/biblioteca/form/${this.bibliotecaId}/step-three`], { relativeTo: this._activatedRoute });
   }
 }
