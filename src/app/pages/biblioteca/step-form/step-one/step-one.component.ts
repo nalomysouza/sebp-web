@@ -43,6 +43,7 @@ export class StepOneComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
+      id: null,
       nome: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.email, Validators.pattern(ONLY_MAIL)]],
       dataFundacao: [null],
@@ -83,10 +84,7 @@ export class StepOneComponent implements OnInit {
       this._bibliotecaService
         .findById(Number.parseInt(this.id))
         .pipe(first())
-        .subscribe(x => {
-          console.log('value', x)
-          this.form.patchValue(x);
-        });
+        .subscribe(x => this.form.patchValue(x));
     }
   }
 

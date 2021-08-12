@@ -2,7 +2,7 @@
   <nz-card [nzTitle]="stepTemplate">
 
     <ng-template #stepTemplate>
-      <app-step-template [position]="0" [formStatus]="form.invalid"></app-step-template>
+      <app-step-template [position]="0" [formStatus]="form.valid"></app-step-template>
     </ng-template>
 
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -71,18 +71,16 @@
         <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Telefone</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
-              <input formControlName="telefone" nz-input [dropSpecialCharacters]="false"
-                mask="(00)00000-0000||(00)0000-0000" placeholder="Informe um telefone" />
+            <nz-form-control nzErrorTip="Favor preencha o campo no formato (XX)9.XXXX-XXXX">
+              <input formControlName="telefone" nz-input mask="(00) 90000-0000" placeholder="Informe um telefone" />
             </nz-form-control>
           </nz-form-item>
         </div>
         <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Fax</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
-              <input formControlName="fax" nz-input [dropSpecialCharacters]="false" mask="(00)00000-0000||(00)0000-0000"
-                placeholder="Informe um fax" />
+            <nz-form-control nzErrorTip="Favor preencha o campo no formato (XX)9.XXXX-XXXX">
+              <input formControlName="fax" nz-input mask="(00) 90000-0000" placeholder="Informe um fax" />
             </nz-form-control>
           </nz-form-item>
         </div>
