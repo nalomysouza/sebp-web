@@ -20,7 +20,7 @@ export class ApoioRecebidoService extends ResourceService<ApoioRecebido>{
   public findByBibliotecaId(bibliotecaId: number): Observable<ApoioRecebido> {
     return this.httpClient
       .get(`${this.url}/${this.endpoint}/biblioteca/${bibliotecaId}`).pipe(
-        map(data => this.serializer.fromJson(data) as ApoioRecebido),
+        map(data => this.serializer.fromJson(data ? data : new ApoioRecebido()) as ApoioRecebido),
         catchError(this.handleError)
       );
   }

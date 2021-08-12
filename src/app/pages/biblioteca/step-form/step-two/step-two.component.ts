@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { ApoioRecebido } from 'src/app/shared/model/apoio-recebido.model';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
 import { ApoioRecebidoService } from 'src/app/shared/services/apoio-recebido.service';
 
@@ -32,26 +33,27 @@ export class StepTwoComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
+      id: null,
       proares: [false, Validators.required],
-      proaresDescricao: [''],
+      proaresDescricao: '',
       ubecm: [false, Validators.required],
-      ubecmDescricao: [''],
+      ubecmDescricao: '',
       minc: [false, Validators.required],
-      mincDescricao: [''],
+      mincDescricao: '',
       biblioteca: this.fb.group({
-        id: [this.bibliotecaId, Validators.required]
+        id: [this.biblioteca.id]
       })
     });
   }
 
   loadForm() {
-    if (!this.isAddMode) {
+    if (this.bibliotecaId) {
       this._service
-        .findByBibliotecaId(Number.parseInt(this.bibliotecaId))
+        .findByBibliotecaId(this.biblioteca.id)
         .pipe(first())
         .subscribe(x => {
           this.isAddMode = !x.id;
-          this.form.patchValue(x);
+          this.form.patchValue(x)
         });
     }
   }
@@ -61,34 +63,38 @@ export class StepTwoComponent implements OnInit {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();
     }
-    console.log('form =>', this.form.value);
-    console.log('isAddMode =>', this.isAddMode);
+
     if (this.form.valid) {
-      // this.loading = true;
-      // this.isAddMode ? this.create() : this.update();
+      this.loading = true;
+      let apoioRecebido = Object.assign(new ApoioRecebido(), this.form.value);
+      this.isAddMode ? this.create(apoioRecebido) : this.update(apoioRecebido);
     }
   }
 
-  create() {
-    let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._service.save(biblioteca).pipe(first()).subscribe((created) => {
-      //this.alertService.success('User added', { keepAfterRouteChange: true });
-      this.nextUrl();
-    })
-      .add(() => this.loading = false);
+  create(apoioRecebido: ApoioRecebido) {
+    this._service.save(apoioRecebido)
+      .pipe(first())
+      .subscribe((created) => {
+        //this.alertService.success('User added', { keepAfterRouteChange: true });
+        this.nextUrl();
+      }).add(() => this.loading = false);
   }
 
-  update() {
-    let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._service.update(Number.parseInt(this.bibliotecaId), biblioteca).pipe(first()).subscribe((updated) => {
-      //this.alertService.success('User updated', { keepAfterRouteChange: true });
-      this.nextUrl();
-    })
-      .add(() => this.loading = false);
+  update(apoioRecebido: ApoioRecebido) {
+    this._service.update(apoioRecebido.id, apoioRecebido)
+      .pipe(first())
+      .subscribe((updated) => {
+        //this.alertService.success('User updated', { keepAfterRouteChange: true });
+        this.nextUrl();
+      }).add(() => this.loading = false);
+  }
+
+  get biblioteca() {
+    return { id: Number.parseInt(this.bibliotecaId) };
   }
 
   oldUrl() {
-    this._router.navigate([`/biblioteca/form/${this.bibliotecaId}/step-one`], { relativeTo: this._activatedRoute });
+    this._router.navigate([`/biblioteca/form/${this.biblioteca.id}/step-one`], { relativeTo: this._activatedRoute });
   }
 
   nextUrl() {

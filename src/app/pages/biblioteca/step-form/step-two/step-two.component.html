@@ -2,7 +2,7 @@
   <nz-card [nzTitle]="stepTemplate">
 
     <ng-template #stepTemplate>
-      <app-step-template [position]="1" [formStatus]="form.invalid"></app-step-template>
+      <app-step-template [position]="1" [formStatus]="form.valid"></app-step-template>
     </ng-template>
 
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
