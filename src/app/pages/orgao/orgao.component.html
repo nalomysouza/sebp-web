@@ -23,9 +23,9 @@
     <tr *ngFor="let data of table.data">
       <td class="text-upper">{{data?.nome}}</td>
       <td class="text-upper">
-        {{data?.endereco | endereco}}
+        {{data?.logradouro }}
       </td>
-      <td class="text-center text-upper">{{data?.endereco?.municipio?.nome}}</td>
+      <td class="text-center text-upper">{{data?.municipio?.nome}}</td>
       <td class="text-center">
         <span *ngIf="data?.email" nz-icon nzType="mail" nzTheme="twotone" nzTooltipTitle={{data.email}}
           nzTooltipPlacement="top" nz-tooltip>

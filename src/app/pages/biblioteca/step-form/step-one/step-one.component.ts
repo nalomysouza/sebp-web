@@ -60,15 +60,13 @@ export class StepOneComponent implements OnInit {
       tipoBiblioteca: this.fb.group({
         id: [null, Validators.required]
       }),
-      endereco: this.fb.group({
-        logradouro: ['', [Validators.minLength(2), Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        numero: ['', [Validators.pattern(ONLY_NUMBER)]],
-        complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        cep: [''],
-        municipio: this.fb.group({
-          id: [null, Validators.required]
-        })
+      logradouro: ['', [Validators.minLength(2), Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+      numero: ['', [Validators.pattern(ONLY_NUMBER)]],
+      complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+      bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+      cep: [''],
+      municipio: this.fb.group({
+        id: [null, Validators.required]
       }),
       observacoes: ['', [Validators.required]]
     });
@@ -82,8 +80,13 @@ export class StepOneComponent implements OnInit {
 
   loadForm() {
     if (!this.isAddMode) {
-      this._bibliotecaService.findById(Number.parseInt(this.id))
-        .pipe(first()).subscribe(x => this.form.patchValue(x));
+      this._bibliotecaService
+        .findById(Number.parseInt(this.id))
+        .pipe(first())
+        .subscribe(x => {
+          console.log('value', x)
+          this.form.patchValue(x);
+        });
     }
   }
 

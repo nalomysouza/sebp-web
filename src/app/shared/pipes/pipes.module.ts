@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { BooleanPtbrPipe } from './boolean-ptbr.pipe';
-import { EnderecoPipe } from './endereco.pipe';
 
 const EXPORTS = [
   BooleanPtbrPipe,
-  EnderecoPipe,
 ]
 @NgModule({
   declarations: [EXPORTS],

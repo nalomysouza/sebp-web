@@ -16,7 +16,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NgxMaskModule } from 'ngx-mask';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { StepFormRoutingModule } from './step-form-routing.module';
 import { StepOneComponent } from './step-one/step-one.component';
@@ -24,12 +24,16 @@ import { StepThreeComponent } from './step-three/step-three.component';
 import { StepTwoComponent } from './step-two/step-two.component';
 import { StepTemplateComponent } from './component/step-template/step-template.component';
 
+const maskConfig: Partial<IConfig> = {
+  validation: true,
+};
+
 @NgModule({
   declarations: [StepOneComponent, StepTwoComponent, StepThreeComponent, StepTemplateComponent],
   imports: [
     CommonModule,
     StepFormRoutingModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot(maskConfig),
     PipesModule,
     FormsModule,
     ReactiveFormsModule,

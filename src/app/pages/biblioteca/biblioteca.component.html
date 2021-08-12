@@ -25,7 +25,7 @@
         </a>
       </td>
       <td class="text-center text-upper">
-        <a href="#" routerLink="{{routerEdit(data?.id)}}">{{data?.endereco?.municipio?.nome}}</a>
+        <a href="#" routerLink="{{routerEdit(data?.id)}}">{{data?.municipio?.nome}}</a>
       </td>
       <td class="text-center">
         <span *ngIf="data?.email" routerLink="{{routerEdit(data?.id)}}" nz-icon nzType="mail" nzTheme="twotone"
