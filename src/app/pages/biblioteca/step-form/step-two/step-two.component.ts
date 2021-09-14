@@ -41,19 +41,19 @@ export class StepTwoComponent implements OnInit {
       minc: [false, Validators.required],
       mincDescricao: '',
       biblioteca: this.fb.group({
-        id: [this.biblioteca.id]
+        id: null
       })
     });
   }
 
   loadForm() {
-    if (this.bibliotecaId) {
+    if (this.biblioteca.id) {
       this._service
         .findByBibliotecaId(this.biblioteca.id)
         .pipe(first())
         .subscribe(x => {
           this.isAddMode = !x.id;
-          this.form.patchValue(x)
+          this.form.patchValue(x);
         });
     }
   }
@@ -98,6 +98,6 @@ export class StepTwoComponent implements OnInit {
   }
 
   nextUrl() {
-    this._router.navigate([`/biblioteca/form/${this.bibliotecaId}/step-three`], { relativeTo: this._activatedRoute });
+    this._router.navigate([`/biblioteca/form/${this.biblioteca.id}/step-three`], { relativeTo: this._activatedRoute });
   }
 }

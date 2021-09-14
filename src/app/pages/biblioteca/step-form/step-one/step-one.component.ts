@@ -69,7 +69,7 @@ export class StepOneComponent implements OnInit {
       municipio: this.fb.group({
         id: [null, Validators.required]
       }),
-      observacoes: ['', [Validators.required]]
+      observacoes: ['', Validators.required]
     });
   }
 
