@@ -41,6 +41,8 @@ yarn-error.log
 testem.log
 /typings
 *.scannerwork
+package-lock.json
+
 # System Files
 .DS_Store
 Thumbs.db

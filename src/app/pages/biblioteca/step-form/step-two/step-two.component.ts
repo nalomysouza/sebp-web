@@ -67,7 +67,8 @@ export class StepTwoComponent implements OnInit {
     if (this.form.valid) {
       this.loading = true;
       let apoioRecebido = Object.assign(new ApoioRecebido(), this.form.value);
-      this.isAddMode ? this.create(apoioRecebido) : this.update(apoioRecebido);
+      console.log('apoioRecebido', apoioRecebido)
+      //this.isAddMode ? this.create(apoioRecebido) : this.update(apoioRecebido);
     }
   }
 
