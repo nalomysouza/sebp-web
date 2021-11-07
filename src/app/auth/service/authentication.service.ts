@@ -15,14 +15,14 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   signIn(username: string, password: string): Observable<any> {
-    return this.http.post(API + '/auth/signin', {
+    return this.http.post(API + '/v1/auth/signin', {
       username,
       password
     }, httpOptions);
   }
 
   signUp(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(API + '/auth/signup', {
+    return this.http.post(API + '/v1/auth/signup', {
       username,
       email,
       password

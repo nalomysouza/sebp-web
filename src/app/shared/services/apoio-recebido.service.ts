@@ -11,7 +11,7 @@ import { ResourceService } from './helpers/resource.service';
 })
 export class ApoioRecebidoService extends ResourceService<ApoioRecebido>{
 
-  static RESOURCE: any = 'apoios-recebidos';
+  static RESOURCE: any = 'v1/apoio-recebido';
 
   constructor(private http: HttpClient) {
     super(http, ApoioRecebidoService.RESOURCE, new ApoioRecebidoSerializer(ApoioRecebido));

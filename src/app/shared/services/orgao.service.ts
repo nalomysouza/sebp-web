@@ -9,7 +9,7 @@ import { ResourceService } from './helpers/resource.service';
 })
 export class OrgaoService extends ResourceService<Orgao>{
 
-  static RESOURCE: any = 'orgaos';
+  static RESOURCE: any = 'v1/orgao';
 
   constructor(private http: HttpClient) {
     super(http, OrgaoService.RESOURCE, new OrgaoSerializer(Orgao));

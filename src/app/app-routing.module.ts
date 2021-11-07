@@ -4,7 +4,7 @@ import { AuthGuard } from './core/_helpers/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./pages/authentication/authentication.module').then(m => m.AuthenticationModule) },
+  { path: 'auth', loadChildren: () => import('./auth/authentication.module').then(m => m.AuthenticationModule) },
   {
     path: '',
     component: LayoutComponent,

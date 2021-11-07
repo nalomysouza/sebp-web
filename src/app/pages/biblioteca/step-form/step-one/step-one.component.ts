@@ -6,7 +6,7 @@ import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
 import { Municipio } from 'src/app/shared/model/municipio.model';
 import { Orgao } from 'src/app/shared/model/orgao.model';
 import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { HelpService } from 'src/app/shared/services/help.service';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
@@ -31,7 +31,7 @@ export class StepOneComponent implements OnInit {
     private _router: Router,
     private _bibliotecaService: BibliotecaService,
     private _orgaoService: OrgaoService,
-    private _apiService: ApiService) { }
+    private _apiService: HelpService) { }
 
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];

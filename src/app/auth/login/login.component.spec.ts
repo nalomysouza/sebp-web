@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/_services/auth.service';
 import { AssetsService } from 'src/app/shared/services/assets.service';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../service/authentication.service';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {

@@ -4,7 +4,6 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { first } from 'rxjs/operators';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
-import { Pageable } from 'src/app/shared/model/helpers/pageable.model';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 @Component({
   selector: 'app-biblioteca',

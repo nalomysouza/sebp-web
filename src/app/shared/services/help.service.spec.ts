@@ -2,18 +2,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { asyncError } from 'src/app/helpers/testing/observable-helpers';
 import { Escolaridade } from '../model/escolaridade.model';
-import { ApiService } from './api.service';
+import { HelpService } from './help.service';
 
-describe('ApiService', () => {
-  let apiService: ApiService;
+describe('HelpService', () => {
+  let apiService: HelpService;
   let httpClientSpy: { get: jasmine.Spy };
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    apiService = new ApiService(httpClientSpy as any);
+    apiService = new HelpService(httpClientSpy as any);
   });
 
-  it('created instance ApiService', () => {
+  it('created instance HelpService', () => {
     expect(apiService).toBeTruthy();
   });
 

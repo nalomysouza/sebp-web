@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Municipio } from 'src/app/shared/model/municipio.model';
 import { Orgao } from 'src/app/shared/model/orgao.model';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { HelpService } from 'src/app/shared/services/help.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
 @Component({
@@ -25,7 +25,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _service: OrgaoService,
-    private _api: ApiService) { }
+    private _api: HelpService) { }
 
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];

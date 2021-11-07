@@ -9,7 +9,7 @@ import { ResourceService } from './helpers/resource.service';
 })
 export class BibliotecaService extends ResourceService<Biblioteca>{
 
-  static RESOURCE: any = 'bibliotecas';
+  static RESOURCE: any = 'v1/biblioteca';
 
   constructor(private http: HttpClient) {
     super(http, BibliotecaService.RESOURCE, new BibliotecaSerializer(Biblioteca));
