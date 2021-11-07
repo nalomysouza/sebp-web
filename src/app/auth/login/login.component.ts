@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/_services/auth.service';
+import { TokenStorageService } from 'src/app/core/_services/token-storage.service';
 import { CurrentUser } from 'src/app/shared/model/helpers/current-user.model';
-import { AssetsService } from 'src/app/shared/services/assets.service';
-import { AuthenticationService } from '../authentication.service';
+import { AssetsService } from 'src/app/shared/services/helpers/assets.service';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -12,11 +12,12 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class LoginComponent implements OnInit {
   isLoading: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _authenticationService: AuthenticationService,
-    private _authService: AuthService,
+    private _authService: AuthenticationService,
+    private _storageService: TokenStorageService,
     private _assets: AssetsService
   ) { }
 
@@ -37,19 +38,16 @@ export class LoginComponent implements OnInit {
     }
 
     if (!this.validateForm.invalid) {
-
       this.isLoading = true;
-      let { username, password } = this.validateForm.value;
-      this._authenticationService.signIn(username, password).subscribe(
-        data => {
-          let user = new CurrentUser(
-            { id: data.id, username: data.username, email: data.email }, data.accessToken
-          );
-          this._authService.login(user);
-          this.isLoading = false;
-          this.router.navigate(['/']);
-        }, err => this.isLoading = false
-      );
+      const { username, password } = this.validateForm.value;
+
+      this._authService.signIn(username, password).subscribe(data => {
+        const user = new CurrentUser(
+          { id: data.id, username: data.username, email: data.email }, data.accessToken
+        );
+        this._storageService.signIn(user);
+        this.router.navigate(['/']);
+      }).add(() => this.isLoading = false);
     }
   }
 

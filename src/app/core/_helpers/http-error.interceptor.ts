@@ -4,9 +4,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(private message: NzMessageService) { }
 

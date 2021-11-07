@@ -1,38 +1,35 @@
 import { Injectable } from '@angular/core';
+import { CurrentUser } from 'src/app/shared/model/helpers/current-user.model';
+import { User } from 'src/app/shared/model/user.model';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TokenStorageService {
-  constructor() { }
+
+  signIn(userAuthentication: CurrentUser) {
+    const { token, user } = userAuthentication;
+    window.sessionStorage.clear();
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
 
   signOut(): void {
     window.sessionStorage.clear();
   }
 
-  public saveToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+  get isLoggedIn(): boolean {
+    return !!this.token;
   }
 
-  public getToken(): string | null {
+  get user(): User | null {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    return user ? JSON.parse(user) : null;
+  }
+
+  get token(): string | null {
     return window.sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-
-  public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
-
-    return {};
-  }
 }
