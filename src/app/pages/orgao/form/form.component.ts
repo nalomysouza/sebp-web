@@ -44,15 +44,17 @@ export class FormComponent implements OnInit, AfterViewInit {
       email: ['', [Validators.email, Validators.pattern(ONLY_MAIL)]],
       telefone: [''],
       fax: [''],
-      endereco: this.fb.group({
-        logradouro: ['', [Validators.minLength(2), Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        numero: [null, [Validators.pattern(ONLY_NUMBER)]],
-        complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-        cep: [''],
-        municipio: this.fb.group({
-          id: [null, Validators.required]
-        })
+      logradouro: ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(ONLY_CHAR_AND_NUMBER)]
+      ],
+      numero: [null, [Validators.pattern(ONLY_NUMBER)]],
+      complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+      bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
+      cep: [''],
+      municipio: this.fb.group({
+        id: [null, Validators.required]
       })
     });
   }

@@ -35,11 +35,12 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div formGroupName="endereco" nz-row [nzGutter]="8">
+      <div nz-row [nzGutter]="8">
         <div nz-col nzSpan="16">
           <nz-form-item>
-            <nz-form-label>Logradouro</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+            <nz-form-label nzRequired>Logradouro</nz-form-label>
+            <nz-form-control
+              nzErrorTip="Campo obrigatório, no mínimo 3 caracteres, aceita somente caracteres e números">
               <input formControlName="logradouro" nz-input placeholder="Informe um logradouro" />
             </nz-form-control>
           </nz-form-item>
@@ -95,7 +96,7 @@
       Fechar
     </button>
     <nz-divider nzType="vertical"></nz-divider>
-    <button nz-button nzType="primary" [nzLoading]="loading" [disabled]="form.invalid">
+    <button nz-button nzType="primary" [nzLoading]="loading">
       Salvar
     </button>
   </form>
