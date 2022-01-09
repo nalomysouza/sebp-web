@@ -17,7 +17,7 @@
         </div>
         <div nz-col nzSpan="12">
           <nz-form-item>
-            <nz-form-label>E-mail</nz-form-label>
+            <nz-form-label nzRequired>E-mail</nz-form-label>
             <nz-form-control nzErrorTip="Exemplo: biblioteca@sebp.com.br">
               <input nz-input formControlName="email" placeholder="E-mail" />
             </nz-form-control>
@@ -48,22 +48,24 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div formGroupName="tipoBiblioteca" nz-col nzSpan="4">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label nzRequired>Tipo de Biblioteca</nz-form-label>
-            <nz-form-control nzErrorTip="Campo obrigatório">
-              <nz-select formControlName="id" nzPlaceHolder="Selecione..." nzShowSearch nzAllowClear>
-                <nz-option *ngFor="let o of tiposBibliotecas" [nzValue]="o.id" [nzLabel]="o.descricao"></nz-option>
+            <nz-form-control nzErrorTip="Selecione um tipo Biblioteca">
+              <nz-select formControlName="tipoBiblioteca" nzPlaceHolder="Selecione..." nzShowSearch nzAllowClear
+                [compareWith]="compareValue">
+                <nz-option *ngFor="let tb of tiposBibliotecas" [nzValue]="tb" [nzLabel]="tb.descricao"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div formGroupName="orgao" nz-col nzSpan="12">
+        <div nz-col nzSpan="12">
           <nz-form-item>
             <nz-form-label nzRequired>Órgão Responsável</nz-form-label>
-            <nz-form-control nzErrorTip="Campo obrigatório, selecione um órgão">
-              <nz-select formControlName="id" nzPlaceHolder="Selecione..." nzShowSearch nzAllowClear>
-                <nz-option *ngFor="let o of orgaos" [nzValue]="o.id" [nzLabel]="o.nome"></nz-option>
+            <nz-form-control nzErrorTip="Selecione um órgão">
+              <nz-select formControlName="orgao" nzPlaceHolder="Selecione..." nzShowSearch nzAllowClear
+                [compareWith]="compareValue">
+                <nz-option *ngFor="let orgao of orgaos" [nzValue]="orgao" [nzLabel]="orgao.nome"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -89,7 +91,7 @@
           <nz-form-item>
             <nz-form-label>Biblioteca polo</nz-form-label>
             <nz-form-control>
-              <nz-switch nzSize="small" formControlName="bibliotecaPolo"></nz-switch>
+              <nz-switch nzSize="small" formControlName="polo"></nz-switch>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -121,8 +123,8 @@
 
         <div nz-col nzSpan="12">
           <nz-form-item>
-            <nz-form-label>Logradouro</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+            <nz-form-label nzRequired>Logradouro</nz-form-label>
+            <nz-form-control nzErrorTip="Campo obrigatório, aceita somente caracteres e números">
               <input formControlName="logradouro" nz-input placeholder="logradouro" />
             </nz-form-control>
           </nz-form-item>
@@ -160,12 +162,14 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div formGroupName="municipio" nz-col nzSpan="6">
+        <div nz-col nzSpan="6">
           <nz-form-item>
             <nz-form-label nzRequired>Município</nz-form-label>
-            <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
-              <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
-                <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
+            <nz-form-control nzErrorTip="Selecione um município">
+              <nz-select formControlName="municipio" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear
+                [compareWith]="compareValue">
+                <nz-option *ngFor="let municipio of municipios" [nzValue]="municipio" [nzLabel]="municipio.nome">
+                </nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -174,7 +178,7 @@
         <div nz-col nzSpan="24">
           <nz-form-item>
             <nz-form-label nzRequired>Observações</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+            <nz-form-control nzErrorTip="Campo obrigatório, aceita somente caracteres e números">
               <textarea nz-input formControlName="observacoes" placeholder="Informe aqui observacões"
                 nzAutosize></textarea>
             </nz-form-control>
@@ -185,7 +189,7 @@
         Voltar
       </button>
       <nz-divider nzType="vertical"></nz-divider>
-      <button nz-button nzType="primary" [nzLoading]="loading" [disabled]="form.invalid">
+      <button nz-button nzType="primary" [nzLoading]="loading">
         Próximo
       </button>
     </form>

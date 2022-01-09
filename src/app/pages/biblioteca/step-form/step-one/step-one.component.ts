@@ -44,31 +44,32 @@ export class StepOneComponent implements OnInit {
   createForm() {
     this.form = this.fb.group({
       id: null,
-      nome: ['', [Validators.required, Validators.minLength(4)]],
-      email: ['', [Validators.email, Validators.pattern(ONLY_MAIL)]],
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(ONLY_MAIL)]],
       dataFundacao: [null],
       atoCriacao: [''],
       telefone: [''],
       fax: [''],
       sigla: [''],
-      bibliotecaPolo: false,
+      polo: false,
       implantadaPeloPLA: false,
       cadastroSNBP: false,
       anoCadastroSNBP: null,
-      orgao: this.fb.group({
-        id: [null, Validators.required]
-      }),
-      tipoBiblioteca: this.fb.group({
-        id: [null, Validators.required]
-      }),
-      logradouro: ['', [Validators.minLength(2), Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-      numero: ['', [Validators.pattern(ONLY_NUMBER)]],
+      orgao: [null, Validators.required],
+      tipoBiblioteca: [null, Validators.required],
+      logradouro: ['', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(ONLY_CHAR_AND_NUMBER)]
+      ],
+      numero: [null, [Validators.pattern(ONLY_NUMBER)]],
       complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
       bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
       cep: [''],
-      municipio: this.fb.group({
-        id: [null, Validators.required]
-      }),
+      municipio: [null, Validators.required],
       observacoes: ['', Validators.required]
     });
   }
@@ -120,6 +121,10 @@ export class StepOneComponent implements OnInit {
 
   nextUrl(id: number | undefined) {
     this._router.navigate([`/biblioteca/form/${id}/step-two`], { relativeTo: this._activatedRoute });
+  }
+
+  compareValue(obj1: any, obj2: any): boolean {
+    return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
   }
 
 }
