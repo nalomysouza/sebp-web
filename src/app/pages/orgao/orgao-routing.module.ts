@@ -5,7 +5,7 @@ import { OrgaoComponent } from './orgao.component';
 
 const routes: Routes = [
   { path: '', component: OrgaoComponent },
-  { path: 'add', component: FormComponent },
+  { path: 'form', component: FormComponent },
   { path: 'edit/:id', component: FormComponent }
 ];
 

@@ -1,32 +1,17 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null">
+  <nz-sider class="menu-sidebar" nzCollapsible nzCollapsed="true" nzWidth="160px" [nzTrigger]="null">
     <div class="sidebar-logo">
       <a routerLink="/">
         <img src="assets/img/logo.png" alt="logo">
-        <h1>SEBP Online</h1>
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/biblioteca">Bibliotecas</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/orgao">Órgãos</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/dashboard">Dashboard</a>
-          </li>
-        </ul>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item nzMatchRouter *ngFor="let menu of menus" [routerLink]="menu.rota" nz-tooltip
+        [nzTooltipTitle]="menu.nome" nzTooltipPlacement="right">
+        <i nz-icon [nzType]="menu.icone"></i>
       </li>
-      <li nz-submenu nzOpen nzTitle="Relatórios" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter nz-tooltip nzTooltipTitle="Sair" nzTooltipPlacement="right">
+        <i nz-icon nzType="logout"></i>
       </li>
     </ul>
   </nz-sider>

@@ -1,67 +1,68 @@
-<div style="text-align: right;">
-  <button nz-button nzType="primary" routerLink="/biblioteca/form">Registrar</button>
-</div>
-<br>
-
-<nz-table #table [nzData]="bibliotecas" nzSize="small" [nzLoading]="loading">
-  <thead>
-    <tr>
-      <th nzCustomFilter class="gd-column">Nome
-        <nz-filter-trigger [(nzVisible)]="searchVisible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-          <span nz-icon nzType="search"></span>
-        </nz-filter-trigger>
-      </th>
-      <th id="municipio" class="md-column text-center">Município</th>
-      <th id="email" class="sm-column text-center">Email</th>
-      <th id="telefone" class="sm-column text-center">Telefone</th>
-      <th id="action" class="md-column text-center">Opções</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of table.data">
-      <td class="text-upper">
-        <a href="#" routerLink="{{routerEdit(data?.id)}}" nzTooltipTitle="Clique para atualizar" nzTooltipPlacement="top"
-          nz-tooltip>{{data?.nome}}
-        </a>
-      </td>
-      <td class="text-center text-upper">
-        <a href="#" routerLink="{{routerEdit(data?.id)}}">{{data?.municipio?.nome}}</a>
-      </td>
-      <td class="text-center">
-        <span *ngIf="data?.email" routerLink="{{routerEdit(data?.id)}}" nz-icon nzType="mail" nzTheme="twotone"
-          nzTooltipTitle={{data.email}} nzTooltipPlacement="top" nz-tooltip>
-        </span>
-        <span *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
-          nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
-      </td>
-      <td class="text-center">
-        <span nz-icon [nzType]="data.telefone ? 'container':'stop'" nzTheme="twotone"
-          [nzTooltipTitle]="data.telefone ? data.telefone : NOT_EXIST" nzTooltipPlacement="top" nz-tooltip
-          [nzTwotoneColor]=" data.telefone ? '':'#c22126'">
-        </span>
-      </td>
-      <td class="text-center">
-        <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)" nzTooltipTitle="Ativar | Inativar"
-          nzTooltipPlacement="top" nz-tooltip></nz-switch>
-        <nz-divider nzType="vertical"></nz-divider>
-        <nz-divider nzType="vertical"></nz-divider>
-        <button nz-button nzDanger (click)="showDeleteConfirm(data)" nzSize="small" nzTooltipTitle="Deletar"
-          nzTooltipPlacement="top" nz-tooltip>
-          <i nz-icon nzType="delete"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</nz-table>
-
-<nz-dropdown-menu #menu="nzDropdownMenu">
-  <div class="ant-table-filter-dropdown">
-    <div class="search-box">
-      <input type="text" nz-input placeholder="Filtrar pelo nome" [(ngModel)]="searchValue" />
-      <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
-        Filtrar
-      </button>
-      <button nz-button nzSize="small" (click)="reset()">Limpar</button>
-    </div>
+<section id="registrar-biblioteca">
+  <div class="text-right">
+    <button nz-button nzType="primary" routerLink="/biblioteca/form">Registrar</button>
   </div>
-</nz-dropdown-menu>
+  <br>
+
+  <nz-table #table [nzData]="bibliotecas" nzSize="small" [nzLoading]="loading">
+    <thead>
+      <tr>
+        <th nzCustomFilter class="gd-column">Nome
+          <nz-filter-trigger [(nzVisible)]="searchVisible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger>
+        </th>
+        <th id="municipio" class="md-column text-center">Município</th>
+        <th id="email" class="sm-column text-center">Email</th>
+        <th id="telefone" class="sm-column text-center">Telefone</th>
+        <th id="action" class="md-column text-center">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of table.data">
+        <td class="text-upper">
+          <a href="#" routerLink="{{routerEdit(data?.id)}}" nzTooltipTitle="Clique para atualizar"
+            nzTooltipPlacement="top" nz-tooltip>{{data?.nome}}
+          </a>
+        </td>
+        <td class="text-center text-upper">
+          <a href="#" routerLink="{{routerEdit(data?.id)}}">{{data?.municipio?.nome}}</a>
+        </td>
+        <td class="text-center">
+          <span *ngIf="data?.email" routerLink="{{routerEdit(data?.id)}}" nz-icon nzType="mail" nzTheme="twotone"
+            nzTooltipTitle={{data.email}} nzTooltipPlacement="top" nz-tooltip>
+          </span>
+          <span *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
+            nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
+        </td>
+        <td class="text-center">
+          <span nz-icon [nzType]="data.telefone ? 'container':'stop'" nzTheme="twotone"
+            [nzTooltipTitle]="data.telefone ? data.telefone : NOT_EXIST" nzTooltipPlacement="top" nz-tooltip
+            [nzTwotoneColor]=" data.telefone ? '':'#c22126'">
+          </span>
+        </td>
+        <td class="text-center">
+          <nz-switch [ngModel]="data?.enabled" (click)="onChangeEnabled(data)" nzTooltipTitle="Ativar | Inativar"
+            nzTooltipPlacement="top" nz-tooltip></nz-switch>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button nz-button nzDanger (click)="showDeleteConfirm(data)" nzSize="small" nzTooltipTitle="Deletar"
+            nzTooltipPlacement="top" nz-tooltip>
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+        <input type="text" nz-input placeholder="Filtrar pelo nome" [(ngModel)]="searchValue" />
+        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+          Filtrar
+        </button>
+        <button nz-button nzSize="small" (click)="reset()">Limpar</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+</section>
