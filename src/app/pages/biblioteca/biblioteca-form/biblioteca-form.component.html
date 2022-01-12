@@ -1,8 +1,8 @@
-<section id="form-step-one">
-  <nz-card [nzTitle]="stepTemplate">
+<section id="biblioteca-form">
+  <nz-card [nzTitle]="formTemplate">
 
-    <ng-template #stepTemplate>
-      <app-step-template [position]="0" [formStatus]="form.valid"></app-step-template>
+    <ng-template #formTemplate>
+      <h2>Registrar {{entity}}</h2>
     </ng-template>
 
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">

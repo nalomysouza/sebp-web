@@ -18,13 +18,13 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { BibliotecaDetailComponent } from './biblioteca-detail/biblioteca-detail.component';
 import { BibliotecaFormComponent } from './biblioteca-form/biblioteca-form.component';
 import { BibliotecaRoutingModule } from './biblioteca-routing.module';
 import { BibliotecaComponent } from './biblioteca.component';
-import { StepFormModule } from './step-form/step-form.module';
 
 @NgModule({
   declarations: [BibliotecaComponent, BibliotecaFormComponent, BibliotecaDetailComponent],
@@ -35,7 +35,6 @@ import { StepFormModule } from './step-form/step-form.module';
     PipesModule,
     FormsModule,
     ReactiveFormsModule,
-    StepFormModule,
 
     NzFormModule,
     NzButtonModule,
@@ -53,7 +52,8 @@ import { StepFormModule } from './step-form/step-form.module';
     NzDividerModule,
     NzInputNumberModule,
     NzModalModule,
-    NzMessageModule
+    NzMessageModule,
+    NzTypographyModule
   ],
   exports: [BibliotecaComponent]
 })

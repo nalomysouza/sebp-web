@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { first } from 'rxjs/operators';
@@ -20,7 +19,6 @@ export class BibliotecaComponent implements OnInit {
   readonly NOT_EXIST = 'NÃO INFORMADO';
 
   constructor(
-    private _router: Router,
     private _bibliotecaService: BibliotecaService,
     private modal: NzModalService,
     private message: NzMessageService) { }
@@ -98,6 +96,6 @@ export class BibliotecaComponent implements OnInit {
   }
 
   routerEdit(id: number | undefined) {
-    return id ? `form/${id}/step-one` : '';
+    return id ? `${id}/detail` : '';
   }
 }
