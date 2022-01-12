@@ -15,6 +15,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -22,12 +23,13 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NgxMaskModule } from 'ngx-mask';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { BibliotecaDetailComponent } from './biblioteca-detail/biblioteca-detail.component';
+import { SobreComponent } from './biblioteca-detail/sobre/sobre.component';
 import { BibliotecaFormComponent } from './biblioteca-form/biblioteca-form.component';
 import { BibliotecaRoutingModule } from './biblioteca-routing.module';
 import { BibliotecaComponent } from './biblioteca.component';
 
 @NgModule({
-  declarations: [BibliotecaComponent, BibliotecaFormComponent, BibliotecaDetailComponent],
+  declarations: [BibliotecaComponent, BibliotecaFormComponent, BibliotecaDetailComponent, SobreComponent],
   imports: [
     CommonModule,
     BibliotecaRoutingModule,
@@ -53,7 +55,8 @@ import { BibliotecaComponent } from './biblioteca.component';
     NzInputNumberModule,
     NzModalModule,
     NzMessageModule,
-    NzTypographyModule
+    NzTypographyModule,
+    NzStatisticModule
   ],
   exports: [BibliotecaComponent]
 })

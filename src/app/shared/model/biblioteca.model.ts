@@ -11,7 +11,7 @@ export class Biblioteca extends Resource {
   public sigla?: string;
   public telefone?: string;
   public fax?: string;
-  public bibliotecaPolo?: boolean;
+  public polo?: boolean;
   public implantadaPeloPLA?: boolean;
   public cadastroSNBP?: boolean;
   public anoCadastroSNBP?: number;

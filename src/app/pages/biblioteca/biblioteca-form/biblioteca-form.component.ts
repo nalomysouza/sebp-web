@@ -51,6 +51,7 @@ export class BibliotecaFormComponent implements OnInit {
     this.form = this.fb.group({
       id: null,
       nome: ['', [Validators.required, Validators.minLength(3)]],
+      sigla: [''],
       email: ['', [
         Validators.required,
         Validators.email,
@@ -59,7 +60,6 @@ export class BibliotecaFormComponent implements OnInit {
       atoCriacao: [''],
       telefone: [''],
       fax: [''],
-      sigla: [''],
       polo: false,
       implantadaPeloPLA: false,
       cadastroSNBP: false,
