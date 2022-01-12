@@ -10,16 +10,21 @@ import { HelpService } from 'src/app/shared/services/help.service';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 import { OrgaoService } from 'src/app/shared/services/orgao.service';
 import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { REGISTRAR } from 'src/app/shared/utils/constants';
 
 @Component({
-  selector: 'app-step-one',
-  templateUrl: './step-one.component.html',
-  styleUrls: ['./step-one.component.scss']
+  selector: 'app-biblioteca-form',
+  templateUrl: './biblioteca-form.component.html',
+  styleUrls: ['./biblioteca-form.component.scss']
 })
-export class StepOneComponent implements OnInit {
-  loading = false;
+export class BibliotecaFormComponent implements OnInit {
+
   id!: string;
   isAddMode!: boolean;
+  loading = false;
+  readonly entity = 'biblioteca';
+
   form!: FormGroup;
   orgaos!: Orgao[];
   municipios!: Municipio[];
@@ -31,7 +36,8 @@ export class StepOneComponent implements OnInit {
     private _router: Router,
     private _bibliotecaService: BibliotecaService,
     private _orgaoService: OrgaoService,
-    private _apiService: HelpService) { }
+    private _apiService: HelpService,
+    private _messageService: NzMessageService) { }
 
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params['id'];
@@ -104,8 +110,11 @@ export class StepOneComponent implements OnInit {
   create() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
     this._bibliotecaService.save(biblioteca).pipe(first()).subscribe((created) => {
-      //this.alertService.success('User added', { keepAfterRouteChange: true });
+      this._messageService.success(`${REGISTRAR.SUCESSO} ${this.entity} ${created.nome}`);
       this.nextUrl(created.id);
+    }, (error) => {
+      this._messageService.error(`${REGISTRAR.ERRO} ${this.entity}`);
+      console.error(`${REGISTRAR.ERRO} ${this.entity}: `, error);
     })
       .add(() => this.loading = false);
   }
@@ -120,7 +129,7 @@ export class StepOneComponent implements OnInit {
   }
 
   nextUrl(id: number | undefined) {
-    this._router.navigate([`/biblioteca/form/${id}/step-two`], { relativeTo: this._activatedRoute });
+    this._router.navigate([`/biblioteca/${id}/detail`], { relativeTo: this._activatedRoute });
   }
 
   compareValue(obj1: any, obj2: any): boolean {

@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/core/_helpers/auth.guard';
+import { BibliotecaDetailComponent } from './biblioteca-detail/biblioteca-detail.component';
+import { BibliotecaFormComponent } from './biblioteca-form/biblioteca-form.component';
 import { BibliotecaComponent } from './biblioteca.component';
 
 const routes: Routes = [
   { path: '', component: BibliotecaComponent },
-  { path: 'form', canActivate: [AuthGuard], loadChildren: () => import('./step-form/step-form.module').then(m => m.StepFormModule) },
+  { path: 'form', component: BibliotecaFormComponent },
+  { path: ':id/detail', component: BibliotecaDetailComponent }
+  //{ path: 'form', canActivate: [AuthGuard], loadChildren: () => import('./step-form/step-form.module').then(m => m.StepFormModule) },
   //{ path: 'add', component: FormularioComponent },
-  //{ path: 'edit/:id', component: QuestionarioComponent }
 ];
 
 @NgModule({
