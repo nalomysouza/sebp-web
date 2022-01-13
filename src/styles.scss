@@ -26,3 +26,12 @@
 .gd-column {
   width: 20%;
 }
+
+/** Override global do nz-statistic */
+::ng-deep .ant-statistic-title{
+  margin-bottom: 0;
+}
+
+::ng-deep .ant-statistic-content{
+  font-size: 19px;
+}
