@@ -27,9 +27,17 @@ import { SobreComponent } from './biblioteca-detail/sobre/sobre.component';
 import { BibliotecaFormComponent } from './biblioteca-form/biblioteca-form.component';
 import { BibliotecaRoutingModule } from './biblioteca-routing.module';
 import { BibliotecaComponent } from './biblioteca.component';
+import { ApoioRecebidoComponent } from './biblioteca-detail/apoio-recebido/apoio-recebido.component';
+import { FuncionamentoComponent } from './biblioteca-detail/funcionamento/funcionamento.component';
+import { FormaAcessoComponent } from './biblioteca-detail/forma-acesso/forma-acesso.component';
+import { ServicoComponent } from './biblioteca-detail/servico/servico.component';
+import { ResponsavelComponent } from './biblioteca-detail/responsavel/responsavel.component';
+import { AcervoComponent } from './biblioteca-detail/acervo/acervo.component';
+import { EquipamentoComponent } from './biblioteca-detail/equipamento/equipamento.component';
+import { LeitorComponent } from './biblioteca-detail/leitor/leitor.component';
 
 @NgModule({
-  declarations: [BibliotecaComponent, BibliotecaFormComponent, BibliotecaDetailComponent, SobreComponent],
+  declarations: [BibliotecaComponent, BibliotecaFormComponent, BibliotecaDetailComponent, SobreComponent, ApoioRecebidoComponent, FuncionamentoComponent, FormaAcessoComponent, ServicoComponent, AcervoComponent, ResponsavelComponent, EquipamentoComponent, LeitorComponent],
   imports: [
     CommonModule,
     BibliotecaRoutingModule,
