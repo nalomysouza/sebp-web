@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BooleanPtbrPipe } from './boolean-ptbr.pipe';
+import { BooleanPtBrPipe } from './boolean-ptbr.pipe';
 
 const EXPORTS = [
-  BooleanPtbrPipe,
+  BooleanPtBrPipe,
 ]
 @NgModule({
   declarations: [EXPORTS],

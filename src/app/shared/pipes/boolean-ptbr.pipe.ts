@@ -1,15 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'booleanPtbr'
+  name: 'booleanPtBr'
 })
-export class BooleanPtbrPipe implements PipeTransform {
+export class BooleanPtBrPipe implements PipeTransform {
 
   transform(value: boolean | undefined): string {
-    if (value) {
-      return value ? 'Sim' : 'Não';
-    }
-    return '-'
+    return value ? 'Sim' : 'Não';
   }
 
 }

@@ -1,5 +1,12 @@
 <section id="biblioteca-detail-sobre">
-  <nz-card id="card-sobre">
+  <nz-card id="card-sobre" [nzTitle]="tituloCard" [nzExtra]="opcoesCard">
+    <ng-template #tituloCard>
+      <h4 nz-typography>1. Sobre a biblioteca</h4>
+    </ng-template>
+    <ng-template #opcoesCard>
+      <button nz-button nzType="primary">Atualizar</button>
+    </ng-template>
+
     <nz-row [nzGutter]="[16,12]">
       <nz-col [nzSpan]="9">
         <nz-statistic nzTitle="Nome" [nzValue]="biblioteca.nome"></nz-statistic>
@@ -36,19 +43,18 @@
       </nz-col>
 
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Bilioteca polo?" nzValue="{{biblioteca.polo}}"></nz-statistic>
+        <nz-statistic nzTitle="Bilioteca polo?" nzValue="{{biblioteca.polo | booleanPtBr}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Implantada pelo PLA?" nzValue="{{biblioteca.implantadaPeloPLA}}"></nz-statistic>
+        <nz-statistic nzTitle="Implantada pelo PLA?" nzValue="{{biblioteca.implantadaPeloPLA | booleanPtBr}}">
+        </nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="cadastrada no SNBP?" nzValue="{{biblioteca.cadastroSNBP}}"></nz-statistic>
+        <nz-statistic nzTitle="cadastrada no SNBP?" nzValue="{{biblioteca.cadastroSNBP | booleanPtBr}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
         <nz-statistic nzTitle="Ano cadastro SNBP" nzValue="{{biblioteca.anoCadastroSNBP}}"></nz-statistic>
       </nz-col>
-
-
 
       <nz-col [nzSpan]="6">
         <nz-statistic nzTitle="Observações" nzValue="{{biblioteca.observacoes}}"></nz-statistic>

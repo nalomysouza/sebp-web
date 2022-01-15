@@ -1,1 +1,31 @@
-<p>apoio-recebido works!</p>
+<section id="apoioRecebido-detail-apoio-recebido">
+  <nz-card id="card-sobre" [nzTitle]="tituloCard" [nzExtra]="opcoesCard">
+    <ng-template #tituloCard>
+      <h4 nz-typography>2. Apoio Recebido</h4>
+    </ng-template>
+    <ng-template #opcoesCard>
+      <button nz-button nzType="primary">Atualizar</button>
+    </ng-template>
+
+    <nz-row [nzGutter]="[16,12]">
+      <nz-col [nzSpan]="4">
+        <nz-statistic nzTitle="Apoiado pelo PROARES?" nzValue="{{apoioRecebido.proares}}"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="4">
+        <nz-statistic nzTitle="Sobre o apoio PROARES" nzValue="{{apoioRecebido.proaresDescricao}}"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="4">
+        <nz-statistic nzTitle="Apoiado pelo UBECM?" nzValue="{{apoioRecebido.ubecm}}"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="4">
+        <nz-statistic nzTitle="Sobre o apoio UBECM" nzValue="{{apoioRecebido.ubecmDescricao}}"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="4">
+        <nz-statistic nzTitle="Apoiado pelo MINC" nzValue="{{apoioRecebido.minc}}"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="4">
+        <nz-statistic nzTitle="Sobre o apoio MINC" nzValue="{{apoioRecebido.mincDescricao}}"></nz-statistic>
+      </nz-col>
+    </nz-row>
+  </nz-card>
+</section>
