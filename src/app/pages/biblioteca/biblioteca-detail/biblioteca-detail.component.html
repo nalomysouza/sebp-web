@@ -5,7 +5,12 @@
 </article>
 
 <article nz-typography>
-  <p nz-typography>
-    <app-biblioteca-detail-apoio-recebido></app-biblioteca-detail-apoio-recebido>
-  </p>
+  <div nz-row [nzGutter]="13">
+    <div nz-col nzSpan="12">
+      <app-biblioteca-detail-apoio-recebido></app-biblioteca-detail-apoio-recebido>
+    </div>
+    <div nz-col nzSpan="12">
+      <app-biblioteca-detail-funcionamento></app-biblioteca-detail-funcionamento>
+    </div>
+  </div>
 </article>

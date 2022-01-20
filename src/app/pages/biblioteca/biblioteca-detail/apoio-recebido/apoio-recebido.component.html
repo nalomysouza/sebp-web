@@ -7,6 +7,18 @@
       <button nz-button nzType="primary">Atualizar</button>
     </ng-template>
 
+    <nz-descriptions nzBordered nzLayout="vertical">
+      <nz-descriptions-item nzTitle="PROARES?">{{apoioRecebido?.proares}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Detalhes do apoio recebido (PROARES)" [nzSpan]="3">
+        {{apoioRecebido?.proaresDescricao}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="UBECM?">{{apoioRecebido?.ubecm}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Detalhes do apoio recebido (UBECM)" [nzSpan]="2">{{apoioRecebido?.ubecmDescricao}}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="MINC?">{{apoioRecebido?.minc}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Detalhes do apoio recebido (MINC)" [nzSpan]="3">{{apoioRecebido?.mincDescricao}}
+      </nz-descriptions-item>
+    </nz-descriptions>
+    <!--
     <nz-row [nzGutter]="[16,12]">
       <nz-col [nzSpan]="4">
         <nz-statistic nzTitle="Apoiado pelo PROARES?" nzValue="{{apoioRecebido?.proares}}"></nz-statistic>
@@ -27,5 +39,6 @@
         <nz-statistic nzTitle="Sobre o apoio MINC" nzValue="{{apoioRecebido?.mincDescricao}}"></nz-statistic>
       </nz-col>
     </nz-row>
+-->
   </nz-card>
 </section>
