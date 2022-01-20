@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs';
 import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
 import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 
@@ -10,20 +11,28 @@ import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
 })
 export class SobreComponent implements OnInit {
 
-  @Input() loading!: boolean;
-  @Input() biblioteca!: Biblioteca;
-  @Output() onSave = new EventEmitter();
+  id!: string;
+  loading!: boolean;
+  biblioteca!: Biblioteca;
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _bibliotecaService: BibliotecaService,
+    private activatedRoute: ActivatedRoute,
+    private bibliotecaService: BibliotecaService,
   ) { }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.load();
   }
 
-  saveEmit(values: any) {
-    this.onSave.emit(values);
+  load(): void {
+    this.bibliotecaService
+      .findById(Number.parseInt(this.id))
+      .pipe(first())
+      .subscribe(b => this.biblioteca = b);
+  }
+
+  onSave() {
   }
 
 }

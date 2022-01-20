@@ -9,16 +9,16 @@
 
     <nz-row [nzGutter]="[16,12]">
       <nz-col [nzSpan]="9">
-        <nz-statistic nzTitle="Nome" [nzValue]="biblioteca.nome"></nz-statistic>
+        <nz-statistic nzTitle="Nome" [nzValue]="biblioteca?.nome"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="3">
-        <nz-statistic nzTitle="Sigla" [nzValue]="biblioteca.sigla"></nz-statistic>
+        <nz-statistic nzTitle="Sigla" [nzValue]="biblioteca?.sigla"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="6">
-        <nz-statistic nzTitle="E-m@il" [nzValue]="biblioteca.email"></nz-statistic>
+        <nz-statistic nzTitle="E-m@il" [nzValue]="biblioteca?.email"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="3">
-        <nz-statistic nzTitle="Data de Fundação" nzValue="{{biblioteca.dataFundacao}}"></nz-statistic>
+        <nz-statistic nzTitle="Data de Fundação" nzValue="{{biblioteca?.dataFundacao}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="3">
         <nz-statistic nzTitle="Tipo de Biblioteca" nzValue="{{biblioteca?.tipoBiblioteca?.descricao}}"></nz-statistic>
@@ -26,38 +26,38 @@
 
       <nz-col [nzSpan]="6">
         <nz-statistic nzTitle="Endereço"
-          nzValue="{{biblioteca.logradouro}},{{biblioteca.numero}},{{biblioteca.complemento}},{{biblioteca.bairro}},{{biblioteca.cep}},{{biblioteca?.municipio?.nome}}">
+          nzValue="{{biblioteca?.logradouro}},{{biblioteca?.numero}},{{biblioteca?.complemento}},{{biblioteca?.bairro}},{{biblioteca?.cep}},{{biblioteca?.municipio?.nome}}">
         </nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="6">
         <nz-statistic nzTitle="Órgão" nzValue="{{biblioteca?.orgao?.nome}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Telefone" nzValue="{{biblioteca.telefone}}"></nz-statistic>
+        <nz-statistic nzTitle="Telefone" nzValue="{{biblioteca?.telefone}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Fax" nzValue="{{biblioteca.fax}}"></nz-statistic>
+        <nz-statistic nzTitle="Fax" nzValue="{{biblioteca?.fax}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Ato de Criação" nzValue="{{biblioteca.atoCriacao}}"></nz-statistic>
+        <nz-statistic nzTitle="Ato de Criação" nzValue="{{biblioteca?.atoCriacao}}"></nz-statistic>
       </nz-col>
 
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Bilioteca polo?" nzValue="{{biblioteca.polo | booleanPtBr}}"></nz-statistic>
+        <nz-statistic nzTitle="Bilioteca polo?" nzValue="{{biblioteca?.polo | booleanPtBr}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Implantada pelo PLA?" nzValue="{{biblioteca.implantadaPeloPLA | booleanPtBr}}">
+        <nz-statistic nzTitle="Implantada pelo PLA?" nzValue="{{biblioteca?.implantadaPeloPLA | booleanPtBr}}">
         </nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="cadastrada no SNBP?" nzValue="{{biblioteca.cadastroSNBP | booleanPtBr}}"></nz-statistic>
+        <nz-statistic nzTitle="cadastrada no SNBP?" nzValue="{{biblioteca?.cadastroSNBP | booleanPtBr}}"></nz-statistic>
       </nz-col>
       <nz-col [nzSpan]="4">
-        <nz-statistic nzTitle="Ano cadastro SNBP" nzValue="{{biblioteca.anoCadastroSNBP}}"></nz-statistic>
+        <nz-statistic nzTitle="Ano cadastro SNBP" nzValue="{{biblioteca?.anoCadastroSNBP}}"></nz-statistic>
       </nz-col>
 
       <nz-col [nzSpan]="6">
-        <nz-statistic nzTitle="Observações" nzValue="{{biblioteca.observacoes}}"></nz-statistic>
+        <nz-statistic nzTitle="Observações" nzValue="{{biblioteca?.observacoes}}"></nz-statistic>
       </nz-col>
     </nz-row>
   </nz-card>
