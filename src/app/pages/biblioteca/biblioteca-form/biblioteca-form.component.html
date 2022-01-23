@@ -1,13 +1,10 @@
+<app-sebp-breadcrumb subtitulo="Bibliotecas > registrar"></app-sebp-breadcrumb>
+<br>
 <section id="biblioteca-form">
-  <nz-card [nzTitle]="formTemplate">
-
-    <ng-template #formTemplate>
-      <h2>Registrar {{entity}}</h2>
-    </ng-template>
-
+  <nz-card>
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div nz-row [nzGutter]="8">
-        <div nz-col nzSpan="12">
+        <div nz-col nzSpan="10">
           <nz-form-item>
             <nz-form-label nzRequired>Nome</nz-form-label>
             <nz-form-control nzErrorTip="Campo obrigatório, no mínimo 3 caracteres">
@@ -15,7 +12,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="12">
+        <div nz-col nzSpan="10">
           <nz-form-item>
             <nz-form-label nzRequired>E-mail</nz-form-label>
             <nz-form-control nzErrorTip="Exemplo: biblioteca@sebp.com.br">
@@ -23,7 +20,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Sigla</nz-form-label>
             <nz-form-control nzErrorTip="Exemplo: SEBP">
@@ -32,19 +29,11 @@
           </nz-form-item>
         </div>
 
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Data de Fundação</nz-form-label>
             <nz-form-control nzErrorTip="Exemplo: 01/01/2021">
               <nz-date-picker formControlName="dataFundacao" nzFormat="dd/MM/yyyy" class="full-width"></nz-date-picker>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-          <nz-form-item>
-            <nz-form-label>Ato de Criação</nz-form-label>
-            <nz-form-control nzErrorTip="Exemplo: Instrução normativa SEBP, 01 março de 2021">
-              <input nz-input formControlName="atoCriacao" placeholder="Ato de Criação" />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -59,7 +48,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="12">
+        <div nz-col nzSpan="10">
           <nz-form-item>
             <nz-form-label nzRequired>Órgão Responsável</nz-form-label>
             <nz-form-control nzErrorTip="Selecione um órgão">
@@ -70,6 +59,15 @@
             </nz-form-control>
           </nz-form-item>
         </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label>Ato de Criação</nz-form-label>
+            <nz-form-control nzErrorTip="Exemplo: Instrução normativa SEBP, 01 março de 2021">
+              <input nz-input formControlName="atoCriacao" placeholder="Ato de Criação" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
         <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Telefone</nz-form-label>
@@ -86,8 +84,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Biblioteca polo</nz-form-label>
             <nz-form-control>
@@ -95,7 +92,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Foi implantada pelo PLA</nz-form-label>
             <nz-form-control>
@@ -103,7 +100,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Possui cadastro no SNBP</nz-form-label>
             <nz-form-control>
@@ -111,17 +108,17 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="4">
           <nz-form-item>
-            <nz-form-label>Ano do cadastro no SNBP</nz-form-label>
+            <nz-form-label>Ano / cadastro no SNBP</nz-form-label>
             <nz-form-control nzErrorTip="Exemplo: 2021">
-              <nz-input-number formControlName="anoCadastroSNBP" nzPlaceHolder="Selecione o ano" [nzMin]="1900"
+              <nz-input-number formControlName="anoCadastroSNBP" nzPlaceHolder="informe o ano" [nzMin]="1900"
                 class="full-width"></nz-input-number>
             </nz-form-control>
           </nz-form-item>
         </div>
 
-        <div nz-col nzSpan="12">
+        <div nz-col nzSpan="10">
           <nz-form-item>
             <nz-form-label nzRequired>Logradouro</nz-form-label>
             <nz-form-control nzErrorTip="Campo obrigatório, aceita somente caracteres e números">
@@ -129,7 +126,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="4">
+        <div nz-col nzSpan="2">
           <nz-form-item>
             <nz-form-label>Número:</nz-form-label>
             <nz-form-control nzErrorTip="Campo aceita somente números">
@@ -137,7 +134,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="8">
+        <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Cep</nz-form-label>
             <nz-form-control nzErrorTip="Campo aceita somente números">
@@ -146,7 +143,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="12">
+        <div nz-col nzSpan="8">
           <nz-form-item>
             <nz-form-label>Complemento</nz-form-label>
             <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
@@ -154,6 +151,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
+
         <div nz-col nzSpan="6">
           <nz-form-item>
             <nz-form-label>Bairro</nz-form-label>
@@ -162,7 +160,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col nzSpan="6">
+        <div nz-col nzSpan="5">
           <nz-form-item>
             <nz-form-label nzRequired>Município</nz-form-label>
             <nz-form-control nzErrorTip="Selecione um município">
@@ -174,8 +172,7 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-
-        <div nz-col nzSpan="24">
+        <div nz-col nzSpan="13">
           <nz-form-item>
             <nz-form-label nzRequired>Observações</nz-form-label>
             <nz-form-control nzErrorTip="Campo obrigatório, aceita somente caracteres e números">
@@ -185,13 +182,8 @@
           </nz-form-item>
         </div>
       </div>
-      <button nz-button nzType="primary" nzDanger routerLink="/biblioteca" [nzLoading]="loading">
-        Voltar
-      </button>
-      <nz-divider nzType="vertical"></nz-divider>
-      <button nz-button nzType="primary" [nzLoading]="loading">
-        Próximo
-      </button>
+
+      <app-sebp-acoes-form [carregando]="loading" (salvar)="onSubmit()"></app-sebp-acoes-form>
     </form>
   </nz-card>
 </section>

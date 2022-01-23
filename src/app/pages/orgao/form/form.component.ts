@@ -13,10 +13,11 @@ import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/uti
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit, AfterViewInit {
-  title = '';
-  loading = false;
+
   id!: string;
   isAddMode!: boolean;
+  title!: string;
+  loading = false;
   municipios!: Municipio[];
   form!: FormGroup;
 

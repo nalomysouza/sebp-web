@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeitorComponent } from './leitor.component';
+import { SebpAcoesFormComponent } from './sebp-acoes-form.component';
 
-describe('LeitorComponent', () => {
-  let component: LeitorComponent;
-  let fixture: ComponentFixture<LeitorComponent>;
+describe('SebpAcoesFormComponent', () => {
+  let component: SebpAcoesFormComponent;
+  let fixture: ComponentFixture<SebpAcoesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeitorComponent ]
+      declarations: [ SebpAcoesFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeitorComponent);
+    fixture = TestBed.createComponent(SebpAcoesFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

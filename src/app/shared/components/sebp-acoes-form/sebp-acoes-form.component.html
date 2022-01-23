@@ -1,0 +1,11 @@
+<section id="acoes-formulario">
+  <div nz-col nzSpan="24" class="text-center">
+    <button nz-button nzType="default" (click)="onRedirect()" [nzLoading]="carregando">
+      Voltar
+    </button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button nz-button nzType="primary" (click)="onSave()" [nzLoading]="carregando">
+      Salvar
+    </button>
+  </div>
+</section>

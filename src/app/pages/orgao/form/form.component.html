@@ -1,7 +1,9 @@
-<nz-card [nzTitle]="title">
-  <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
+<app-sebp-breadcrumb subtitulo="Órgãos > registrar"></app-sebp-breadcrumb>
+<br>
+<nz-card>
+  <form nz-form nzLayout="vertical" [formGroup]="form">
     <div nz-row [nzGutter]="8">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="10">
         <nz-form-item>
           <nz-form-label nzRequired>Nome</nz-form-label>
           <nz-form-control nzErrorTip="Campo obrigatório, no mínimo 3 caracteres">
@@ -9,7 +11,7 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="8">
         <nz-form-item>
           <nz-form-label>E-mail</nz-form-label>
           <nz-form-control nzErrorTip="Exemplo: orgao@sebp.com.br">
@@ -17,87 +19,80 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="3">
         <nz-form-item>
           <nz-form-label>Telefone</nz-form-label>
-          <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
+          <nz-form-control nzErrorTip="somente números">
             <input formControlName="telefone" nz-input [dropSpecialCharacters]="false"
-              mask="(00)00000-0000||(00)0000-0000" placeholder="Informe um telefone" />
+              mask="(00)00000-0000||(00)0000-0000" placeholder="Informe o telefone" />
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="3">
         <nz-form-item>
           <nz-form-label>Fax</nz-form-label>
-          <nz-form-control nzErrorTip="Campo aceita somente números, preencha-o completo">
+          <nz-form-control nzErrorTip="somente números">
             <input formControlName="fax" nz-input [dropSpecialCharacters]="false" mask="(00)00000-0000||(00)0000-0000"
-              placeholder="Informe um fax" />
+              placeholder="Informe o fax" />
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-row [nzGutter]="8">
-        <div nz-col nzSpan="16">
-          <nz-form-item>
-            <nz-form-label nzRequired>Logradouro</nz-form-label>
-            <nz-form-control
-              nzErrorTip="Campo obrigatório, no mínimo 3 caracteres, aceita somente caracteres e números">
-              <input formControlName="logradouro" nz-input placeholder="Informe um logradouro" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="8">
-          <nz-form-item>
-            <nz-form-label>Número:</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente números">
-              <input formControlName="numero" nz-input placeholder="Informe um numero" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="14">
-          <nz-form-item>
-            <nz-form-label>Complemento</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
-              <input formControlName="complemento" nz-input placeholder="Informe um complemento" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="10">
-          <nz-form-item>
-            <nz-form-label>Bairro</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
-              <input formControlName="bairro" nz-input placeholder="Informe um bairro" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-          <nz-form-item>
-            <nz-form-label>Cep</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente números">
-              <input type="text" [dropSpecialCharacters]="false" mask="00.000-000" formControlName="cep" nz-input
-                placeholder="Informe um cep" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
 
-        <div formGroupName="municipio" nz-col nzSpan="12">
-          <nz-form-item>
-            <nz-form-label nzRequired>Município</nz-form-label>
-            <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
-              <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
-                <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
-              </nz-select>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+      <div nz-col nzSpan="10">
+        <nz-form-item>
+          <nz-form-label nzRequired>Logradouro:</nz-form-label>
+          <nz-form-control nzErrorTip="Campo obrigatório, no mínimo 3 caracteres, aceita somente caracteres e números">
+            <input formControlName="logradouro" nz-input placeholder="Informe um logradouro" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="3">
+        <nz-form-item>
+          <nz-form-label>Número:</nz-form-label>
+          <nz-form-control nzErrorTip="somente números">
+            <input formControlName="numero" nz-input placeholder="Número" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="4">
+        <nz-form-item>
+          <nz-form-label>Cep:</nz-form-label>
+          <nz-form-control nzErrorTip="Campo aceita somente números">
+            <input type="text" [dropSpecialCharacters]="false" mask="00.000-000" formControlName="cep" nz-input
+              placeholder="Informe um cep" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="7">
+        <nz-form-item>
+          <nz-form-label>Complemento:</nz-form-label>
+          <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+            <input formControlName="complemento" nz-input placeholder="Informe um complemento" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
 
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label>Bairro</nz-form-label>
+          <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+            <input formControlName="bairro" nz-input placeholder="Informe um bairro" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div formGroupName="municipio" nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Município</nz-form-label>
+          <nz-form-control nzErrorTip="Campo obrigatório, selecione um município">
+            <nz-select formControlName="id" nzPlaceHolder="Selecione um município" nzShowSearch nzAllowClear>
+              <nz-option *ngFor="let m of municipios" [nzValue]="m.id" [nzLabel]="m.nome"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
       </div>
     </div>
-    <button nz-button nzType="primary" nzDanger (click)="redirecToList()" [nzLoading]="loading">
-      Fechar
-    </button>
-    <nz-divider nzType="vertical"></nz-divider>
-    <button nz-button nzType="primary" [nzLoading]="loading">
-      Salvar
-    </button>
+
+    <app-sebp-acoes-form [carregando]="loading" (salvar)="onSubmit()"></app-sebp-acoes-form>
   </form>
 </nz-card>
