@@ -1,2 +1,3 @@
-import { environment } from 'src/environments/environment';
+import { environment } from "@environment/environment";
+
 export const API = environment.api;

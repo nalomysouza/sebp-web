@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TokenStorageService } from 'src/app/core/_services/token-storage.service';
-import { CurrentUser } from 'src/app/shared/model/helpers/current-user.model';
+import { TokenStorageService } from '@app/core/_services/token-storage.service';
+import { CurrentUser } from '@app/shared/model/helpers/current-user.model';
 import { AuthenticationService } from '../service/authentication.service';
 
 @Component({

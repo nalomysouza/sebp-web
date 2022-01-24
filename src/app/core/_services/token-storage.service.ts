@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { CurrentUser } from '@app/shared/model/helpers/current-user.model';
+import { User } from '@app/shared/model/user.model';
 import { AUTH } from '@app/shared/utils/constants';
-import { CurrentUser } from 'src/app/shared/model/helpers/current-user.model';
-import { User } from 'src/app/shared/model/user.model';
 @Injectable()
 export class TokenStorageService {
 

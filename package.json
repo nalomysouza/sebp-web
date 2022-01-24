@@ -45,7 +45,7 @@
   "jest": {
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
-      "<rootDir>/setupJest.ts"
+      "<rootDir>/setup-jest.ts"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
@@ -54,12 +54,13 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "tsconfig": "<rootDir>/tsconfig.spec.json",
         "stringifyContentPathRegex": "\\.html$"
       }
     },
     "moduleNameMapper": {
-      "^@app/(.*)$": "<rootDir>/src/app/$1"
+      "^@app/(.*)$": "<rootDir>/src/app/$1",
+      "^@environment/(.*)$": "<rootDir>/src/environments/$1"
     }
   }
 }
