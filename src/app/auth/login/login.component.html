@@ -1,9 +1,9 @@
 <div class="login">
+  <div class="logo">
+    <em nz-icon nzType="z-icons:logomarcas/sebp-logo" class="icone" alt="logomarca sebp"></em>
+    <p class="titulo">Sistema Estadual de Bibliotecas Públicas</p>
+  </div>
   <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <img class="login-logo" [src]="logo()" alt="logomarca sebp" />
-    </nz-form-item>
-
     <nz-form-item>
       <nz-form-control nzErrorTip="Por favor, informe seu usuário!">
         <nz-input-group nzPrefixIcon="user">
@@ -18,11 +18,8 @@
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <button nz-button
-    class="login-form-button login-form-margin"
-    [nzType]="'primary'"
-    [nzLoading]="isLoading"
-    [disabled]="validateForm.invalid">
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" [nzLoading]="isLoading"
+      [disabled]="validateForm.invalid">
       Login
     </button>
     <div nz-row class="login-form-margin">

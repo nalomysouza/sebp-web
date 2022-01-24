@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 interface Menu {
   nome: string;
@@ -11,7 +11,8 @@ interface Menu {
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent {
+
   menus: Menu[] = [
     { nome: 'Biblioteca', icone: 'bank', rota: '/biblioteca' },
     { nome: 'Órgão', icone: 'apartment', rota: '/orgao' },
@@ -19,8 +20,5 @@ export class LayoutComponent implements OnInit {
   ]
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

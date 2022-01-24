@@ -9,7 +9,7 @@
   position: relative;
   z-index: 10;
   min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  //background-color: #f6f6f6;
 }
 
 .sidebar-logo {
@@ -18,25 +18,16 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: #001529;
+  //background: #f6f6f6;
   transition: all .3s;
 }
 
-.sidebar-logo img {
+.sidebar-logo em {
   display: inline-block;
   height: 32px;
   width: 32px;
   vertical-align: middle;
-}
-
-.sidebar-logo h1 {
-  display: inline-block;
-  margin: 0 0 0 20px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
-  vertical-align: middle;
+  font-size: 35px;
 }
 
 nz-header {
@@ -49,12 +40,7 @@ nz-header {
   position: relative;
   height: 64px;
   padding: 0;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
-}
-
-nz-content {
-  //margin: 14px;
+  background: #f6f6f6;
 }
 
 .inner-content {

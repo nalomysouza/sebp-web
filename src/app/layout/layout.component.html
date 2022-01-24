@@ -1,8 +1,8 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar" nzCollapsible nzCollapsed="true" nzWidth="160px" [nzTrigger]="null">
+  <nz-sider class="menu-sidebar" nzCollapsible nzCollapsed="true" [nzTrigger]="null">
     <div class="sidebar-logo">
       <a routerLink="/">
-        <img src="assets/img/logo.png" alt="logo">
+        <em nz-icon nzType="z-icons:logomarcas/sebp-logo" class="icone" alt="logomarca sebp"></em>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -19,8 +19,8 @@
     <!--
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+        <span class="header-trigger">
+          <p>SEBP - Sistema Estadual de Bibliotecas Públicas</p>
         </span>
       </div>
     </nz-header>
