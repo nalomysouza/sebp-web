@@ -1,4 +1,5 @@
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -25,6 +26,32 @@ describe('LoginComponent', () => {
     const spy = jest.spyOn(formBuilderStub, 'group');
     component.ngOnInit();
     expect(spy).toBeCalled();
+  });
+
+  describe('submitForm()', () => {
+    it('Deve passar pelo validateForm com sucesso', () => {
+      jest.spyOn(authenticationServiceStub, 'signIn').mockReturnValue(of({
+        id: 1, username: 'teste', password: '123', email: 'teste@teste'
+      }));
+      component.validateForm = new FormGroup({
+        username: new FormControl('ADMIN', Validators.required),
+        password: new FormControl('123456', Validators.required),
+      });
+      component.submitForm();
+      expect(component.validateForm.invalid).toBeFalsy();
+    });
+
+    it('Não deve passar pelo validateForm com sucesso', () => {
+      jest.spyOn(authenticationServiceStub, 'signIn').mockReturnValue(of({
+        id: 1, username: 'teste', password: '123', email: 'teste@teste'
+      }));
+      component.validateForm = new FormGroup({
+        username: new FormControl(undefined, Validators.required),
+        password: new FormControl(undefined, Validators.required),
+      });
+      component.submitForm();
+      expect(component.validateForm.invalid).toBe(true);
+    });
   });
 
   it('observando o reloadPage()', () => {
