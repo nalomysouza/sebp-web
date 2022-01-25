@@ -33,14 +33,9 @@ export class ResourceService<T extends Resource> {
         );
   }
 
-  public enabled(item: T): Observable<any> {
+  public enabledOrDisabled(item: T): Observable<any> {
     let body = { id: item.id, enabled: !item.enabled };
     return this.httpClient.put(`${this.url}/${this.endpoint}/enabled`, body);
-  }
-
-  public disabled(item: T): Observable<any> {
-    let body = { id: item.id, enabled: !item.enabled };
-    return this.httpClient.put(`${this.url}/${this.endpoint}/disabled`, body);
   }
 
   public findById(id: number): Observable<T> {
@@ -67,8 +62,8 @@ export class ResourceService<T extends Resource> {
       );
   }
 
-  public delete(item: T): Observable<T> {
-    return this.httpClient.delete<T>(`${this.url}/${this.endpoint}/${item.id}`);
+  public delete(id: number): Observable<T> {
+    return this.httpClient.delete<T>(`${this.url}/${this.endpoint}/${id}`);
   }
 
   public search(queryOptions: QueryOptions): Observable<T[]> {
