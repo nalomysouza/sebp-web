@@ -8,6 +8,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -22,6 +23,9 @@ import { LoginComponent } from './login/login.component';
     NzButtonModule,
     NzSpinModule,
     NzIconModule,
+  ],
+  providers: [
+    AuthenticationService
   ],
   exports: [LoginComponent]
 })

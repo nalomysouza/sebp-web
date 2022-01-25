@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { first, map, Observable } from 'rxjs';
 import { API } from '@app/shared/services/helpers/api';
+import { CurrentUser } from '@app/shared/model/helpers/current-user.model';
+import { User } from '@app/shared/model/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  signIn(username: string, password: string): Observable<any> {
-    return this.http.post(API + '/v1/auth/signin', {
-      username,
-      password
-    }, httpOptions);
+  signIn(user: User): Observable<CurrentUser> {
+    return this.http
+      .post(API + '/v1/auth/signin', user, httpOptions)
+      .pipe(first(), map(response => response as CurrentUser));
   }
 
-  signUp(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(API + '/v1/auth/signup', {
-      username,
-      email,
-      password
-    }, httpOptions);
+  signUp(user: User): Observable<User> {
+    return this.http
+      .post(API + '/v1/auth/signup', user, httpOptions)
+      .pipe(first(), map(response => response as User));
   }
 }
