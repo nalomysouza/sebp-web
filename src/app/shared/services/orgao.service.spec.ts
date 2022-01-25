@@ -1,18 +1,16 @@
-import { TestBed } from '@angular/core/testing';
-
 import { OrgaoService } from './orgao.service';
 
 describe('OrgaoService', () => {
   let service: OrgaoService;
-  let httpClientSpy: { get: jasmine.Spy };
+  let httpClientSpy: any;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new OrgaoService(httpClientSpy as any);
+    httpClientSpy = { post: jest.fn(), get: jest.fn(), put: jest.fn(), delete: jest.fn(), };
+
+    service = new OrgaoService(httpClientSpy);
   });
 
   it('created', () => {
     expect(service).toBeTruthy();
   });
-
 });

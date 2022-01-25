@@ -79,12 +79,29 @@ describe("ResourceService<T>", () => {
       jest.spyOn(httpClientSpy, 'get').mockReturnValue(of([teste01]));
       service.allPageable().subscribe(response => expect(response.size).toBeGreaterThan(0));
     });
+
+    it('deve executar com parâmetros obtendo sucesso', () => {
+      jest.spyOn(httpClientSpy, 'get').mockReturnValue(of([teste01]));
+      service.allPageable(1, 1).subscribe(response => expect(response.size).toBeGreaterThan(0));
+    });
   });
 
   describe('delete()', () => {
     it('deve executar com sucesso', () => {
       jest.spyOn(httpClientSpy, 'delete').mockReturnValue(of({}));
       service.delete(1).subscribe(response => expect(response).toBe({}));
+    });
+  });
+
+  describe('search()', () => {
+    it('deve executar com sucesso', () => {
+      jest.spyOn(httpClientSpy, 'get').mockReturnValue(of(teste01));
+      service.search(new QueryOptions()).subscribe(response => expect(response).toBe(teste01));
+    });
+
+    it('deve executar com erro', () => {
+      jest.spyOn(httpClientSpy, 'get').mockReturnValue(throwError(msgErro));
+      service.search(new QueryOptions()).subscribe(response => response, err => expect(err).toBe(msgErro));
     });
   });
 
