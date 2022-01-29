@@ -35,7 +35,7 @@ export class OrgaoComponent implements OnInit {
    */
   onChangeEnabled(selected: Orgao) {
     this.loading = true;
-    this._orgaoService.enabled(selected)
+    this._orgaoService.enabledOrDisabled(selected)
       .pipe(first())
       .subscribe(() => {
         this.orgaos = [];
@@ -68,7 +68,7 @@ export class OrgaoComponent implements OnInit {
 
   deletar(deleted: Orgao) {
     this.loading = true;
-    this._orgaoService.delete(deleted)
+    this._orgaoService.delete(deleted.id)
       .pipe(first())
       .subscribe(() => {
         this.message.success(`Exclusão realizada com sucesso. Órgão : ${deleted.id} - ${deleted.nome}`);

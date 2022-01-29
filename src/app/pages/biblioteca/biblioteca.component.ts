@@ -33,7 +33,7 @@ export class BibliotecaComponent implements OnInit {
    */
   onChangeEnabled(selected: Biblioteca) {
     this.loading = true;
-    this._bibliotecaService.enabled(selected)
+    this._bibliotecaService.enabledOrDisabled(selected)
       .pipe(first())
       .subscribe(() => {
         this.bibliotecas = [];
@@ -67,7 +67,7 @@ export class BibliotecaComponent implements OnInit {
 
   deletar(deleted: Biblioteca) {
     this.loading = true;
-    this._bibliotecaService.delete(deleted)
+    this._bibliotecaService.delete(deleted.id)
       .pipe(first())
       .subscribe(() => {
         this.message.success(`Exclusão realizada com sucesso. Biblioteca : ${deleted.id} - ${deleted.nome}`);
