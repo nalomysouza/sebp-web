@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BibliotecaFormComponent } from './biblioteca-form/biblioteca-form.component';
 import { BibliotecaComponent } from './biblioteca.component';
 
 const routes: Routes = [
   { path: '', component: BibliotecaComponent },
-  { path: 'form', component: BibliotecaFormComponent },
+  { path: 'form', loadChildren: () => import('./biblioteca-form/biblioteca-form.module').then(m => m.BibliotecaFormModule) },
   // { path: ':id/detail', component: BibliotecaDetailComponent }
-  //{ path: 'form', canActivate: [AuthGuard], loadChildren: () => import('./step-form/step-form.module').then(m => m.StepFormModule) },
-  //{ path: 'add', component: FormularioComponent },
 ];
 
 @NgModule({
