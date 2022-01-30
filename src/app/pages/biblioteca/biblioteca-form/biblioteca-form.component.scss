@@ -1,3 +1,5 @@
+@import '../../../../styles.scss';
+
 #opcoes-form {
   ::ng-deep .ant-card-body {
     padding: 10px;
@@ -6,4 +8,15 @@
 
 .opcao-icon {
   font-size: 30px;
+  padding-bottom: 3px;
+}
+
+.opcao-card {
+  p {
+    margin-bottom: 0.5em;
+  }
+}
+
+.opcao-selected {
+  border: 1px solid $primary-orange;
 }

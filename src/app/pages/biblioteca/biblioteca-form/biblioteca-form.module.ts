@@ -17,18 +17,19 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgxMaskModule } from 'ngx-mask';
 import { BibliotecaFormRoutingModule } from './biblioteca-form-routing.module';
 import { BibliotecaFormComponent } from './biblioteca-form.component';
+import { BibliotecaFormSobreComponent } from './biblioteca-form-sobre/biblioteca-form-sobre.component';
 
 @NgModule({
-  declarations: [BibliotecaFormComponent],
+  declarations: [BibliotecaFormComponent, BibliotecaFormSobreComponent],
   imports: [
     CommonModule,
+    BibliotecaFormRoutingModule,
     NgxMaskModule.forRoot(),
     PipesModule,
     FormsModule,
     ReactiveFormsModule,
     SebpAcoesFormModule,
     SebpBreadcrumbModule,
-    BibliotecaFormRoutingModule,
 
     NzListModule,
     NzCardModule,

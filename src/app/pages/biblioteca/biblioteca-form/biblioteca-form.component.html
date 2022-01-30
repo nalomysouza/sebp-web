@@ -5,8 +5,8 @@
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3" *ngFor="let opcao of opcoes">
         <nz-list-item>
-          <nz-card>
-            <em nz-icon nzType="step-backward" nzTheme="outline" class="opcao-icon primary-orange"></em>
+          <nz-card class="opcao-card" [routerLink]="[opcao.rota]" [routerLinkActive]="['opcao-selected']">
+            <em nz-icon [nzType]="opcao.icone" nzTheme="outline" class="opcao-icon primary-orange"></em>
             <p>{{opcao.descricao}}</p>
             <h6 class="primary-gray">{{opcao.titulo}}</h6>
           </nz-card>
@@ -14,4 +14,8 @@
       </div>
     </div>
   </nz-list>
+</section>
+
+<section>
+  <router-outlet></router-outlet>
 </section>
