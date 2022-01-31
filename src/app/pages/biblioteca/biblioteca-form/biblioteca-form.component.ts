@@ -19,7 +19,7 @@ export class BibliotecaFormComponent implements OnInit {
     { titulo: 'Acervos', descricao: 'Acervos disponibilizados', icone: 'container', rota: `${this.baseRouter}/acervo` },
     { titulo: 'Equipamentos', descricao: 'Equipamentos disponibilizados', icone: 'desktop', rota: `${this.baseRouter}/equipamento` },
     //{ titulo: 'Perfil do Leitor', descricao: '', icone: '' },
-    { titulo: 'Responsáveis', descricao: 'Responsáveis diretos pela biblioteca', icone: 'team', rota: `${this.baseRouter}/responsavel` },
+    { titulo: 'Responsáveis', descricao: 'Responsáveis pela biblioteca', icone: 'team', rota: `${this.baseRouter}/responsavel` },
   ];
 
   constructor(private router: Router) { }
