@@ -20,7 +20,7 @@ import { first } from 'rxjs';
 })
 export class BibliotecaFormSobreComponent implements OnInit {
 
-  id!: string;
+  codigoBiblioteca!: string;
   isAddMode!: boolean;
   loading!: boolean;
   form!: FormGroup;
@@ -39,8 +39,8 @@ export class BibliotecaFormSobreComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe(params => {
-      this.id = params.id;
-      this.isAddMode = !this.id;
+      this.codigoBiblioteca = params.codigoBiblioteca;
+      this.isAddMode = !this.codigoBiblioteca;
     });
     this.loadDadosBase();
     this.createForm();
@@ -89,7 +89,7 @@ export class BibliotecaFormSobreComponent implements OnInit {
   loadForm() {
     if (!this.isAddMode) {
       this._bibliotecaService
-        .findById(Number.parseInt(this.id))
+        .findById(Number.parseInt(this.codigoBiblioteca))
         .pipe(first())
         .subscribe(x => this.form.patchValue(x));
     }
@@ -123,15 +123,16 @@ export class BibliotecaFormSobreComponent implements OnInit {
 
   update() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe((updated) => {
+    this._bibliotecaService.update(Number.parseInt(this.codigoBiblioteca), biblioteca).pipe(first()).subscribe((updated) => {
       this._messageService.success(`${ATUALIZAR.SUCESSO} biblioteca ${updated.nome}`);
       this.nextUrl(updated.id);
     })
       .add(() => this.loading = false);
   }
 
-  nextUrl(id: number | undefined) {
-    this._router.navigate([`/biblioteca/form/sobre`], { queryParams: { id: id }, queryParamsHandling: 'merge' });
+  nextUrl(codigoBiblioteca: number | undefined): void {
+    if (!codigoBiblioteca) throw new Error('codigoBiblioteca não informado');
+    this._router.navigate([`/biblioteca/form/apoio-recebido`], { queryParams: { codigoBiblioteca: codigoBiblioteca }, queryParamsHandling: 'merge' });
   }
 
   compareValue(obj1: any, obj2: any): boolean {

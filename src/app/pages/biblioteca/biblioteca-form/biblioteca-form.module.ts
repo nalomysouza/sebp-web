@@ -18,6 +18,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { BibliotecaFormRoutingModule } from './biblioteca-form-routing.module';
 import { BibliotecaFormComponent } from './biblioteca-form.component';
 import { BibliotecaFormSobreComponent } from './biblioteca-form-sobre/biblioteca-form-sobre.component';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 
 @NgModule({
   declarations: [BibliotecaFormComponent, BibliotecaFormSobreComponent],
@@ -40,7 +41,8 @@ import { BibliotecaFormSobreComponent } from './biblioteca-form-sobre/biblioteca
     NzInputModule,
     NzInputNumberModule,
     NzMessageModule,
-    NzIconModule
+    NzIconModule,
+    NzSwitchModule,
   ],
   exports: [
     BibliotecaFormComponent

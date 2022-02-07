@@ -9,7 +9,8 @@ const routes: Routes = [
     component: BibliotecaFormComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'sobre' },
-      { path: 'sobre', component: BibliotecaFormSobreComponent }
+      { path: 'sobre', component: BibliotecaFormSobreComponent },
+      { path: 'apoio-recebido', component: BibliotecaFormSobreComponent },
     ]
   },
 ];

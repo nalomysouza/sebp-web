@@ -132,20 +132,20 @@
             </nz-form-control>
           </nz-form-item>
         </div>
+        <div nz-col nzSpan="8">
+          <nz-form-item>
+            <nz-form-label>Complemento</nz-form-label>
+            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
+              <input formControlName="complemento" nz-input placeholder="Informe um complemento" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div nz-col nzSpan="4">
           <nz-form-item>
             <nz-form-label>Cep</nz-form-label>
             <nz-form-control nzErrorTip="Campo aceita somente números">
               <input type="text" [dropSpecialCharacters]="false" mask="00.000-000" formControlName="cep" nz-input
                 placeholder="Informe um cep" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col nzSpan="8">
-          <nz-form-item>
-            <nz-form-label>Complemento</nz-form-label>
-            <nz-form-control nzErrorTip="Campo aceita somente caracteres e números">
-              <input formControlName="complemento" nz-input placeholder="Informe um complemento" />
             </nz-form-control>
           </nz-form-item>
         </div>
