@@ -5,7 +5,8 @@
     <div nz-row [nzGutter]="8">
       <div nz-col [nzSpan]="3" *ngFor="let opcao of opcoes">
         <nz-list-item>
-          <nz-card class="opcao-card" [routerLink]="[opcao.rota]" [routerLinkActive]="['opcao-selected']">
+          <nz-card class="opcao-card" disabled="desabilitarRotas" (click)="proximaRota(opcao.rota)"
+            [class.opcao-selected]="isActiveRouter(opcao.rota)" [class.desabilitar-eventos]="desabilitarRotas">
             <em nz-icon [nzType]="opcao.icone" nzTheme="outline" class="opcao-icon primary-orange"></em>
             <p>{{opcao.descricao}}</p>
             <h6 class="primary-gray">{{opcao.titulo}}</h6>

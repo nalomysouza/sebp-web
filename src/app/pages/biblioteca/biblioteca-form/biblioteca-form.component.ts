@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Opcoes } from './model/opcoes';
 
 @Component({
@@ -9,6 +9,8 @@ import { Opcoes } from './model/opcoes';
 })
 export class BibliotecaFormComponent implements OnInit {
   readonly baseRouter = '/biblioteca/form';
+  codigoBiblioteca!: number;
+  desabilitarRotas!: boolean;
 
   opcoes: Opcoes[] = [
     { titulo: 'Sobre', descricao: 'Informações sobre a biblioteca', icone: 'borderless-table', rota: `${this.baseRouter}/sobre` },
@@ -22,8 +24,24 @@ export class BibliotecaFormComponent implements OnInit {
     { titulo: 'Responsáveis', descricao: 'Responsáveis pela biblioteca', icone: 'team', rota: `${this.baseRouter}/responsavel` },
   ];
 
-  constructor(private router: Router) { }
+  constructor(
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.codigoBiblioteca = params.codigoBiblioteca;
+      this.desabilitarRotas = !params.codigoBiblioteca;
+    });
+  }
+
+  isActiveRouter(rota: string | undefined): boolean {
+    const _rota = this.codigoBiblioteca ? `${rota}?codigoBiblioteca=${this.codigoBiblioteca}` : rota;
+    return this._router.url === _rota;
+  }
+
+  proximaRota(rota: string | undefined): void {
+    this._router.navigate([rota], { queryParams: { codigoBiblioteca: this.codigoBiblioteca } });
   }
 }

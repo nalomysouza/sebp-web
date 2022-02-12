@@ -39,7 +39,6 @@ export class BibliotecaComponent implements OnInit {
         this.bibliotecas = [];
         this.buscar();
       }).add(() => this.loading = false);
-
   }
 
   /**
@@ -95,7 +94,7 @@ export class BibliotecaComponent implements OnInit {
         .indexOf(this.searchValue.toLocaleUpperCase()) !== -1);
   }
 
-  routerEdit(id: number | undefined) {
-    return id ? `${id}/detail` : '';
+  get routerNext(): string {
+    return '/biblioteca/form/sobre';
   }
 }

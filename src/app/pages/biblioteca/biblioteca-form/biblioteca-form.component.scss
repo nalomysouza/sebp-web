@@ -12,6 +12,7 @@
 }
 
 .opcao-card {
+  cursor: pointer;
   p {
     margin-bottom: 0.5em;
   }
@@ -19,4 +20,9 @@
 
 .opcao-selected {
   border: 1px solid $primary-orange;
+}
+
+.desabilitar-eventos {
+  pointer-events: none;
+  cursor: none;
 }
