@@ -1,5 +1,14 @@
 <section id="biblioteca-form">
-  <nz-card>
+  <nz-card [nzExtra]="opcaoTemplate">
+    <ng-template #opcaoTemplate>
+      <button nz-button nzType="primary">
+        <em nz-icon nzType="left"></em> Voltar
+      </button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzType="primary">
+        Próximo <em nz-icon nzType="right"></em>
+      </button>
+    </ng-template>
     <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div nz-row [nzGutter]="8">
         <div nz-col nzSpan="10">

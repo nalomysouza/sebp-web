@@ -19,7 +19,6 @@ import { first } from 'rxjs';
   styleUrls: ['./biblioteca-form-sobre.component.scss']
 })
 export class BibliotecaFormSobreComponent implements OnInit {
-
   codigoBiblioteca!: string;
   isAddMode!: boolean;
   loading!: boolean;
@@ -29,7 +28,7 @@ export class BibliotecaFormSobreComponent implements OnInit {
   tiposBibliotecas!: TipoBiblioteca[];
 
   constructor(
-    private fb: FormBuilder,
+    private _fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _bibliotecaService: BibliotecaService,
@@ -48,7 +47,7 @@ export class BibliotecaFormSobreComponent implements OnInit {
   }
 
   createForm() {
-    this.form = this.fb.group({
+    this.form = this._fb.group({
       id: null,
       nome: ['', [Validators.required, Validators.minLength(3)]],
       sigla: [''],
@@ -123,15 +122,16 @@ export class BibliotecaFormSobreComponent implements OnInit {
 
   update() {
     let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.update(Number.parseInt(this.codigoBiblioteca), biblioteca).pipe(first()).subscribe((updated) => {
-      this._messageService.success(`${ATUALIZAR.SUCESSO} biblioteca ${updated.nome}`);
-      this.nextUrl(updated.id);
-    })
+    this._bibliotecaService.update(Number.parseInt(this.codigoBiblioteca), biblioteca)
+      .pipe(first())
+      .subscribe((updated) => {
+        this._messageService.success(`${ATUALIZAR.SUCESSO} biblioteca ${updated.nome}`);
+      })
       .add(() => this.loading = false);
   }
 
   nextUrl(codigoBiblioteca: number | undefined): void {
-    if (!codigoBiblioteca) throw new Error('codigoBiblioteca não informado');
+    if (!codigoBiblioteca) throw new Error('codigo da biblioteca não informado');
     this._router.navigate([`/biblioteca/form/apoio-recebido`], { queryParams: { codigoBiblioteca: codigoBiblioteca }, queryParamsHandling: 'merge' });
   }
 

@@ -19,9 +19,10 @@ export class BibliotecaComponent implements OnInit {
   readonly NOT_EXIST = 'NÃO INFORMADO';
 
   constructor(
-    private _bibliotecaService: BibliotecaService,
     private modal: NzModalService,
-    private message: NzMessageService) { }
+    private message: NzMessageService,
+    private _bibliotecaService: BibliotecaService,
+  ) { }
 
   ngOnInit(): void {
     this.buscar();

@@ -19,6 +19,8 @@ import { BibliotecaFormRoutingModule } from './biblioteca-form-routing.module';
 import { BibliotecaFormComponent } from './biblioteca-form.component';
 import { BibliotecaFormSobreComponent } from './biblioteca-form-sobre/biblioteca-form-sobre.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   declarations: [BibliotecaFormComponent, BibliotecaFormSobreComponent],
@@ -43,6 +45,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     NzMessageModule,
     NzIconModule,
     NzSwitchModule,
+    NzDividerModule,
+    NzButtonModule,
   ],
   exports: [
     BibliotecaFormComponent
