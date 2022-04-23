@@ -1,17 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
-import { Biblioteca } from 'src/app/shared/model/biblioteca.model';
-import { Municipio } from 'src/app/shared/model/municipio.model';
-import { Orgao } from 'src/app/shared/model/orgao.model';
-import { TipoBiblioteca } from 'src/app/shared/model/tipo-biblioteca.model';
-import { HelpService } from 'src/app/shared/services/help.service';
-import { BibliotecaService } from 'src/app/shared/services/biblioteca.service';
-import { OrgaoService } from 'src/app/shared/services/orgao.service';
-import { ONLY_CHAR_AND_NUMBER, ONLY_MAIL, ONLY_NUMBER } from 'src/app/shared/utils/regex';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { REGISTRAR } from 'src/app/shared/utils/constants';
+import { Opcoes } from './model/opcoes';
 
 @Component({
   selector: 'app-biblioteca-form',
@@ -19,121 +8,40 @@ import { REGISTRAR } from 'src/app/shared/utils/constants';
   styleUrls: ['./biblioteca-form.component.scss']
 })
 export class BibliotecaFormComponent implements OnInit {
+  readonly baseRouter = '/biblioteca/form';
+  codigoBiblioteca!: number;
+  desabilitarRotas!: boolean;
 
-  id!: string;
-  isAddMode!: boolean;
-  loading = false;
-  readonly entity = 'biblioteca';
-
-  form!: FormGroup;
-  orgaos!: Orgao[];
-  municipios!: Municipio[];
-  tiposBibliotecas!: TipoBiblioteca[];
+  opcoes: Opcoes[] = [
+    { titulo: 'Sobre', descricao: 'Informações sobre a biblioteca', icone: 'borderless-table', rota: `${this.baseRouter}/sobre` },
+    { titulo: 'Apoios', descricao: 'Apoios recebidos pela biblioteca', icone: 'reconciliation', rota: `${this.baseRouter}/apoio-recebido` },
+    { titulo: 'Funcionamento', descricao: 'Horários de funcionamento', icone: 'calendar', rota: `${this.baseRouter}/horario-funcionamento` },
+    { titulo: 'Acesso', descricao: 'Formas de acesso a biblioteca', icone: 'select', rota: `${this.baseRouter}/acesso` },
+    { titulo: 'Serviços', descricao: 'Serviços disponibilizados', icone: 'wallet', rota: `${this.baseRouter}/servico` },
+    { titulo: 'Acervos', descricao: 'Acervos disponibilizados', icone: 'container', rota: `${this.baseRouter}/acervo` },
+    { titulo: 'Equipamentos', descricao: 'Equipamentos disponibilizados', icone: 'desktop', rota: `${this.baseRouter}/equipamento` },
+    //{ titulo: 'Perfil do Leitor', descricao: '', icone: '' },
+    { titulo: 'Responsáveis', descricao: 'Responsáveis pela biblioteca', icone: 'team', rota: `${this.baseRouter}/responsavel` },
+  ];
 
   constructor(
-    private fb: FormBuilder,
-    private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _bibliotecaService: BibliotecaService,
-    private _orgaoService: OrgaoService,
-    private _apiService: HelpService,
-    private _messageService: NzMessageService) { }
+    private _activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.id = this._activatedRoute.snapshot.params['id'];
-    this.isAddMode = !this.id;
-    this.loadDadosBase();
-    this.createForm();
-    this.loadForm();
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      id: null,
-      nome: ['', [Validators.required, Validators.minLength(3)]],
-      sigla: [''],
-      email: ['', [
-        Validators.required,
-        Validators.email,
-        Validators.pattern(ONLY_MAIL)]],
-      dataFundacao: [null],
-      atoCriacao: [''],
-      telefone: [''],
-      fax: [''],
-      polo: false,
-      implantadaPeloPLA: false,
-      cadastroSNBP: false,
-      anoCadastroSNBP: null,
-      orgao: [null, Validators.required],
-      tipoBiblioteca: [null, Validators.required],
-      logradouro: ['', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern(ONLY_CHAR_AND_NUMBER)]
-      ],
-      numero: [null, [Validators.pattern(ONLY_NUMBER)]],
-      complemento: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-      bairro: ['', [Validators.pattern(ONLY_CHAR_AND_NUMBER)]],
-      cep: [''],
-      municipio: [null, Validators.required],
-      observacoes: ['', Validators.required]
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.codigoBiblioteca = params.codigoBiblioteca;
+      this.desabilitarRotas = !params.codigoBiblioteca;
     });
   }
 
-  loadDadosBase() {
-    this._orgaoService.all().pipe(first()).subscribe(x => this.orgaos = x);
-    this._apiService.getTiposBiliotecas().pipe(first()).subscribe(x => this.tiposBibliotecas = x);
-    this._apiService.getMunicipios().pipe(first()).subscribe(x => this.municipios = x);
+  isActiveRouter(rota: string | undefined): boolean {
+    const _rota = this.codigoBiblioteca ? `${rota}?codigoBiblioteca=${this.codigoBiblioteca}` : rota;
+    return this._router.url === _rota;
   }
 
-  loadForm() {
-    if (!this.isAddMode) {
-      this._bibliotecaService
-        .findById(Number.parseInt(this.id))
-        .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
-    }
+  proximaRota(rota: string | undefined): void {
+    this._router.navigate([rota], { queryParams: { codigoBiblioteca: this.codigoBiblioteca } });
   }
-
-  onSubmit(): void {
-    for (const i in this.form.controls) {
-      this.form.controls[i].markAsDirty();
-      this.form.controls[i].updateValueAndValidity();
-    }
-
-    if (this.form.valid) {
-      this.loading = true;
-      this.isAddMode ? this.create() : this.update();
-    }
-  }
-
-  create() {
-    let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.save(biblioteca).pipe(first()).subscribe((created) => {
-      this._messageService.success(`${REGISTRAR.SUCESSO} ${this.entity} ${created.nome}`);
-      this.nextUrl(created.id);
-    }, (error) => {
-      this._messageService.error(`${REGISTRAR.ERRO} ${this.entity}`);
-      console.error(`${REGISTRAR.ERRO} ${this.entity}: `, error);
-    })
-      .add(() => this.loading = false);
-  }
-
-  update() {
-    let biblioteca = Object.assign(new Biblioteca(), this.form.value);
-    this._bibliotecaService.update(Number.parseInt(this.id), biblioteca).pipe(first()).subscribe((updated) => {
-      //this.alertService.success('User updated', { keepAfterRouteChange: true });
-      this.nextUrl(updated.id);
-    })
-      .add(() => this.loading = false);
-  }
-
-  nextUrl(id: number | undefined) {
-    this._router.navigate([`/biblioteca/${id}/detail`], { relativeTo: this._activatedRoute });
-  }
-
-  compareValue(obj1: any, obj2: any): boolean {
-    return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
-  }
-
 }

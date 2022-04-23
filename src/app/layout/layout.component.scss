@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 :host {
   display: flex;
   text-rendering: optimizeLegibility;
@@ -5,20 +7,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+nz-sider {
+  flex: 0 0 55px !important;
+  max-width: 55px !important;
+  min-width: 55px !important;
+  width: 55px !important;
+}
+
+.ant-menu.ant-menu-dark {
+  background-color: $primary-gray;
+}
+
 .menu-sidebar {
   position: relative;
   z-index: 10;
   min-height: 100vh;
-  //background-color: #f6f6f6;
+  background-color: $primary-gray;
 }
 
 .sidebar-logo {
   position: relative;
   height: 64px;
-  padding-left: 24px;
+  padding-left: 12px;
   overflow: hidden;
   line-height: 64px;
-  //background: #f6f6f6;
   transition: all .3s;
 }
 
@@ -27,7 +39,7 @@
   height: 32px;
   width: 32px;
   vertical-align: middle;
-  font-size: 35px;
+  font-size: 29px;
 }
 
 nz-header {
@@ -40,11 +52,16 @@ nz-header {
   position: relative;
   height: 64px;
   padding: 0;
-  background: #f6f6f6;
+  background: $primary-white;
+
+  .bece-logo {
+    width: 200px;
+    padding-left: 24px;
+  }
 }
 
 .inner-content {
-  padding: 24px;
-  background: #fff;
+  padding: 4px 24px;
+  background: $primary-white;
   height: 100%;
 }

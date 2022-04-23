@@ -35,3 +35,20 @@
 ::ng-deep .ant-statistic-content{
   font-size: 19px;
 }
+
+//colors variables
+$primary-gray: #898989;
+$primary-white: #ffffff;
+$primary-orange: #f47b40;
+
+.primary-gray {
+  color: $primary-gray;
+}
+
+.primary-white {
+  color: $primary-white;
+}
+
+.primary-orange {
+  color: $primary-orange;
+}

@@ -2,7 +2,7 @@
 
 <section id="registrar-biblioteca">
   <div class="text-right">
-    <button nz-button nzType="primary" routerLink="/biblioteca/form">Registrar</button>
+    <button nz-button nzType="primary" [routerLink]="routerNext">Registrar</button>
   </div>
   <br>
 
@@ -23,16 +23,18 @@
     <tbody>
       <tr *ngFor="let data of table.data">
         <td class="text-upper">
-          <a href="#" routerLink="{{routerEdit(data?.id)}}" nzTooltipTitle="Clique para atualizar"
-            nzTooltipPlacement="top" nz-tooltip>{{data?.nome}}
+          <a href="#" [routerLink]="routerNext" [queryParams]="{ codigoBiblioteca: data?.id}"
+            nzTooltipTitle="Clique para atualizar" nzTooltipPlacement="top" nz-tooltip>
+            {{data?.nome}}
           </a>
         </td>
         <td class="text-center text-upper">
-          <a href="#" routerLink="{{routerEdit(data?.id)}}">{{data?.municipio?.nome}}</a>
+          <a href="#" [routerLink]="routerNext"
+            [queryParams]="{ codigoBiblioteca: data?.id}">{{data?.municipio?.nome}}</a>
         </td>
         <td class="text-center">
-          <span *ngIf="data?.email" routerLink="{{routerEdit(data?.id)}}" nz-icon nzType="mail" nzTheme="twotone"
-            nzTooltipTitle={{data.email}} nzTooltipPlacement="top" nz-tooltip>
+          <span *ngIf="data?.email" [routerLink]="routerNext" [queryParams]="{ codigoBiblioteca: data?.id}" nz-icon
+            nzType="mail" nzTheme="twotone" nzTooltipTitle={{data.email}} nzTooltipPlacement="top" nz-tooltip>
           </span>
           <span *ngIf="!data?.email" nz-icon nzType="stop" nzTheme="twotone" nzTooltipTitle={{NOT_EXIST}}
             nzTooltipPlacement="top" nz-tooltip [nzTwotoneColor]="'#c22126'"></span>
